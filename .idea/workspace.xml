@@ -2,100 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9d9cb26-ea37-4934-8bab-a721bf3d3344" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Service.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/WatcherRelation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_08_07_150204_create_services_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_08_07_150948_create_watcher_relations_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/css/custom.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/css/paper-dashboard.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/demo/demo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/demo/demo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/demo/jquery.sharrre.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/nucleo-icons.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/nucleo-icons.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/nucleo-icons.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/fonts/nucleo-icons.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/agenda.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/apple-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/bruno-abatti.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/damir-bosnjak.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/daniel-olahs.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/david-marcu.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/fabio-mangione.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/jan-sendereks.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/default-avatar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/evernote.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/faces/ayo-ogunseinde-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/faces/clem-onojeghuo-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/faces/erik-lucatero-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/faces/joe-gardner-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/faces/kaci-baum-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/flags/AU.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/flags/BR.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/flags/DE.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/flags/GB.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/flags/RO.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/flags/US.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/image_placeholder.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/logo-small.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/mike.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/placeholder.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/img/stylus.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/core/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/core/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/core/popper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/createService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/maps.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/paper-dashboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/paper-dashboard.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/paper-dashboard.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/bootstrap-datetimepicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/bootstrap-notify.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/bootstrap-selectpicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/bootstrap-switch.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/bootstrap-tagsinput.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/chartjs.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/fullcalendar/daygrid.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/fullcalendar/fullcalendar.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/fullcalendar/interaction.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/fullcalendar/timegrid.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/jasny-bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/jquery-jvectormap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/jquery.bootstrap-wizard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/jquery.dataTables.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/jquery.validate.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/moment.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/nouislider.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/perfect-scrollbar.jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/sweetalert2.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/serviceLogs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/css/demo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/css/intlTelInput.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/css/intlTelInput.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/img/flags.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/img/flags@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/js/data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/js/data.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/js/intlTelInput-jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/js/intlTelInput-jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/js/intlTelInput.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/js/intlTelInput.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/js/utils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/adminCreateService.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/adminServices.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/adminApp.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/admin-login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/admin-login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/createService.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/createService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/adminCreateService.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adminCreateService.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -130,8 +41,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/web.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="540">
-                  <caret line="36" selection-start-line="36" selection-end-line="36" />
+                <state relative-caret-position="525">
+                  <caret line="35" column="80" selection-start-line="35" selection-start-column="63" selection-end-line="35" selection-end-column="80" />
                 </state>
               </provider>
             </entry>
@@ -139,8 +50,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="825">
-                  <caret line="56" column="39" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="39" />
+                <state relative-caret-position="37">
+                  <caret line="76" column="96" selection-start-line="76" selection-start-column="96" selection-end-line="76" selection-end-column="96" />
                   <folding>
                     <element signature="e#40#68#0#PHP" expanded="true" />
                   </folding>
@@ -151,8 +62,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resources/views/adminCreateService.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="245">
-                  <caret line="179" column="94" selection-start-line="179" selection-start-column="94" selection-end-line="179" selection-end-column="94" />
+                <state relative-caret-position="152">
+                  <caret line="245" column="63" selection-start-line="245" selection-start-column="63" selection-end-line="245" selection-end-column="63" />
                 </state>
               </provider>
             </entry>
@@ -191,8 +102,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/assets/js/createService.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-349">
-                  <caret line="372" column="50" selection-start-line="372" selection-start-column="50" selection-end-line="372" selection-end-column="50" />
+                <state relative-caret-position="88">
+                  <caret line="428" column="41" selection-start-line="428" selection-start-column="41" selection-end-line="428" selection-end-column="41" />
                 </state>
               </provider>
             </entry>
@@ -228,11 +139,11 @@
         <option value="$PROJECT_DIR$/resources/views/admin.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/adminServices.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/adminApp.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_08_07_150204_create_services_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_08_07_150948_create_watcher_relations_table.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
         <option value="$PROJECT_DIR$/public/assets/js/createService.js" />
         <option value="$PROJECT_DIR$/resources/views/adminCreateService.blade.php" />
@@ -354,6 +265,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -365,7 +277,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -437,7 +348,9 @@
       <workItem from="1596818169713" duration="351000" />
       <workItem from="1596823360736" duration="799000" />
       <workItem from="1596826402003" duration="1773000" />
-      <workItem from="1596828213996" duration="293000" />
+      <workItem from="1596828213996" duration="1069000" />
+      <workItem from="1596830828374" duration="1791000" />
+      <workItem from="1596832647834" duration="1232000" />
     </task>
     <task id="LOCAL-00001" summary="new changes">
       <created>1596192462049</created>
@@ -460,16 +373,24 @@
       <option name="project" value="LOCAL" />
       <updated>1596207066473</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="version 0.1">
+      <created>1596829348502</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1596829348502</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32647000" />
+    <option name="totallyTimeSpent" value="36446000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="823" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19670959" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20243205" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -482,7 +403,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32968536" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32968536" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -518,6 +439,22 @@
     <MESSAGE value="new changes" />
     <MESSAGE value="version 0.1" />
     <option name="LAST_COMMIT_MESSAGE" value="version 0.1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/public/assets/js/createService.js</url>
+          <line>258</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/public/assets/js/createService.js</url>
+          <line>422</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
@@ -755,18 +692,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="56" column="39" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="39" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="525">
+          <caret line="35" column="80" selection-start-line="35" selection-start-column="63" selection-end-line="35" selection-end-column="80" />
         </state>
       </provider>
     </entry>
@@ -791,17 +718,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="76" column="96" selection-start-line="76" selection-start-column="96" selection-end-line="76" selection-end-column="96" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/js/createService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-349">
-          <caret line="372" column="50" selection-start-line="372" selection-start-column="50" selection-end-line="372" selection-end-column="50" />
+        <state relative-caret-position="88">
+          <caret line="428" column="41" selection-start-line="428" selection-start-column="41" selection-end-line="428" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/adminCreateService.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="179" column="94" selection-start-line="179" selection-start-column="94" selection-end-line="179" selection-end-column="94" />
+        <state relative-caret-position="152">
+          <caret line="245" column="63" selection-start-line="245" selection-start-column="63" selection-end-line="245" selection-end-column="63" />
         </state>
       </provider>
     </entry>

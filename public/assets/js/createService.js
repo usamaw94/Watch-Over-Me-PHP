@@ -294,6 +294,7 @@ $(document).ready(function() {
                     var wearerNum = iti.getNumber();
                     $("#wearerStorePhoneNum").val(wearerNum);
                     $("#nextTab").attr("disabled", false);
+                    $("#wearerExistStatus").val(data.existStatus);
 
                 } else if (data.existStatus == 'exist'){
 
@@ -303,7 +304,7 @@ $(document).ready(function() {
                     $("#wearerLastName").prop('readonly', true);
                     $("#wearerEmail").prop('readonly', true);
 
-                    $("#existStatus").val(data.existStatus);
+                    $("#wearerExistStatus").val(data.existStatus);
                     $("#wearerId").val(data.personDetails.person_id);
                     $("#wearerFirstName").val(data.personDetails.f_name);
                     $("#wearerLastName").val(data.personDetails.l_name);
@@ -324,7 +325,7 @@ $(document).ready(function() {
                     $("#wearerLastName").prop('readonly', true);
                     $("#wearerEmail").prop('readonly', true);
 
-                    $("#existStatus").val(data.existStatus);
+                    $("#wearerExistStatus").val(data.existStatus);
                     $("#wearerId").val(data.personDetails.person_id);
                     $("#wearerFirstName").val(data.personDetails.f_name);
                     $("#wearerLastName").val(data.personDetails.l_name);
@@ -421,12 +422,63 @@ $(document).ready(function() {
 
     $(document).on("click", "#watcherCheckNumberBtn" , function(event) {
 
-        $("#watcherDetailsForm").slideDown("medium");
-        $("#watcherDetailsFormCheck").val("show");
-        $("#nextTab").attr("disabled", false);
+        var wearerNum = iti.getNumber();
         var watcherNum = watcherIti.getNumber();
-        alert(watcherNum);
 
+        if(watcherNum == wearerNum) {
+            $('#watcher-info-msg').html('*This number has already registered for wearer <br> Wearer cannot become watcher');
+            $('#watcher-info-msg').removeClass('sr-only');
+        } else {
+            var url="adminCheckWatcherPhone/"+ watcherNum;
+
+            $.ajax({
+                url: url,
+                data: {watcherNum},
+                datatype: "json",
+                method: "GET",
+                success: function (data) {
+
+
+                    if (data.existStatus == 'not exist'){
+
+                        $('#watcher-info-msg').text('');
+                        $('#watcher-info-msg').addClass('sr-only');
+                        $("#watcherFirstName").prop('readonly', false);
+                        $("#watcherLastName").prop('readonly', false);
+                        $("#watcherEmail").prop('readonly', false);
+                        $("#watcherDetailsForm").slideDown("medium");
+                        $("#watcherDetailsFormCheck").val("show");
+                        var watcherNum = watcherIti.getNumber();
+                        $("#watcherStorePhoneNum").val(watcherNum);
+                        $("#nextTab").attr("disabled", false);
+                        $("#watcherExistStatus").val(data.existStatus);
+
+                    } else if (data.existStatus == 'exist'){
+
+                        $('#watcher-info-msg').text('*User already exist');
+                        $('#watcher-info-msg').removeClass('sr-only');
+                        $("#watcherFirstName").prop('readonly', true);
+                        $("#watcherLastName").prop('readonly', true);
+                        $("#watcherEmail").prop('readonly', true);
+
+                        $("#watcherExistStatus").val(data.existStatus);
+                        $("#watcherId").val(data.personDetails.person_id);
+                        $("#watcherFirstName").val(data.personDetails.f_name);
+                        $("#watcherLastName").val(data.personDetails.l_name);
+                        $("#watcherEmail").val(data.personDetails.email);
+
+
+                        $("#watcherDetailsForm").slideDown("medium");
+                        $("#watcherDetailsFormCheck").val("show");
+                        var watcherNum = watcherIti.getNumber();
+                        $("#watcherStorePhoneNum").val(watcherNum);
+                        $("#nextTab").attr("disabled", false);
+
+                    }
+
+                }
+            });
+        }
     });
 
     var watcherInput = document.querySelector("#watcherPhoneNum");
@@ -457,6 +509,8 @@ $(document).ready(function() {
         watcherErrorMsg.innerHTML = "";
         watcherErrorMsg.classList.add("sr-only");
         watcherValidMsg.classList.add("sr-only");
+        $('#watcher-info-msg').text('');
+        $('#watcher-info-msg').addClass('sr-only');
         $("#watcherDetailsForm").slideUp("medium");
         $("#watcherDetailsFormCheck").val("hide");
         $("#nextTab").attr("disabled", true);
@@ -464,6 +518,7 @@ $(document).ready(function() {
         $("#watcherLastName").val("");
         $("#watcherEmail").val("");
         $("#watcherCheckNumberBtn").attr("disabled", true);
+
     };
 
 // on blur: validate

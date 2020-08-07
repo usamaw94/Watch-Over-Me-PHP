@@ -189,7 +189,7 @@
 
                                             <input type="hidden" id="wearerDetailsFormCheck" value="hide" readonly>
                                             <input type="hidden" id="wearerStorePhoneNum" name="wearerStorePhoneNum" readonly>
-                                            <input type="hidden" id="existStatus" name="existStatus" readonly>
+                                            <input type="hidden" id="wearerExistStatus" name="wearerExistStatus" readonly>
                                             <input type="hidden" id="wearerId" name="wearerId" readonly>
                                             <div id="wearerDetailsForm" class="col-lg-10 mt-3">
                                                 <div class="row">
@@ -229,8 +229,9 @@
                                             <div class="col-lg-7 col-md-8">
                                                 <input id="watcherPhoneNum" type="tel" class="form-control" style="padding: 10px" name="watcherPhone" placeholder="Valid phone number" autocomplete="off">
                                                 <label id="watcherPhoneNum-error" style="color: #ef8157" class="error wearer-required-error" for="watcherPhoneNum"></label>
-                                                <span id="watcher-valid-msg" class="sr-only">✓ Valid</span>
-                                                <span id="watcher-error-msg" class="sr-only"></span>
+                                                <span id="watcher-valid-msg" class="float-right sr-only">✓ Valid</span>
+                                                <span id="watcher-error-msg" class="float-right sr-only"></span>
+                                                <span id="watcher-info-msg" class="text-warning font-weight-bold sr-only"></span>
                                             </div>
                                             <div class="col-lg-3 col-md-4">
                                                 <div id="watcherCheckNumberBtn" class="btn btn-outline-info btn-block btn-round no-margin" disabled="true">
@@ -239,6 +240,10 @@
                                             </div>
 
                                             <br>
+
+                                            <input type="hidden" id="watcherStorePhoneNum" name="watcherStorePhoneNum" readonly>
+                                            <input type="hidden" id="watcherExistStatus" name="watcherExistStatus" readonly>
+                                            <input type="hidden" id="watcherId" name="watcherId" readonly>
 
                                             <input type="hidden" id="watcherDetailsFormCheck" value="hide" readonly>
                                             <div id="watcherDetailsForm" class="col-lg-10 mt-3">

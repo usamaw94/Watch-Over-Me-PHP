@@ -33,4 +33,5 @@ Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/adminServices', 'AdminController@services')->name('admin.services');
 Route::get('/adminCreateService', 'AdminController@createService')->name('admin.create.service');
 Route::get('/adminCheckWearerPhone/{phone}', 'AdminController@checkWearerPhone')->name('admin.check.wearer.phone');
+Route::get('/adminCheckWatcherPhone/{phone}', 'AdminController@checkWatcherPhone')->name('admin.check.watcher.phone');
 

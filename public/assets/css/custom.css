@@ -1,0 +1,105 @@
+#googleMap {
+    width: 100%;
+    height: 400px;
+}
+
+#wearerLocationMap  {
+    width: 100%;
+    height: 400px;
+}
+
+.logs-container {
+    height: 423px;
+    overflow-y: auto;
+}
+
+.link-text {
+    transition: 0.5s;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.link-text:hover {
+    color: #ef8157;
+}
+
+.logs-active {
+     background: rgba(128, 128, 128, 0.23);
+}
+
+.logs {
+    transition: 0.5s;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.logs:hover {
+    background: rgba(128, 128, 128, 0.23);
+}
+
+.no-space {
+    margin: 0px;
+    padding: 0px;
+}
+
+.no-margin {
+    margin: 0px;
+}
+
+.logs-action {
+    float: right;
+}
+
+#wearerDetailsForm {
+    display: none;
+}
+
+.weare-phone-error {
+    border-color: #ef8157;
+    background: #ffc0a4;;
+}
+
+#valid-msg {
+    color: #6bd098;
+}
+
+
+#watcherDetailsForm {
+    display: none;
+}
+
+.watcher-phone-error {
+    border-color: #ef8157;
+    background: #ffc0a4;;
+}
+
+#watcher-valid-msg {
+    color: #6bd098;
+}
+
+#watcherPhoneNum {
+    padding-left: 60px;
+}
+
+
+
+#otherCustomerTab {
+    display: none;
+}
+
+#customerDetailsForm {
+    display: none;
+}
+
+.customer-phone-error {
+    border-color: #ef8157;
+    background: #ffc0a4;;
+}
+
+#customer-valid-msg {
+    color: #6bd098;
+}
+
+#customerPhoneNum {
+    padding-left: 60px;
+}

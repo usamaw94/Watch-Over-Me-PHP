@@ -28,4 +28,9 @@ Route::post('/adminLoginSubmit', 'Auth\AdminLoginController@login')->name('admin
 Route::get('/adminLogout', 'Auth\AdminLoginController@logout')->name('admin.logout');
 
 
+
 Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/adminServices', 'AdminController@services')->name('admin.services');
+Route::get('/adminCreateService', 'AdminController@createService')->name('admin.create.service');
+Route::get('/adminCheckWearerPhone/{phone}', 'AdminController@checkWearerPhone')->name('admin.check.wearer.phone');
+

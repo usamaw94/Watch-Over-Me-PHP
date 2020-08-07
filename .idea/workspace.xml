@@ -2,99 +2,100 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9d9cb26-ea37-4934-8bab-a721bf3d3344" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Admin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/AdminLoginController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ConfirmPasswordController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ForgotPasswordController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_07_31_113703_create_admins_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/auth/admin-login.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/auth/passwords/confirm.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/CHANGELOG.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/LICENSE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/auth-backend/AuthenticatesUsers.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/auth-backend/ConfirmsPasswords.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/auth-backend/RedirectsUsers.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/auth-backend/RegistersUsers.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/auth-backend/ResetsPasswords.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/auth-backend/SendsPasswordResetEmails.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/auth-backend/ThrottlesLogins.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/auth-backend/VerifiesEmails.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Auth/bootstrap-stubs/auth/login.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Auth/bootstrap-stubs/auth/passwords/confirm.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Auth/bootstrap-stubs/auth/passwords/email.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Auth/bootstrap-stubs/auth/passwords/reset.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Auth/bootstrap-stubs/auth/register.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Auth/bootstrap-stubs/auth/verify.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Auth/bootstrap-stubs/home.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Auth/bootstrap-stubs/layouts/app.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Auth/stubs/controllers/HomeController.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Auth/stubs/routes.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/AuthCommand.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/AuthRouteMethods.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/ControllersCommand.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Presets/Bootstrap.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Presets/Preset.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Presets/React.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Presets/Vue.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Presets/bootstrap-stubs/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Presets/bootstrap-stubs/app.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Presets/bootstrap-stubs/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Presets/react-stubs/Example.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Presets/react-stubs/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Presets/react-stubs/webpack.mix.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Presets/vue-stubs/ExampleComponent.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Presets/vue-stubs/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/Presets/vue-stubs/webpack.mix.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/UiCommand.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/src/UiServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/stubs/Auth/ConfirmPasswordController.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/stubs/Auth/ForgotPasswordController.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/stubs/Auth/LoginController.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/stubs/Auth/RegisterController.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/stubs/Auth/ResetPasswordController.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/stubs/Auth/VerificationController.stub" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/laravel/ui/stubs/migrations/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Watch-Over-Me-PHP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Watch-Over-Me-PHP.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Service.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/WatcherRelation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_08_07_150204_create_services_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_08_07_150948_create_watcher_relations_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/paper-dashboard.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/demo/demo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/demo/demo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/demo/jquery.sharrre.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/nucleo-icons.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/nucleo-icons.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/nucleo-icons.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fonts/nucleo-icons.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/agenda.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/apple-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/bruno-abatti.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/damir-bosnjak.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/daniel-olahs.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/david-marcu.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/fabio-mangione.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/bg/jan-sendereks.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/default-avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/evernote.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/faces/ayo-ogunseinde-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/faces/clem-onojeghuo-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/faces/erik-lucatero-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/faces/joe-gardner-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/faces/kaci-baum-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/flags/AU.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/flags/BR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/flags/DE.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/flags/GB.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/flags/RO.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/flags/US.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/image_placeholder.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/logo-small.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/mike.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/placeholder.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/stylus.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/core/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/core/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/core/popper.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/createService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/maps.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/paper-dashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/paper-dashboard.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/paper-dashboard.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/bootstrap-datetimepicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/bootstrap-notify.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/bootstrap-selectpicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/bootstrap-switch.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/bootstrap-tagsinput.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/chartjs.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/fullcalendar/daygrid.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/fullcalendar/fullcalendar.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/fullcalendar/interaction.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/fullcalendar/timegrid.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/jasny-bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/jquery-jvectormap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/jquery.bootstrap-wizard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/jquery.dataTables.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/jquery.validate.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/moment.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/nouislider.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/perfect-scrollbar.jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/plugins/sweetalert2.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/serviceLogs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/css/demo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/css/intlTelInput.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/css/intlTelInput.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/img/flags.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/img/flags@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/js/data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/js/data.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/js/intlTelInput-jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/js/intlTelInput-jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/js/intlTelInput.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/js/intlTelInput.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/num_validater/js/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/adminCreateService.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/adminServices.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/adminApp.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/admin-login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/admin-login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -123,17 +124,82 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/routes/web.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="540">
+                  <caret line="36" selection-start-line="36" selection-end-line="36" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="825">
+                  <caret line="56" column="39" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="39" />
+                  <folding>
+                    <element signature="e#40#68#0#PHP" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/resources/views/adminCreateService.blade.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="245">
+                  <caret line="179" column="94" selection-start-line="179" selection-start-column="94" selection-end-line="179" selection-end-column="94" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/Service.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="150">
+                  <caret line="10" selection-start-line="10" selection-end-line="10" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/views/layouts/adminApp.blade.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="405">
+                  <caret line="27" selection-start-line="27" selection-end-line="27" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/User.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="420">
+                  <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/public/assets/js/createService.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-349">
+                  <caret line="372" column="50" selection-start-line="372" selection-start-column="50" selection-end-line="372" selection-end-column="50" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -148,20 +214,28 @@
         <option value="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
-        <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_07_31_113703_create_admins_table.php" />
         <option value="$PROJECT_DIR$/config/auth.php" />
         <option value="$PROJECT_DIR$/app/Admin.php" />
         <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/auth/admin-login.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
         <option value="$PROJECT_DIR$/app/Exceptions/Handler.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/AdminLoginController.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" />
+        <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/auth/admin-login.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/adminServices.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/adminApp.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
+        <option value="$PROJECT_DIR$/app/User.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_08_07_150204_create_services_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_08_07_150948_create_watcher_relations_table.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
+        <option value="$PROJECT_DIR$/public/assets/js/createService.js" />
+        <option value="$PROJECT_DIR$/resources/views/adminCreateService.blade.php" />
       </list>
     </option>
   </component>
@@ -298,7 +372,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/auth" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -306,6 +380,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/resources/views/auth" />
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$" />
@@ -348,7 +423,21 @@
       <workItem from="1596200408587" duration="1107000" />
       <workItem from="1596202258822" duration="1671000" />
       <workItem from="1596204120503" duration="886000" />
-      <workItem from="1596205932242" duration="1133000" />
+      <workItem from="1596205932242" duration="1623000" />
+      <workItem from="1596797848218" duration="1008000" />
+      <workItem from="1596799426841" duration="1755000" />
+      <workItem from="1596801238000" duration="1524000" />
+      <workItem from="1596804020563" duration="1785000" />
+      <workItem from="1596805828487" duration="876000" />
+      <workItem from="1596808822214" duration="1702000" />
+      <workItem from="1596810653400" duration="1648000" />
+      <workItem from="1596812464587" duration="1935000" />
+      <workItem from="1596814425284" duration="1790000" />
+      <workItem from="1596816250452" duration="1877000" />
+      <workItem from="1596818169713" duration="351000" />
+      <workItem from="1596823360736" duration="799000" />
+      <workItem from="1596826402003" duration="1773000" />
+      <workItem from="1596828213996" duration="293000" />
     </task>
     <task id="LOCAL-00001" summary="new changes">
       <created>1596192462049</created>
@@ -364,17 +453,23 @@
       <option name="project" value="LOCAL" />
       <updated>1596192635933</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="version 0.1">
+      <created>1596207066472</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1596207066473</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13041000" />
+    <option name="totallyTimeSpent" value="32647000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="823" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28183118" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19670959" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -394,6 +489,27 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29756796" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32968536" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -472,27 +588,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="53" column="57" selection-start-line="53" selection-start-column="57" selection-end-line="53" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
@@ -523,24 +618,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="54" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -558,13 +639,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="23" column="51" selection-start-line="23" selection-start-column="51" selection-end-line="23" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/admin-login.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -589,10 +663,145 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/js/core/jquery.min.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="75" column="12" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/adminServices.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="414" />
+          <folding>
+            <element signature="e#3503#5386#0#HTML" />
+            <element signature="e#5675#5699#0#HTML" expanded="true" />
+            <element signature="e#7021#7027#0#HTML" expanded="true" />
+            <element signature="e#6662#8653#0#HTML" />
+            <element signature="e#6749#7431#0#HTML" />
+            <element signature="e#7476#8580#0#HTML" />
+            <element signature="e#9103#10892#0#HTML" />
+            <element signature="e#9642#10562#0#HTML" />
+            <element signature="e#10591#10853#0#HTML" />
+            <element signature="e#10898#12691#0#HTML" />
+            <element signature="e#11441#12361#0#HTML" />
+            <element signature="e#12390#12652#0#HTML" />
+            <element signature="e#12697#14492#0#HTML" />
+            <element signature="e#13392#13704#0#HTML" />
+            <element signature="e#13721#14119#0#HTML" />
+            <element signature="e#13745#14094#0#HTML" />
+            <element signature="e#14191#14453#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/admin-login.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="52" column="94" selection-start-line="52" selection-start-column="94" selection-end-line="52" selection-end-column="94" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="50" selection-end-column="10" />
+          <folding>
+            <element signature="e#88#1661#0#HTML" />
+            <element signature="e#1668#8902#0#HTML" />
+            <element signature="e#8517#8586#0#HTML" expanded="true" />
+            <element signature="e#8494#8891#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_08_07_150204_create_services_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_08_07_150948_create_watcher_relations_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="24" column="36" lean-forward="true" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="540">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="56" column="39" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="39" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Service.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/adminApp.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/js/createService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-349">
+          <caret line="372" column="50" selection-start-line="372" selection-start-column="50" selection-end-line="372" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/adminCreateService.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="179" column="94" selection-start-line="179" selection-start-column="94" selection-end-line="179" selection-end-column="94" />
         </state>
       </provider>
     </entry>

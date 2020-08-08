@@ -97,5 +97,58 @@ class AdminController extends Controller
 
     }
 
+    public function checkCustomerPhone(Request $request){
+        $phoneNum = $request->phone;
+
+        if(DB::table('users')->where('phone', '=', $phoneNum)->exists()){
+
+            $personDetails = DB::table('users')->where('phone', '=', $phoneNum)->get()->first();
+
+            $existStatus = 'exist';
+            $data = array(
+                'existStatus' => $existStatus,
+                'personDetails' => $personDetails,
+            );
+
+            return response()->json($data);
+
+        } else {
+
+            $existStatus = 'not exist';
+
+            $data = array(
+                'existStatus' => $existStatus,
+            );
+
+            return response()->json($data);
+        }
+    }
+
+    public function checkEmail(Request $request){
+        $email = $request->checkEmail;
+
+        if(DB::table('users')->where('email', '=', $email)->exists()){
+
+            $existStatus = 'exist';
+
+            $data = array(
+                'existStatus' => $existStatus,
+            );
+
+            return response()->json($data);
+
+        } else {
+
+            $existStatus = 'not exist';
+
+            $data = array(
+                'existStatus' => $existStatus,
+            );
+
+            return response()->json($data);
+
+        }
+    }
+
 }
 

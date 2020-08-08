@@ -35,14 +35,14 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.50173914">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/web.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="525">
-                  <caret line="35" column="80" selection-start-line="35" selection-start-column="63" selection-end-line="35" selection-end-column="80" />
+                <state relative-caret-position="540">
+                  <caret line="36" column="82" selection-start-line="36" selection-start-column="64" selection-end-line="36" selection-end-column="82" />
                 </state>
               </provider>
             </entry>
@@ -50,8 +50,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="37">
-                  <caret line="76" column="96" selection-start-line="76" selection-start-column="96" selection-end-line="76" selection-end-column="96" />
+                <state relative-caret-position="1830">
+                  <caret line="123" column="9" selection-start-line="123" selection-start-column="9" selection-end-line="123" selection-end-column="9" />
                   <folding>
                     <element signature="e#40#68#0#PHP" expanded="true" />
                   </folding>
@@ -62,8 +62,11 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resources/views/adminCreateService.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="152">
-                  <caret line="245" column="63" selection-start-line="245" selection-start-column="63" selection-end-line="245" selection-end-column="63" />
+                <state relative-caret-position="300">
+                  <caret line="348" column="87" selection-start-line="348" selection-start-column="70" selection-end-line="348" selection-end-column="87" />
+                  <folding>
+                    <element signature="e#24108#24130#0#HTML" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -102,8 +105,20 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/assets/js/createService.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="88">
-                  <caret line="428" column="41" selection-start-line="428" selection-start-column="41" selection-end-line="428" selection-end-column="41" />
+                <state relative-caret-position="353">
+                  <caret line="1079" lean-forward="true" selection-start-line="1079" selection-end-line="1079" />
+                  <folding>
+                    <element signature="e#10921#17726#0" />
+                    <element signature="e#17830#18370#0" />
+                    <element signature="e#18623#19211#0" />
+                    <element signature="e#19283#19842#0" />
+                    <element signature="e#19974#20475#0" />
+                    <element signature="e#20659#27700#0" />
+                    <element signature="e#27826#28366#0" />
+                    <element signature="e#28663#29290#0" />
+                    <element signature="e#29369#30009#0" />
+                    <element signature="e#30148#30637#0" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -145,8 +160,8 @@
         <option value="$PROJECT_DIR$/database/migrations/2020_08_07_150948_create_watcher_relations_table.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
-        <option value="$PROJECT_DIR$/public/assets/js/createService.js" />
         <option value="$PROJECT_DIR$/resources/views/adminCreateService.blade.php" />
+        <option value="$PROJECT_DIR$/public/assets/js/createService.js" />
       </list>
     </option>
   </component>
@@ -350,7 +365,25 @@
       <workItem from="1596826402003" duration="1773000" />
       <workItem from="1596828213996" duration="1069000" />
       <workItem from="1596830828374" duration="1791000" />
-      <workItem from="1596832647834" duration="1232000" />
+      <workItem from="1596832647834" duration="1373000" />
+      <workItem from="1596859789816" duration="1395000" />
+      <workItem from="1596861846941" duration="1800000" />
+      <workItem from="1596865001933" duration="1687000" />
+      <workItem from="1596867466179" duration="1785000" />
+      <workItem from="1596869277638" duration="1755000" />
+      <workItem from="1596871196550" duration="1253000" />
+      <workItem from="1596875930134" duration="1785000" />
+      <workItem from="1596877739839" duration="1804000" />
+      <workItem from="1596879686769" duration="1193000" />
+      <workItem from="1596883279410" duration="1466000" />
+      <workItem from="1596888133391" duration="1770000" />
+      <workItem from="1596889955441" duration="1780000" />
+      <workItem from="1596899041713" duration="1084000" />
+      <workItem from="1596900869427" duration="1910000" />
+      <workItem from="1596902883362" duration="1184000" />
+      <workItem from="1596905580380" duration="1052000" />
+      <workItem from="1596908256417" duration="1846000" />
+      <workItem from="1596910144411" duration="1017000" />
     </task>
     <task id="LOCAL-00001" summary="new changes">
       <created>1596192462049</created>
@@ -380,17 +413,24 @@
       <option name="project" value="LOCAL" />
       <updated>1596829348502</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="version 0.1">
+      <created>1596834052996</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1596834052996</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36446000" />
+    <option name="totallyTimeSpent" value="64153000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="823" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20243205" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18597998" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -403,7 +443,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32968536" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2859097" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -445,13 +485,23 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/public/assets/js/createService.js</url>
-          <line>258</line>
+          <line>308</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/public/assets/js/createService.js</url>
-          <line>422</line>
+          <line>547</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/public/assets/js/createService.js</url>
+          <line>918</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/public/assets/js/createService.js</url>
+          <line>782</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -692,8 +742,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="80" selection-start-line="35" selection-start-column="63" selection-end-line="35" selection-end-column="80" />
+        <state relative-caret-position="540">
+          <caret line="36" column="82" selection-start-line="36" selection-start-column="64" selection-end-line="36" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1830">
+          <caret line="123" column="9" selection-start-line="123" selection-start-column="9" selection-end-line="123" selection-end-column="9" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -718,27 +778,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/adminCreateService.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="76" column="96" selection-start-line="76" selection-start-column="96" selection-end-line="76" selection-end-column="96" />
+        <state relative-caret-position="300">
+          <caret line="348" column="87" selection-start-line="348" selection-start-column="70" selection-end-line="348" selection-end-column="87" />
           <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
+            <element signature="e#24108#24130#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/js/createService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="428" column="41" selection-start-line="428" selection-start-column="41" selection-end-line="428" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/adminCreateService.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="245" column="63" selection-start-line="245" selection-start-column="63" selection-end-line="245" selection-end-column="63" />
+        <state relative-caret-position="353">
+          <caret line="1079" lean-forward="true" selection-start-line="1079" selection-end-line="1079" />
+          <folding>
+            <element signature="e#10921#17726#0" />
+            <element signature="e#17830#18370#0" />
+            <element signature="e#18623#19211#0" />
+            <element signature="e#19283#19842#0" />
+            <element signature="e#19974#20475#0" />
+            <element signature="e#20659#27700#0" />
+            <element signature="e#27826#28366#0" />
+            <element signature="e#28663#29290#0" />
+            <element signature="e#29369#30009#0" />
+            <element signature="e#30148#30637#0" />
+          </folding>
         </state>
       </provider>
     </entry>

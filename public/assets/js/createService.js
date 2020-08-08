@@ -107,6 +107,49 @@ $(document).ready(function() {
             if ($current >= $total) {
                 $($wizard).find('.btn-next').hide();
                 $($wizard).find('.btn-finish').show();
+                if($current == 4){
+                    var wearerPhoneS = $("#wearerStorePhoneNum").val();
+                    var wearerEmailS = $("#wearerEmail").val();
+                    var wearerFNameS = $("#wearerFirstName").val();
+                    var wearerLNameS = $("#wearerLastName").val();
+
+                    var watcherPhoneS = $("#watcherStorePhoneNum").val();
+                    var watcherEmailS = $("#watcherEmail").val();
+                    var watcherFNameS = $("#watcherFirstName").val();
+                    var watcherLNameS = $("#watcherLastName").val();
+
+                    var customerTypeS = $("#customerType").val();
+                    var customerPhoneS = $("#customerStorePhoneNum").val();
+                    var customerEmailS = $("#customerEmail").val();
+                    var customerFNameS = $("#customerFirstName").val();
+                    var customerLNameS = $("#customerLastName").val();
+
+                    $("#wearerSummaryName").text(wearerFNameS + " " + wearerLNameS);
+                    $("#wearerSummaryPhone").text(wearerPhoneS);
+                    $("#wearerSummaryEmail").text(wearerEmailS);
+
+                    $("#watcherSummaryName").text(watcherFNameS + " " + watcherLNameS);
+                    $("#watcherSummaryPhone").text(watcherPhoneS);
+                    $("#watcherSummaryEmail").text(watcherEmailS);
+
+                    if(customerTypeS == "wearer") {
+                        $("#customerIsOther").addClass('sr-only');
+                        $("#customerIsWatcher").addClass('sr-only');
+                        $("#customerIsWearer").removeClass('sr-only');
+                    } else if (customerTypeS == "watcher") {
+                        $("#customerIsOther").addClass('sr-only');
+                        $("#customerIsWearer").addClass('sr-only');
+                        $("#customerIsWatcher").removeClass('sr-only');
+                    } else {
+                        $("#customerSummaryName").text(customerFNameS + " " + customerLNameS);
+                        $("#customerSummaryPhone").text(customerPhoneS);
+                        $("#customerSummaryEmail").text(customerEmailS);
+                        $("#customerIsWearer").addClass('sr-only');
+                        $("#customerIsWatcher").addClass('sr-only');
+                        $("#customerIsOther").removeClass('sr-only');
+                    }
+
+                }
             } else {
                 if($current == 1){
                     if ($("#wearerDetailsFormCheck").val() == "show") {
@@ -121,9 +164,16 @@ $(document).ready(function() {
                         $("#nextTab").attr("disabled", true);
                     }
                 } else if($current == 3){
-                    $("#nextTab").attr("disabled", true);
-                } else if($current == 4){
 
+                    if($('#wearerCustomerRadio').is(':checked') || $('#watcherCustomerRadio').is(':checked') || $('#otherCustomerRadio').is(':checked')) {
+                        if ($("#customerDetailsFormCheck").val() == "show") {
+                            $("#nextTab").attr("disabled", false);
+                        } else {
+                            $("#nextTab").attr("disabled", true);
+                        }
+                    } else {
+                        $("#nextTab").attr("disabled", true);
+                    }
                 }
                 $($wizard).find('.btn-next').show();
                 $($wizard).find('.btn-finish').hide();
@@ -258,6 +308,7 @@ $(document).ready(function() {
 
     $(document).on("click", "#wearerCheckNumberBtn" , function(event) {
 
+        $('#wearerPhoneLoad').fadeIn('slow');
         var wearerNum = iti.getNumber();
         var url="adminCheckWearerPhone/"+ wearerNum;
 
@@ -267,12 +318,12 @@ $(document).ready(function() {
 
         if(watcherPhoneValue == wearerNum){
             $("#watcherPhoneNum").val("");
-            $("watcherDetailsFormCheck").val("hide");
+            $("#watcherDetailsFormCheck").val("hide");
         }
 
         if(customerPhoneValue == wearerNum){
-            $("customerPhoneNum").val("");
-            $("customerDetailsFormCheck").val("hide");
+            $("#customerPhoneNum").val("");
+            $("#customerDetailsFormCheck").val("hide");
         }
 
         $.ajax({
@@ -286,15 +337,85 @@ $(document).ready(function() {
 
                     $('#wearer-info-msg').text('');
                     $('#wearer-info-msg').addClass('sr-only');
-                    $("#wearerFirstName").prop('readonly', false);
-                    $("#wearerLastName").prop('readonly', false);
+                    $("#wearerFirstName").prop('readonly', true);
+                    $("#wearerLastName").prop('readonly', true);
                     $("#wearerEmail").prop('readonly', false);
                     $("#wearerDetailsForm").slideDown("medium");
                     $("#wearerDetailsFormCheck").val("show");
                     var wearerNum = iti.getNumber();
                     $("#wearerStorePhoneNum").val(wearerNum);
-                    $("#nextTab").attr("disabled", false);
+                    $("#nextTab").attr("disabled", true);
                     $("#wearerExistStatus").val(data.existStatus);
+
+                    $(document).on("keyup","#wearerEmail", function (e) {
+
+                        $('#wearer-email-info-msg').html('');
+                        $('#wearer-email-info-msg').slideUp('medium');
+                        $("#wearerFirstName").prop('readonly', true);
+                        $("#wearerLastName").prop('readonly', true);
+                        $("#wearerFirstName").val('');
+                        $("#wearerLastName").val('');
+                        $("#nextTab").attr("disabled", true);
+                    });
+
+                    $(document).on("change","#wearerEmail", function (e) {
+
+                        var checkEmail = $(this).val();
+
+                        var watcherEmail = $("#watcherEmail").val();
+
+                        var customerEmail = $("#customerEmail").val();
+
+                        if(checkEmail == watcherEmail){
+                            $("#watcherEmail").val('');
+                        }
+
+                        if(checkEmail == customerEmail){
+                            $("#customerEmail").val('');
+                        }
+
+                        var emailUrl="adminCheckEmail/";
+
+                        if(checkEmail != ''){
+
+                            $('#wearerEmailLoad').slideDown('slow');
+
+                            $.ajax({
+                                url: emailUrl,
+                                data: {checkEmail},
+                                datatype: "json",
+                                method: "GET",
+                                success: function (data) {
+
+                                    if(data.existStatus == 'exist') {
+                                        $('#wearer-email-info-msg').text('*This email has already registered with another email. Try a different one');
+                                        $('#wearer-email-info-msg').slideDown('slow');
+                                        $("#wearerFirstName").prop('readonly', true);
+                                        $("#wearerLastName").prop('readonly', true);
+                                        $("#wearerFirstName").val('');
+                                        $("#wearerLastName").val('');
+                                        $("#nextTab").attr("disabled", true);
+
+                                    } else if (data.existStatus == 'not exist') {
+
+                                        $('#wearer-email-info-msg').html('');
+                                        $('#wearer-email-info-msg').slideUp('slow');
+                                        $("#wearerFirstName").prop('readonly', false);
+                                        $("#wearerLastName").prop('readonly', false);
+                                        $("#nextTab").attr("disabled", false);
+
+                                    }
+
+                                },
+                                complete: function () {
+                                    $('#wearerEmailLoad').slideUp('slow');
+                                }
+
+                            })
+
+                        }
+
+                    });
 
                 } else if (data.existStatus == 'exist'){
 
@@ -337,7 +458,11 @@ $(document).ready(function() {
                     $("#wearerStorePhoneNum").val(wearerNum);
                     $("#nextTab").attr("disabled", true);
                 }
+            },
+            complete: function(){
+                $('#wearerPhoneLoad').hide();
             }
+
         });
 
     });
@@ -425,11 +550,23 @@ $(document).ready(function() {
         var wearerNum = iti.getNumber();
         var watcherNum = watcherIti.getNumber();
 
+        var customerPhoneValue = customerIti.getNumber();
+
+
         if(watcherNum == wearerNum) {
+
             $('#watcher-info-msg').html('*This number has already registered for wearer <br> Wearer cannot become watcher');
             $('#watcher-info-msg').removeClass('sr-only');
+
+        } else if(watcherNum == customerPhoneValue) {
+
+            $("#customerPhoneNum").val("");
+            $("#customerDetailsFormCheck").val("hide");
+
         } else {
             var url="adminCheckWatcherPhone/"+ watcherNum;
+
+            $('#watcherPhoneLoad').fadeIn('slow');
 
             $.ajax({
                 url: url,
@@ -438,20 +575,99 @@ $(document).ready(function() {
                 method: "GET",
                 success: function (data) {
 
-
                     if (data.existStatus == 'not exist'){
 
                         $('#watcher-info-msg').text('');
                         $('#watcher-info-msg').addClass('sr-only');
-                        $("#watcherFirstName").prop('readonly', false);
-                        $("#watcherLastName").prop('readonly', false);
+                        $("#watcherFirstName").prop('readonly', true);
+                        $("#watcherLastName").prop('readonly', true);
                         $("#watcherEmail").prop('readonly', false);
                         $("#watcherDetailsForm").slideDown("medium");
                         $("#watcherDetailsFormCheck").val("show");
                         var watcherNum = watcherIti.getNumber();
                         $("#watcherStorePhoneNum").val(watcherNum);
-                        $("#nextTab").attr("disabled", false);
+                        $("#nextTab").attr("disabled", true);
                         $("#watcherExistStatus").val(data.existStatus);
+
+                        $(document).on("keyup","#watcherEmail", function (e) {
+                            $('#watcher-email-info-msg').html('');
+                            $('#watcher-email-info-msg').slideUp('medium');
+                            $("#watcherFirstName").prop('readonly', true);
+                            $("#watcherLastName").prop('readonly', true);
+                            $("#watcherFirstName").val('');
+                            $("#watcherLastName").val('');
+                            $("#nextTab").attr("disabled", true);
+                        });
+
+                        $(document).on("change","#watcherEmail", function (e) {
+
+                            var checkEmail = $(this).val();
+
+                            var wearerEmail = $("#wearerEmail").val();
+
+                            var customerEmail = $("#customerEmail").val();
+
+
+                            if(checkEmail == customerEmail){
+                                $("#customerEmail").val('');
+                            }
+
+                            if (checkEmail != '') {
+
+                                if(checkEmail == wearerEmail){
+                                    alert("Entered email has already been registered for wearer. Try a different one");
+                                    // $('#watcher-email-info-msg').text('');
+                                    // $('#watcher-email-info-msg').slideDown('slow');
+                                    $("#watcherFirstName").prop('readonly', true);
+                                    $("#watcherLastName").prop('readonly', true);
+                                    $("#watcherFirstName").val('');
+                                    $("#watcherLastName").val('');
+                                    $("#nextTab").attr("disabled", true);
+
+                                } else {
+                                    var emailUrl="adminCheckEmail/";
+
+                                    $('#watcherEmailLoad').slideDown('slow');
+
+                                    $.ajax({
+                                        url: emailUrl,
+                                        data: {checkEmail},
+                                        datatype: "json",
+                                        method: "GET",
+                                        success: function (data) {
+
+                                            if(data.existStatus == 'exist') {
+                                                $('#watcher-email-info-msg').text('*This email has already registered with another user. Try a different one');
+                                                $('#watcher-email-info-msg').slideDown('slow');
+                                                $("#watcherFirstName").prop('readonly', true);
+                                                $("#watcherLastName").prop('readonly', true);
+                                                $("#watcherFirstName").val('');
+                                                $("#watcherLastName").val('');
+                                                $("#nextTab").attr("disabled", true);
+
+                                            } else if (data.existStatus == 'not exist') {
+
+                                                $('#watcher-email-info-msg').html('');
+                                                $('#watcher-email-info-msg').slideUp('slow');
+                                                $("#watcherFirstName").prop('readonly', false);
+                                                $("#watcherLastName").prop('readonly', false);
+                                                $("#nextTab").attr("disabled", false);
+
+                                            }
+
+                                        },
+                                        complete: function () {
+                                            $('#watcherEmailLoad').slideUp('slow');
+                                        }
+
+                                    });
+
+                                }
+
+
+                            }
+
+                        });
 
                     } else if (data.existStatus == 'exist'){
 
@@ -476,6 +692,9 @@ $(document).ready(function() {
 
                     }
 
+                },
+                complete: function () {
+                    $('#watcherPhoneLoad').hide();
                 }
             });
         }
@@ -562,27 +781,225 @@ $(document).ready(function() {
 
     $(document).on("click","#wearerCustomer", function () {
         $("#otherCustomerTab").slideUp("slow");
+        $("#customerCheckNumberBtn").attr("disabled", true);
+        $("#customerPhoneNum").val('');
+        $("#customerFirstName").val('');
+        $("#customerFirstName").val('');
+        $("#customerType").val('wearer');
+        $("#customerDetailsForm").hide();
+        $("#customerDetailsFormCheck").val("hide");
+        $("#customer-valid-msg").addClass('sr-only');
+        $("#customer-error-msg").addClass('sr-only');
+        $("#customer-info-msg").addClass('sr-only');
         $("#nextTab").attr("disabled", false);
     });
 
     $(document).on("click","#watcherCustomer", function () {
         $("#otherCustomerTab").slideUp("slow");
+        $("#customerCheckNumberBtn").attr("disabled", true);
+        $("#customerPhoneNum").val('');
+        $("#customerFirstName").val('');
+        $("#customerFirstName").val('');
+        $("#customerType").val('watcher');
+        $("#customerDetailsForm").hide();
+        $("#customerDetailsFormCheck").val("hide");
+        $("#customer-valid-msg").addClass('sr-only');
+        $("#customer-error-msg").addClass('sr-only');
+        $("#customer-info-msg").addClass('sr-only');
         $("#nextTab").attr("disabled", false);
     });
 
     $(document).on("click","#otherCustomer", function () {
+        $("#customerCheckNumberBtn").attr("disabled", true);
+        $("#customerPhoneNum").val('');
+        $("#customerFirstName").val('');
+        $("#customerFirstName").val('');
+        $("#customerType").val('other');
+        $("#customerDetailsForm").hide();
+        $("#customerDetailsFormCheck").val("hide");
+        $("#customer-valid-msg").addClass('sr-only');
+        $("#customer-error-msg").addClass('sr-only');
+        $("#customer-info-msg").addClass('sr-only');
         $("#otherCustomerTab").slideDown("slow");
+
         $("#nextTab").attr("disabled", true);
     });
 
 
     $(document).on("click", "#customerCheckNumberBtn" , function(event) {
 
-        $("#customerDetailsForm").slideDown("medium");
-        $("#customerDetailsFormCheck").val("show");
-        $("#nextTab").attr("disabled", false);
         var customerNum = customerIti.getNumber();
-        alert(customerNum);
+        var wearerNum = iti.getNumber();
+        var watcherNum = watcherIti.getNumber();
+
+        if(customerNum != ''){
+            if(customerNum == wearerNum) {
+
+                $('#customer-info-msg').html('*This number has already registered for wearer <br> Please choose Wearer option to proceed further');
+                $('#customer-info-msg').removeClass('sr-only');
+                $("#customerDetailsForm").slideUp("medium");
+                $("#customerDetailsFormCheck").val("hide");
+                $("#nextTab").attr("disabled", true);
+
+            } else if(customerNum == watcherNum){
+
+                $('#customer-info-msg').html('*This number has already registered for watcher <br> Please choose Watcher option to proceed further');
+                $('#customer-info-msg').removeClass('sr-only');
+                $("#customerDetailsForm").slideUp("medium");
+                $("#customerDetailsFormCheck").val("hide");
+                $("#nextTab").attr("disabled", true);
+
+            } else {
+
+                var url="adminCheckCustomerPhone/"+ customerNum;
+
+                $('#customerPhoneLoad').fadeIn('slow');
+
+                $.ajax({
+                    url: url,
+                    data: {customerNum},
+                    datatype: "json",
+                    method: "GET",
+                    success: function (data) {
+
+                        if (data.existStatus == 'not exist'){
+
+                            $('#customer-info-msg').text('');
+                            $('#customer-info-msg').addClass('sr-only');
+                            $("#customerFirstName").prop('readonly', true);
+                            $("#customerLastName").prop('readonly', true);
+                            $("#customerEmail").prop('readonly', false);
+                            $("#customerDetailsForm").slideDown("medium");
+                            $("#customerDetailsFormCheck").val("show");
+                            var customerNum = watcherIti.getNumber();
+                            $("#customerStorePhoneNum").val(customerNum);
+                            $("#nextTab").attr("disabled", true);
+                            $("#customerExistStatus").val(data.existStatus);
+
+                            $(document).on("keyup","#customerEmail", function (e) {
+                                $('#customer-email-info-msg').html('');
+                                $('#customer-email-info-msg').slideUp('medium');
+                                $("#customerFirstName").prop('readonly', true);
+                                $("#customerLastName").prop('readonly', true);
+                                $("#customerFirstName").val('');
+                                $("#customerLastName").val('');
+                                $("#nextTab").attr("disabled", true);
+                            });
+
+                            $(document).on("change","#customerEmail", function (e) {
+
+                                var checkEmail = $(this).val();
+
+                                var wearerEmail = $("#wearerEmail").val();
+
+                                var watcherEmail = $("#watcherEmail").val();
+
+
+                                if (checkEmail != '') {
+
+                                    if(checkEmail == wearerEmail){
+                                        alert("Entered email has already been registered for wearer. Try a different one");
+                                        // $('#watcher-email-info-msg').text('');
+                                        // $('#watcher-email-info-msg').slideDown('slow');
+                                        $("#customerFirstName").prop('readonly', true);
+                                        $("#customerLastName").prop('readonly', true);
+                                        $("#customerFirstName").val('');
+                                        $("#customerLastName").val('');
+                                        $("#nextTab").attr("disabled", true);
+                                    } else if(checkEmail == watcherEmail){
+                                        alert("Entered email has already been registered for watcher. Try a different one");
+                                        // $('#watcher-email-info-msg').text('');
+                                        // $('#watcher-email-info-msg').slideDown('slow');
+                                        $("#customerFirstName").prop('readonly', true);
+                                        $("#customerLastName").prop('readonly', true);
+                                        $("#customerFirstName").val('');
+                                        $("#customerLastName").val('');
+                                        $("#nextTab").attr("disabled", true);
+
+                                    } else {
+                                        var emailUrl="/adminCheckEmail";
+
+                                        $('#customerEmailLoad').slideDown('slow');
+
+                                        $.ajax({
+                                            url: emailUrl,
+                                            data: {checkEmail},
+                                            datatype: "json",
+                                            method: "GET",
+                                            success: function (data) {
+
+                                                if(data.existStatus == 'exist') {
+                                                    $('#customer-email-info-msg').text('*This email has already registered with another user. Try a different one');
+                                                    $('#customer-email-info-msg').slideDown('slow');
+                                                    $("#customerFirstName").prop('readonly', true);
+                                                    $("#customerLastName").prop('readonly', true);
+                                                    $("#customerFirstName").val('');
+                                                    $("#customerLastName").val('');
+                                                    $("#nextTab").attr("disabled", true);
+
+                                                } else if (data.existStatus == 'not exist') {
+
+                                                    $('#customer-email-info-msg').html('');
+                                                    $('#customer-email-info-msg').slideUp('slow');
+                                                    $("#customerFirstName").prop('readonly', false);
+                                                    $("#customerLastName").prop('readonly', false);
+                                                    $("#nextTab").attr("disabled", false);
+
+                                                }
+
+                                            },
+                                            complete: function () {
+                                                $('#customerEmailLoad').slideUp('slow');
+                                            }
+
+                                        });
+
+                                    }
+
+
+                                }
+
+                            });
+
+                        }
+                        else if (data.existStatus == 'exist'){
+
+                            $('#customer-info-msg').text('*User already exist');
+                            $('#customer-info-msg').removeClass('sr-only');
+                            $("#customerFirstName").prop('readonly', true);
+                            $("#customerLastName").prop('readonly', true);
+                            $("#customerEmail").prop('readonly', true);
+
+                            $("#customerExistStatus").val(data.existStatus);
+                            $("#customerId").val(data.personDetails.person_id);
+                            $("#customerFirstName").val(data.personDetails.f_name);
+                            $("#customerLastName").val(data.personDetails.l_name);
+                            $("#customerEmail").val(data.personDetails.email);
+
+
+                            $("#customerDetailsForm").slideDown("medium");
+                            $("#customerDetailsFormCheck").val("show");
+                            var customerNum = customerIti.getNumber();
+                            $("#customerStorePhoneNum").val(customerNum);
+                            $("#nextTab").attr("disabled", false);
+
+                        }
+
+                    },
+                    complete: function () {
+                        $('#customerPhoneLoad').hide();
+                    }
+                });
+
+
+            }
+        } else {
+            $('#customer-info-msg').html('');
+            $('#customer-info-msg').addClass('sr-only');
+            $("#customerDetailsForm").slideUp("medium");
+            $("#customerDetailsFormCheck").val("hide");
+            $("#nextTab").attr("disabled", true);
+        }
 
     });
 
@@ -614,6 +1031,8 @@ $(document).ready(function() {
         customerErrorMsg.innerHTML = "";
         customerErrorMsg.classList.add("sr-only");
         customerValidMsg.classList.add("sr-only");
+        $('#customer-info-msg').text('');
+        $('#customer-info-msg').addClass('sr-only');
         $("#customerDetailsForm").slideUp("medium");
         $("#customerDetailsFormCheck").val("hide");
         $("#nextTab").attr("disabled", true);

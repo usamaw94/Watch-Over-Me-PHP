@@ -184,6 +184,11 @@
                                                     Check
                                                 </div>
                                             </div>
+                                            <div id="wearerPhoneLoad" class="col-lg-10" style="display: none">
+                                                <center>
+                                                    <i class="text-dark no-space fa fa-refresh fa-spin" style="font-size:24px;" aria-hidden="true"></i>
+                                                </center>
+                                            </div>
 
                                             <br>
 
@@ -193,6 +198,22 @@
                                             <input type="hidden" id="wearerId" name="wearerId" readonly>
                                             <div id="wearerDetailsForm" class="col-lg-10 mt-3">
                                                 <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><i class="nc-icon nc-email-85"></i></span>
+                                                            </div>
+                                                            <input id="wearerEmail" type="text" class="form-control" placeholder="Email (required)" name="wearerEmail">
+                                                        </div>
+                                                        <span id="wearer-email-info-msg" class="text-danger font-weight-bold" style="display: none"></span>
+                                                    </div>
+                                                    <div id="wearerEmailLoad" class="col-12" style="display: none">
+                                                        <center>
+                                                            <i class='text-dark fa fa-refresh fa-spin' style="font-size:24px;" aria-hidden="true"></i>
+                                                        </center>
+                                                    </div>
+                                                    <br>
+                                                    <br>
                                                     <div class="col-lg-6 col-md-6">
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
@@ -207,14 +228,6 @@
                                                                 <span class="input-group-text"><i class="nc-icon nc-circle-10"></i></span>
                                                             </div>
                                                             <input id="wearerLastName" type="text" placeholder="Last Name (required)" class="form-control" name="wearerLastName" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><i class="nc-icon nc-email-85"></i></span>
-                                                            </div>
-                                                            <input id="wearerEmail" type="text" class="form-control" placeholder="Email (required)" name="wearerEmail">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -238,6 +251,11 @@
                                                     Check
                                                 </div>
                                             </div>
+                                            <div id="watcherPhoneLoad" class="col-lg-10" style="display: none">
+                                                <center>
+                                                    <i class="text-dark no-space fa fa-refresh fa-spin" style="font-size:24px;" aria-hidden="true"></i>
+                                                </center>
+                                            </div>
 
                                             <br>
 
@@ -248,6 +266,20 @@
                                             <input type="hidden" id="watcherDetailsFormCheck" value="hide" readonly>
                                             <div id="watcherDetailsForm" class="col-lg-10 mt-3">
                                                 <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><i class="nc-icon nc-email-85"></i></span>
+                                                            </div>
+                                                            <input id="watcherEmail" type="text" class="form-control" placeholder="Email (required)" name="watcherEmail">
+                                                        </div>
+                                                        <span id="watcher-email-info-msg" class="text-danger font-weight-bold" style="display: none"></span>
+                                                    </div>
+                                                    <div id="watcherEmailLoad" class="col-12" style="display: none">
+                                                        <center>
+                                                            <i class='text-dark fa fa-refresh fa-spin' style="font-size:24px;" aria-hidden="true"></i>
+                                                        </center>
+                                                    </div>
                                                     <div class="col-lg-6 col-md-6">
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
@@ -264,16 +296,8 @@
                                                             <input id="watcherLastName" type="text" placeholder="Last Name (required)" class="form-control" name="watcherLastName" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-12">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><i class="nc-icon nc-email-85"></i></span>
-                                                            </div>
-                                                            <input id="watcherEmail" type="text" class="form-control" placeholder="Email (required)" name="watcherEmail">
-                                                        </div>
-                                                    </div>
                                                 </div>
-                                                <p class="text-dark font-italic">* More watcher can be added after service registration</p>
+                                                <p class="text-dark font-italic">* More watchers can be added after service registration</p>
                                             </div>
 
                                         </div>
@@ -286,7 +310,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-4">
                                                         <div id="wearerCustomer" class="choice" data-toggle="wizard-radio">
-                                                            <input type="radio" name="jobb" value="Design">
+                                                            <input id="wearerCustomerRadio" type="radio" name="jobb" value="Design">
                                                             <div class="icon">
                                                                 <i class="nc-icon nc-circle-10"></i>
                                                             </div>
@@ -295,7 +319,7 @@
                                                     </div>
                                                     <div class="col-sm-4">
                                                         <div id="watcherCustomer" class="choice" data-toggle="wizard-radio">
-                                                            <input type="radio" name="jobb" value="Code">
+                                                            <input id="watcherCustomerRadio" type="radio" name="jobb" value="Code">
                                                             <div class="icon">
                                                                 <i class="nc-icon nc-single-02"></i>
                                                             </div>
@@ -304,7 +328,7 @@
                                                     </div>
                                                     <div class="col-sm-4">
                                                         <div id="otherCustomer" class="choice" data-toggle="wizard-radio">
-                                                            <input type="radio" name="jobb" value="Code">
+                                                            <input id="otherCustomerRadio" type="radio" name="jobb" value="Code">
                                                             <div class="icon">
                                                                 <i class="nc-icon nc-single-02"></i>
                                                             </div>
@@ -312,7 +336,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                <input id="customerType" type="hidden" name="customerType">
                                                 <br>
 
                                                 <div id="otherCustomerTab">
@@ -320,20 +344,44 @@
                                                         <div class="col-lg-7 col-md-8">
                                                             <input id="customerPhoneNum" type="tel" class="form-control" style="padding: 10px" name="customerPhone" placeholder="Valid phone number" autocomplete="off">
                                                             <label id="customerPhoneNum-error" style="color: #ef8157" class="error customer-required-error" for="customerPhoneNum"></label>
-                                                            <span id="customer-valid-msg" class="sr-only">✓ Valid</span>
-                                                            <span id="customer-error-msg" class="sr-only"></span>
+                                                            <span id="customer-valid-msg" class="float-right sr-only">✓ Valid</span>
+                                                            <span id="customer-error-msg" class="float-right sr-only"></span>
+                                                            <span id="customer-info-msg" class="text-warning font-weight-bold sr-only"></span>
                                                         </div>
                                                         <div class="col-lg-3 col-md-4">
                                                             <div id="customerCheckNumberBtn" class="btn btn-outline-info btn-block btn-round no-margin" disabled="true">
                                                                 Check
                                                             </div>
                                                         </div>
+                                                        <div id="customerPhoneLoad" class="col-lg-10" style="display: none">
+                                                            <center>
+                                                                <i class="text-dark no-space fa fa-refresh fa-spin" style="font-size:24px;" aria-hidden="true"></i>
+                                                            </center>
+                                                        </div>
 
                                                         <br>
+
+                                                        <input type="hidden" id="customerStorePhoneNum" name="customerStorePhoneNum" readonly>
+                                                        <input type="hidden" id="customerExistStatus" name="customerExistStatus" readonly>
+                                                        <input type="hidden" id="customerId" name="customerId" readonly>
 
                                                         <input type="hidden" id="customerDetailsFormCheck" value="hide" readonly>
                                                         <div id="customerDetailsForm" class="col-lg-10 mt-3">
                                                             <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text"><i class="nc-icon nc-email-85"></i></span>
+                                                                        </div>
+                                                                        <input id="customerEmail" type="text" class="form-control" placeholder="Email (required)" name="customerEmail">
+                                                                    </div>
+                                                                    <span id="customer-email-info-msg" class="text-danger font-weight-bold" style="display: none"></span>
+                                                                </div>
+                                                                <div id="customerEmailLoad" class="col-12" style="display: none">
+                                                                    <center>
+                                                                        <i class='text-dark fa fa-refresh fa-spin' style="font-size:24px;" aria-hidden="true"></i>
+                                                                    </center>
+                                                                </div>
                                                                 <div class="col-lg-6 col-md-6">
                                                                     <div class="input-group">
                                                                         <div class="input-group-prepend">
@@ -348,14 +396,6 @@
                                                                             <span class="input-group-text"><i class="nc-icon nc-circle-10"></i></span>
                                                                         </div>
                                                                         <input id="customerLastName" type="text" placeholder="Last Name (required)" class="form-control" name="customerLastName" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12">
-                                                                    <div class="input-group">
-                                                                        <div class="input-group-prepend">
-                                                                            <span class="input-group-text"><i class="nc-icon nc-email-85"></i></span>
-                                                                        </div>
-                                                                        <input id="customerEmail" type="text" class="form-control" placeholder="Email (required)" name="customerEmail">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -438,7 +478,7 @@
 
                                             <div class="col-lg-10">
                                                 <h6>Customer Details</h6>
-                                                <div class="table-responsive">
+                                                <div id="customerIsOther" class="table-responsive sr-only">
                                                     <table class="table table-bordered">
                                                         <tr>
                                                             <th>
@@ -466,8 +506,8 @@
                                                         </tr>
                                                     </table>
                                                 </div>
-                                                <p class="font-italic info-text"><strong>Wearer will be customer</strong></p>
-                                                <p class="font-italic info-text"><strong>Watcher will be customer</strong></p>
+                                                <p id="customerIsWearer" class="font-italic info-text sr-only"><strong>Wearer will be customer</strong></p>
+                                                <p id="customerIsWatcher" class="font-italic info-text sr-only"><strong>Watcher will be customer</strong></p>
                                             </div>
                                         </div>
                                     </div>

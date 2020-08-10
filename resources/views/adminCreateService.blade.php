@@ -130,7 +130,10 @@
                 <!--      Wizard container        -->
                 <div class="wizard-container">
                     <div class="card card-wizard" data-color="primary" id="wizardProfile">
-                        <form action="#" method="">
+                        <form action="/adminProcessNewService" method="POST">
+
+                            @csrf
+
                             <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
                             <div class="card-header text-center">
                                 <h3 class="card-title">
@@ -310,7 +313,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-4">
                                                         <div id="wearerCustomer" class="choice" data-toggle="wizard-radio">
-                                                            <input id="wearerCustomerRadio" type="radio" name="jobb" value="Design">
+                                                            <input id="wearerCustomerRadio" type="radio" name="customerTypeRadio" value="wearer">
                                                             <div class="icon">
                                                                 <i class="nc-icon nc-circle-10"></i>
                                                             </div>
@@ -319,7 +322,7 @@
                                                     </div>
                                                     <div class="col-sm-4">
                                                         <div id="watcherCustomer" class="choice" data-toggle="wizard-radio">
-                                                            <input id="watcherCustomerRadio" type="radio" name="jobb" value="Code">
+                                                            <input id="watcherCustomerRadio" type="radio" name="customerTypeRadio" value="watcher">
                                                             <div class="icon">
                                                                 <i class="nc-icon nc-single-02"></i>
                                                             </div>
@@ -328,7 +331,7 @@
                                                     </div>
                                                     <div class="col-sm-4">
                                                         <div id="otherCustomer" class="choice" data-toggle="wizard-radio">
-                                                            <input id="otherCustomerRadio" type="radio" name="jobb" value="Code">
+                                                            <input id="otherCustomerRadio" type="radio" name="customerTypeRadio" value="other">
                                                             <div class="icon">
                                                                 <i class="nc-icon nc-single-02"></i>
                                                             </div>
@@ -336,7 +339,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <input id="customerType" type="hidden" name="customerType">
+                                                <input id="customerType" type="hidden" name="customerType" readonly>
                                                 <br>
 
                                                 <div id="otherCustomerTab">
@@ -506,8 +509,8 @@
                                                         </tr>
                                                     </table>
                                                 </div>
-                                                <p id="customerIsWearer" class="font-italic info-text sr-only"><strong>Wearer will be customer</strong></p>
-                                                <p id="customerIsWatcher" class="font-italic info-text sr-only"><strong>Watcher will be customer</strong></p>
+                                                <p id="customerIsWearer" class="font-italic info-text sr-only"><b>Wearer will be customer</b></p>
+                                                <p id="customerIsWatcher" class="font-italic info-text sr-only"><b>Watcher will be customer</b></p>
                                             </div>
                                         </div>
                                     </div>
@@ -516,7 +519,7 @@
                             <div class="card-footer">
                                 <div class="pull-right">
                                     <input id="nextTab" disabled="true" type='button' class='btn btn-next btn-fill btn-rose btn-wd' name='next' value='Next' />
-                                    <input id="submitForm" type='button' class='btn btn-finish btn-fill btn-rose btn-wd' name='finish' value='Submit' />
+                                    <input id="submitForm" type='submit' class='btn btn-finish btn-fill btn-rose btn-wd' name='finish' value='Submit' />
                                 </div>
                                 <div class="pull-left">
                                     <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />

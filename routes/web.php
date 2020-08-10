@@ -37,3 +37,6 @@ Route::get('/adminCheckWatcherPhone/{phone}', 'AdminController@checkWatcherPhone
 Route::get('/adminCheckCustomerPhone/{phone}', 'AdminController@checkCustomerPhone')->name('admin.check.customer.phone');
 Route::get('/adminCheckEmail', 'AdminController@checkEmail')->name('admin.check.email');
 
+Route::post('/adminProcessNewService', 'AdminController@processNewService')->name('admin.process.new.service');
+
+

@@ -181,31 +181,33 @@
                                     </th>
                                     </thead>
                                     <tbody>
+                                    @foreach($services as $svc)
                                     <tr>
                                         <td class="text-center">
-                                            WOMS00000694
+                                            {{ $svc->service_id }}
                                         </td>
                                         <td>
-                                            123456789
+                                            {{ $svc->wom_num }}
                                         </td>
-                                        <td class="link-text customer-name" data-toggle="modal" data-target="#wearerDetails">
-                                            Usama Waheed
+                                        <td class="link-text wearer-name" data-id="{{ $svc->wearer_id }}">
+                                            {{ $svc->wearerFName }} {{ $svc->wearerLName }} &nbsp; <i class="fa fa-refresh fa-spin wearer-details-load sr-only"></i>
                                         </td>
-                                        <td class="link-text customer-name" data-toggle="modal" data-target="#customerDetails">
-                                            Rad Williams
+                                        <td class="link-text customer-name" data-id="{{ $svc->customer_id }}">
+                                            {{ $svc->customerFName }} {{ $svc->customerLName }} &nbsp; <i class="fa fa-refresh fa-spin customer-details-load sr-only"></i>
                                         </td>
-                                        <td class="link-text customer-name text-center" data-toggle="modal" data-target="#watcherDetails">
-                                            <b class="link-text watcher-num">3</b>
+                                        <td class="link-text watcher-name text-center" data-id="{{ $svc->service_id }}">
+                                            <b class="link-text watcher-num">{{ $svc->no_of_watchers }}</b> &nbsp; <i class="fa fa-refresh fa-spin watchers-details-load sr-only"></i>
                                         </td>
                                         <td class="text-center">
-                                            Activated
+                                            {{ $svc->service_status }}
                                         </td>
                                         <td class="text-right">
-                                            <button type="button" rel="tooltip" class="btn btn-outline-default btn-round btn-sm">
+                                            <a target="_blank" href="/adminServiceDetails/?id={{$svc->service_id}}" rel="tooltip" class="btn btn-outline-default btn-round btn-sm">
                                                 Details
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -246,32 +248,32 @@
                                 <th>
                                     Wearer ID:
                                 </th>
-                                <td>
-                                    WOMP00000875
+                                <td id="modalWearerId">
+
                                 </td>
                             </tr>
                             <tr>
                                 <th>
                                     Name:
                                 </th>
-                                <td>
-                                    Usama Waheed
+                                <td id="modalWearerName">
+
                                 </td>
                             </tr>
                             <tr>
                                 <th>
                                     Phone Number:
                                 </th>
-                                <td>
-                                    0403887321
+                                <td id="modalWearerPhone">
+
                                 </td>
                             </tr>
                             <tr>
                                 <th>
                                     Email:
                                 </th>
-                                <td>
-                                    usamaw94@gmail.com
+                                <td id="modalWearerEmail">
+
                                 </td>
                             </tr>
                         </table>
@@ -305,32 +307,28 @@
                                 <th>
                                     Wearer ID:
                                 </th>
-                                <td>
-                                    WOMP00000875
+                                <td id="modalCustomerId">
                                 </td>
                             </tr>
                             <tr>
                                 <th>
                                     Name:
                                 </th>
-                                <td>
-                                    Usama Waheed
+                                <td id="modalCustomerName">
                                 </td>
                             </tr>
                             <tr>
                                 <th>
                                     Phone Number:
                                 </th>
-                                <td>
-                                    0403887321
+                                <td id="modalCustomerPhone">
                                 </td>
                             </tr>
                             <tr>
                                 <th>
                                     Email:
                                 </th>
-                                <td>
-                                    usamaw94@gmail.com
+                                <td id="modalCustomerEmail">
                                 </td>
                             </tr>
                         </table>
@@ -358,11 +356,11 @@
                 </div>
 
                 <div class="modal-body">
-                    <h5>Total Wachers: <span>3</span></h5>
+                    <h5>Total Wacher(s): &nbsp; <span id="totalWatchersNum"></span></h5>
 
                     <div class="table-responsive">
                         <table class="table no-border">
-                            <thead class="">
+                            <thead>
                             <th>
                                 Wearer ID
                             </th>
@@ -370,27 +368,13 @@
                                 Name
                             </th>
                             <th>
-                                Email
-                            </th>
-                            <th>
                                 Phone
                             </th>
+                            <th>
+                                Email
+                            </th>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    WOMP00000876
-                                </td>
-                                <td>
-                                    Waqas Waheed
-                                </td>
-                                <td>
-                                    0435533452
-                                </td>
-                                <td>
-                                    waqax94@gmail.com
-                                </td>
-                            </tr>
+                            <tbody id="watchersList">
                             </tbody>
                         </table>
                     </div>
@@ -410,5 +394,5 @@
 @endsection
 
 @section('script')
-
+    <script src="/assets/js/services.js" type="text/javascript"></script>
 @endsection

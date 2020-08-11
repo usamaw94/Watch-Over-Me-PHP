@@ -38,5 +38,7 @@ Route::get('/adminCheckCustomerPhone/{phone}', 'AdminController@checkCustomerPho
 Route::get('/adminCheckEmail', 'AdminController@checkEmail')->name('admin.check.email');
 
 Route::post('/adminProcessNewService', 'AdminController@processNewService')->name('admin.process.new.service');
-
-
+Route::get('/adminGetPerson', 'AdminController@getPerson')->name('admin.get.person');
+Route::get('/adminGetWatchersList', 'AdminController@getWatchersList')->name('admin.get.watchers.list');
+Route::get('/adminServiceDetails', 'AdminController@serviceDetails')->name('admin.service.details');
+Route::get('/adminServiceLogs', 'AdminController@serviceLogs')->name('admin.service.logs');

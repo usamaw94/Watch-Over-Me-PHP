@@ -31,7 +31,101 @@ class AdminController extends Controller
     }
 
     public function services(){
-        return view('adminServices');
+
+        $services = DB::table('services')
+            ->join('users as wearer', 'wearer.person_id', '=', 'services.wearer_id')
+            ->join('users as customer', 'customer.person_id', '=', 'services.customer_id')
+            ->select('services.service_id', 'services.wearer_id', 'services.customer_id', 'services.wom_num', 'services.service_status', 'services.no_of_watchers',
+                'wearer.person_id as wearerId', 'wearer.f_name as wearerFName', 'wearer.l_name as wearerLName',
+                'customer.person_id as customerId', 'customer.f_name as customerFName', 'customer.l_name as customerLName')
+            ->get();
+
+        $data = array(
+            'services' => $services,
+        );
+
+        return view('adminServices')->with($data);
+    }
+
+
+    public function getPerson(Request $request) {
+        $id =  $request->personId;
+
+        $personDetails = DB::table('users')->where('person_id', '=', $id)->get()->first();
+
+        return response()->json($personDetails);
+    }
+
+    public function getWatchersList(Request $request){
+
+        $serviceId = $request->serviceId;
+
+        $watcherDetails = DB::table('users')
+            ->join('watcher_relations', 'watcher_relations.watcher_id', '=', 'users.person_id')
+            ->where('watcher_relations.svc_id', '=', $serviceId)
+            ->orderBy('watcher_relations.priority_num', 'desc')
+            ->select('users.person_id', 'users.f_name', 'users.l_name', 'users.email', 'users.phone',
+            'watcher_relations.priority_num')
+            ->get();
+
+        return response()->json($watcherDetails);
+    }
+
+    public function serviceDetails(Request $request){
+        $serviceId = $request->id;
+
+        $serviceDetails = DB::table('services')
+            ->where('service_id', '=', $serviceId)
+            ->get()->first();
+
+        $wearerId = $serviceDetails->wearer_id;
+        $customerId = $serviceDetails->customer_id;
+
+        $wearerDetails = DB::table('users')
+            ->where('person_id', '=', $wearerId)
+            ->get()->first();
+
+
+        $customerDetails = DB::table('users')
+            ->where('person_id', '=', $customerId)
+            ->get()->first();
+
+        $watchersList = DB::table('users')
+            ->join('watcher_relations', 'watcher_relations.watcher_id', '=', 'users.person_id')
+            ->where('watcher_relations.svc_id', '=', $serviceId)
+            ->orderBy('watcher_relations.priority_num', 'desc')
+            ->select('users.person_id', 'users.f_name', 'users.l_name', 'users.email', 'users.phone',
+                'watcher_relations.priority_num', 'watcher_relations.watcher_status')
+            ->get();
+
+
+        $data = array(
+            'serviceDetails' => $serviceDetails,
+            'wearerDetails' => $wearerDetails,
+            'customerDetails' => $customerDetails,
+            'watchersList' => $watchersList,
+        );
+
+        return view('adminServiceDetails')->with($data);
+
+
+    }
+
+    public function serviceLogs(Request $request){
+        $serviceId = $request->id;
+
+        $serviceDetails = DB::table('services')
+            ->where('service_id', '=', $serviceId)
+            ->get()->first();
+
+        $data = array(
+            'serviceDetails' => $serviceDetails,
+        );
+
+
+        return view('adminServiceLogs')->with($data);
+
+
     }
 
     public function createService(){

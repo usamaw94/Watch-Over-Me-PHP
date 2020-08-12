@@ -439,7 +439,7 @@ $(document).ready( function () {
                     $(this).attr('data-priority-num',(index+1)).addClass('updatedPriority');
                 }
             });
-            $("#modaSavePriorityOrder").attr("disable", true);
+            $("#modalBtnSavePriorityOrder").attr("disabled", false);
         }
     });
 
@@ -489,7 +489,7 @@ $(document).ready( function () {
     }
     // $( "#watchersPriorityList" ).disableSelection();
 
-    $(document).on("click", "#modaSavePriorityOrder", function (e) {
+    $(document).on("click", "#modalBtnSavePriorityOrder", function (e) {
         e.preventDefault();
         var serviceId = $(this).attr("data-id");
 
@@ -512,8 +512,6 @@ $(document).ready( function () {
             success: function (data) {
 
                 $("#watchersPriorityList").empty();
-
-                $("#modaSavePriorityOrder").attr("disable", true);
 
                 var length = data.length;
 
@@ -542,6 +540,8 @@ $(document).ready( function () {
 
                     $("#watchersPriorityList").append(listItem);
                 }
+
+                $("#modalBtnSavePriorityOrder").attr("disabled", true);
 
                 $('#modalChangePriority').modal('show');
 

@@ -504,7 +504,7 @@
 
                 <div class="modal-footer">
                     <div class="left-side">
-                        <button data-id="{{$serviceDetails->service_id}}" id="modaSavePriorityOrder" type="button" class="btn btn-link btn-success">
+                        <button data-id="{{$serviceDetails->service_id}}" id="modalBtnSavePriorityOrder" type="button" class="btn btn-link btn-success">
                             <i class="fa fa-save"></i> &nbsp; Save Order &nbsp; <i style="display: none" id="modaSavePriorityOrderLoad" class="fa fa-spinner fa-spin"></i>
                         </button>
                     </div>

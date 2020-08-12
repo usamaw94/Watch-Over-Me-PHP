@@ -82,6 +82,7 @@ class ApiController extends Controller
 
                 } else {
 
+                    $data = "something";
                     // service does not exist
                     $data = array(
                         'wearerId' => "",

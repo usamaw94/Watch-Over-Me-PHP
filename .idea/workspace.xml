@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9d9cb26-ea37-4934-8bab-a721bf3d3344" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/js/services.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/adminServiceDetails.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/jquery-ui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/css/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/core/jquery-ui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/core/jquery-ui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/js/serviceDetails.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/adminServiceDetails.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adminServiceDetails.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/adminServices.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adminServices.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/adminApp.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/adminApp.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
@@ -39,14 +42,14 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5420975">
+    <splitter split-orientation="horizontal" split-proportion="0.5409357">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/web.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="645">
-                  <caret line="43" column="60" selection-start-line="43" selection-start-column="49" selection-end-line="43" selection-end-column="60" />
+                <state relative-caret-position="-5">
+                  <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
                 </state>
               </provider>
             </entry>
@@ -54,36 +57,24 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="190">
-                  <caret line="73" column="53" selection-start-line="73" selection-start-column="53" selection-end-line="73" selection-end-column="53" />
+                <state relative-caret-position="246">
+                  <caret line="259" selection-start-line="259" selection-end-line="259" />
                   <folding>
                     <element signature="e#40#56#0#PHP" expanded="true" />
-                    <element signature="e#2203#3543#0#PHP" />
+                    <element signature="e#498#563#0#PHP" />
+                    <element signature="e#569#1366#0#PHP" />
+                    <element signature="e#1373#1601#0#PHP" />
+                    <element signature="e#1607#2196#0#PHP" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="182">
-                  <caret line="150" column="93" selection-start-line="150" selection-start-column="93" selection-end-line="150" selection-end-column="93" />
-                  <folding>
-                    <element signature="e#11744#13688#0#HTML" />
-                    <element signature="e#13694#16411#0#HTML" />
-                    <element signature="e#16417#20756#0#HTML" />
-                    <element signature="e#20762#22150#0#HTML" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resources/views/adminServiceDetails.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="5055">
-                  <caret line="337" selection-start-line="337" selection-end-line="337" />
+                <state relative-caret-position="113">
+                  <caret line="487" column="41" selection-start-line="487" selection-start-column="41" selection-end-line="487" selection-end-column="41" />
                 </state>
               </provider>
             </entry>
@@ -93,10 +84,22 @@
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/public/assets/js/serviceDetails.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-168">
+                  <caret line="515" column="41" selection-start-line="515" selection-start-column="20" selection-end-line="515" selection-end-column="41" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/assets/js/services.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="303">
-                  <caret line="85" column="52" selection-start-line="85" selection-start-column="52" selection-end-line="85" selection-end-column="52" />
+                <state relative-caret-position="1050">
+                  <caret line="70" column="8" selection-start-line="70" selection-start-column="8" selection-end-line="72" selection-end-column="41" />
+                  <folding>
+                    <element signature="e#2057#3119#0" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -104,8 +107,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/assets/css/custom.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="195">
-                  <caret line="13" selection-start-line="13" selection-end-line="13" />
+                <state relative-caret-position="2040">
+                  <caret line="136" column="17" selection-start-line="136" selection-start-column="17" selection-end-line="136" selection-end-column="17" />
                 </state>
               </provider>
             </entry>
@@ -113,8 +116,13 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/assets/js/createService.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="6495">
-                  <caret line="433" column="32" selection-start-line="433" selection-start-column="32" selection-end-line="435" selection-end-column="33" />
+                <state relative-caret-position="6690">
+                  <caret line="466" column="87" selection-start-line="466" selection-start-column="20" selection-end-line="466" selection-end-column="87" />
+                  <folding>
+                    <element signature="e#11326#11781#0" />
+                    <element signature="e#11826#12290#0" />
+                    <element signature="e#23416#28621#0" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -135,6 +143,9 @@
       <find>full_number</find>
       <find>priority_num</find>
       <find>com</find>
+      <find>modalVerifyWatcherPhone</find>
+      <find>bs</find>
+      <find>modaSavePriorityOrder</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -167,17 +178,18 @@
         <option value="$PROJECT_DIR$/public/assets/js/createService.js" />
         <option value="$PROJECT_DIR$/resources/views/adminCreateService.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
-        <option value="$PROJECT_DIR$/app/WatcherRelation.php" />
         <option value="$PROJECT_DIR$/app/Service.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_08_07_150204_create_services_table.php" />
-        <option value="$PROJECT_DIR$/public/assets/css/custom.css" />
         <option value="$PROJECT_DIR$/public/assets/js/services.js" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/adminApp.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/adminServices.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/views/adminServiceDetails.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
         <option value="$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php" />
+        <option value="$PROJECT_DIR$/app/WatcherRelation.php" />
+        <option value="$PROJECT_DIR$/resources/views/adminServices.blade.php" />
+        <option value="$PROJECT_DIR$/public/assets/css/custom.css" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/adminApp.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
+        <option value="$PROJECT_DIR$/public/assets/js/serviceDetails.js" />
+        <option value="$PROJECT_DIR$/resources/views/adminServiceDetails.blade.php" />
       </list>
     </option>
   </component>
@@ -306,6 +318,24 @@
             <path>
               <item name="Watch-Over-Me-PHP" type="b2602c69:ProjectViewProjectNode" />
               <item name="Watch-Over-Me-PHP" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Watch-Over-Me-PHP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Watch-Over-Me-PHP" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Watch-Over-Me-PHP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Watch-Over-Me-PHP" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Watch-Over-Me-PHP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Watch-Over-Me-PHP" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -339,6 +369,11 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/assets/js/core" />
+      <recent name="$PROJECT_DIR$/public/assets/css" />
+      <recent name="$PROJECT_DIR$/public/assets/js" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/resources/views/auth" />
@@ -446,6 +481,49 @@
       <workItem from="1597082597890" duration="1831000" />
       <workItem from="1597085384767" duration="1600000" />
       <workItem from="1597087205280" duration="417000" />
+      <workItem from="1597126268756" duration="702000" />
+      <workItem from="1597128668939" duration="1228000" />
+      <workItem from="1597131048806" duration="1788000" />
+      <workItem from="1597132902939" duration="1603000" />
+      <workItem from="1597137004661" duration="1741000" />
+      <workItem from="1597138864031" duration="1512000" />
+      <workItem from="1597140674839" duration="1668000" />
+      <workItem from="1597142489356" duration="1594000" />
+      <workItem from="1597144304562" duration="1029000" />
+      <workItem from="1597146185806" duration="1787000" />
+      <workItem from="1597147995345" duration="1831000" />
+      <workItem from="1597149907933" duration="1529000" />
+      <workItem from="1597151870350" duration="14000" />
+      <workItem from="1597161499676" duration="267000" />
+      <workItem from="1597163391013" duration="759000" />
+      <workItem from="1597165887795" duration="1007000" />
+      <workItem from="1597169450408" duration="1528000" />
+      <workItem from="1597171289881" duration="1776000" />
+      <workItem from="1597177677831" duration="1754000" />
+      <workItem from="1597179487955" duration="1787000" />
+      <workItem from="1597181299698" duration="1721000" />
+      <workItem from="1597183120692" duration="852000" />
+      <workItem from="1597185403197" duration="1765000" />
+      <workItem from="1597187222987" duration="588000" />
+      <workItem from="1597189314502" duration="1426000" />
+      <workItem from="1597191144156" duration="1881000" />
+      <workItem from="1597193094675" duration="1579000" />
+      <workItem from="1597194905253" duration="1040000" />
+      <workItem from="1597233193228" duration="1707000" />
+      <workItem from="1597235004304" duration="1190000" />
+      <workItem from="1597236832111" duration="1675000" />
+      <workItem from="1597238642102" duration="1739000" />
+      <workItem from="1597240490891" duration="2132000" />
+      <workItem from="1597243758128" duration="1921000" />
+      <workItem from="1597250046340" duration="1712000" />
+      <workItem from="1597251858932" duration="1815000" />
+      <workItem from="1597253848434" duration="1642000" />
+      <workItem from="1597255684315" duration="1708000" />
+      <workItem from="1597257494517" duration="1021000" />
+      <workItem from="1597260683132" duration="1591000" />
+      <workItem from="1597262762240" duration="1739000" />
+      <workItem from="1597266617662" duration="1725000" />
+      <workItem from="1597268427894" duration="1717000" />
     </task>
     <task id="LOCAL-00001" summary="new changes">
       <created>1596192462049</created>
@@ -496,16 +574,24 @@
       <option name="project" value="LOCAL" />
       <updated>1597056968495</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="version 0.4">
+      <created>1597126375515</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1597126375515</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105080000" />
+    <option name="totallyTimeSpent" value="167870000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="823" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21387696" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1795422" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -555,7 +641,8 @@
     <MESSAGE value="version 0.1" />
     <MESSAGE value="version 0.2" />
     <MESSAGE value="version 0.3" />
-    <option name="LAST_COMMIT_MESSAGE" value="version 0.3" />
+    <MESSAGE value="version 0.4" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 0.4" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -786,24 +873,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/adminCreateService.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="554" column="77" selection-start-line="554" selection-start-column="4" selection-end-line="554" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2020_08_07_150948_create_watcher_relations_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/WatcherRelation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="67" selection-start-line="10" selection-start-column="67" selection-end-line="10" selection-end-column="67" />
         </state>
       </provider>
     </entry>
@@ -814,76 +887,112 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/adminApp.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="54" column="7" lean-forward="true" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+        <state relative-caret-position="2460">
+          <caret line="164" column="26" selection-start-line="164" selection-start-column="26" selection-end-line="164" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/WatcherRelation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/adminServices.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="204" column="100" selection-start-line="204" selection-start-column="100" selection-end-line="204" selection-end-column="100" />
+        <state relative-caret-position="278">
+          <caret line="393" column="13" selection-start-line="393" selection-start-column="4" selection-end-line="469" selection-end-column="10" />
+          <folding>
+            <element signature="e#1725#5778#0#HTML" />
+            <element signature="e#11579#13856#0#HTML" />
+            <element signature="e#13862#16147#0#HTML" />
+            <element signature="e#14471#15759#0#HTML" />
+            <element signature="e#16153#17981#0#HTML" />
+            <element signature="e#17987#22362#0#HTML" />
+            <element signature="e#19277#19299#0#HTML" expanded="true" />
+            <element signature="e#21917#21923#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/adminCreateService.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="60" selection-start-line="43" selection-start-column="49" selection-end-line="43" selection-end-column="60" />
+        <state relative-caret-position="92">
+          <caret line="182" column="128" selection-start-line="182" selection-start-column="48" selection-end-line="182" selection-end-column="128" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/adminServiceDetails.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/adminApp.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5055">
-          <caret line="337" selection-start-line="337" selection-end-line="337" />
+        <state relative-caret-position="285">
+          <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="85" column="52" selection-start-line="85" selection-start-column="52" selection-end-line="85" selection-end-column="52" />
+        <state relative-caret-position="1050">
+          <caret line="70" column="8" selection-start-line="70" selection-start-column="8" selection-end-line="72" selection-end-column="41" />
+          <folding>
+            <element signature="e#2057#3119#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/css/custom.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="2040">
+          <caret line="136" column="17" selection-start-line="136" selection-start-column="17" selection-end-line="136" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/js/createService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6495">
-          <caret line="433" column="32" selection-start-line="433" selection-start-column="32" selection-end-line="435" selection-end-column="33" />
+        <state relative-caret-position="6690">
+          <caret line="466" column="87" selection-start-line="466" selection-start-column="20" selection-end-line="466" selection-end-column="87" />
+          <folding>
+            <element signature="e#11326#11781#0" />
+            <element signature="e#11826#12290#0" />
+            <element signature="e#23416#28621#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5">
+          <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="73" column="53" selection-start-line="73" selection-start-column="53" selection-end-line="73" selection-end-column="53" />
+        <state relative-caret-position="246">
+          <caret line="259" selection-start-line="259" selection-end-line="259" />
           <folding>
             <element signature="e#40#56#0#PHP" expanded="true" />
-            <element signature="e#2203#3543#0#PHP" />
+            <element signature="e#498#563#0#PHP" />
+            <element signature="e#569#1366#0#PHP" />
+            <element signature="e#1373#1601#0#PHP" />
+            <element signature="e#1607#2196#0#PHP" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php">
+    <entry file="file://$PROJECT_DIR$/public/assets/js/serviceDetails.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="150" column="93" selection-start-line="150" selection-start-column="93" selection-end-line="150" selection-end-column="93" />
-          <folding>
-            <element signature="e#11744#13688#0#HTML" />
-            <element signature="e#13694#16411#0#HTML" />
-            <element signature="e#16417#20756#0#HTML" />
-            <element signature="e#20762#22150#0#HTML" />
-          </folding>
+        <state relative-caret-position="-168">
+          <caret line="515" column="41" selection-start-line="515" selection-start-column="20" selection-end-line="515" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/adminServiceDetails.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="487" column="41" selection-start-line="487" selection-start-column="41" selection-end-line="487" selection-end-column="41" />
         </state>
       </provider>
     </entry>

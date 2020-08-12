@@ -112,3 +112,27 @@
 #customerPhoneNum {
     padding-left: 60px;
 }
+
+/*------------- service details -----------------------*/
+
+#modalWatcherFormContainer {
+    display: none;
+}
+
+#watcher-info-msg {
+    font-size: .8571em;
+    margin-bottom: 5px;
+}
+
+#verifyWatcherEmailLoader {
+    display: none;
+}
+
+.priority-num {
+    padding: 8px;
+    font-size: 20px;
+}
+
+.watcher-list-item {
+    padding: 0px;
+}

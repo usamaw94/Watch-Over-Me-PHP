@@ -63,13 +63,15 @@ class AdminController extends Controller
         $watcherDetails = DB::table('users')
             ->join('watcher_relations', 'watcher_relations.watcher_id', '=', 'users.person_id')
             ->where('watcher_relations.svc_id', '=', $serviceId)
-            ->orderBy('watcher_relations.priority_num', 'desc')
+            ->orderBy('watcher_relations.priority_num', 'asc')
             ->select('users.person_id', 'users.f_name', 'users.l_name', 'users.email', 'users.phone',
             'watcher_relations.priority_num')
             ->get();
 
         return response()->json($watcherDetails);
     }
+
+
 
     public function serviceDetails(Request $request){
         $serviceId = $request->id;
@@ -93,7 +95,7 @@ class AdminController extends Controller
         $watchersList = DB::table('users')
             ->join('watcher_relations', 'watcher_relations.watcher_id', '=', 'users.person_id')
             ->where('watcher_relations.svc_id', '=', $serviceId)
-            ->orderBy('watcher_relations.priority_num', 'desc')
+            ->orderBy('watcher_relations.priority_num', 'asc')
             ->select('users.person_id', 'users.f_name', 'users.l_name', 'users.email', 'users.phone',
                 'watcher_relations.priority_num', 'watcher_relations.watcher_status')
             ->get();
@@ -111,8 +113,36 @@ class AdminController extends Controller
 
     }
 
+    public function activateService(Request $request){
+        $serviceId = $request->serviceId;
+
+        $update = DB::table('services')
+            ->where('service_id', '=',  $serviceId)
+            ->update(['service_status' => 'Active']);
+
+
+        $response = "success";
+
+        return response()->json($response);
+    }
+
+    public function deactivateService(Request $request){
+        $serviceId = $request->serviceId;
+
+        $update = DB::table('services')
+            ->where('service_id', '=',  $serviceId)
+            ->update(['service_status' => 'Inactive']);
+
+
+        $response = "success";
+
+        return response()->json($response);
+    }
+
     public function serviceLogs(Request $request){
         $serviceId = $request->id;
+
+        dd($serviceId);
 
         $serviceDetails = DB::table('services')
             ->where('service_id', '=', $serviceId)
@@ -126,6 +156,122 @@ class AdminController extends Controller
         return view('adminServiceLogs')->with($data);
 
 
+    }
+
+    public function verifyServiceWatcherPhone(Request $request){
+        $watcherNum = $request->watcherNum;
+        $serviceId = $request->serviceId;
+
+        if(DB::table('users')->where('phone', '=', $watcherNum)->exists()) {
+
+            $personDetails = DB::table('users')->where('phone', '=', $watcherNum)->get()->first();
+
+            $watcherId = $personDetails->person_id;
+
+            if (DB::table('watcher_relations')->where('watcher_id', '=', $watcherId)->where('svc_id','=',$serviceId)->exists()){
+                $watcherRelation = DB::table('watcher_relations')->where('watcher_id', '=', $watcherId)->where('svc_id','=',$serviceId)->get()->first();
+                $watcherType = $watcherRelation->watcher_status;
+                $existStatus = "watcher";
+            } else {
+                $watcherType = "";
+                $existStatus = "exist";
+            }
+
+            $data = array(
+                'watcherType' => $watcherType,
+                'existStatus' => $existStatus,
+                'personDetails' => $personDetails,
+            );
+
+            return response()->json($data);
+        } else {
+
+            $data = array(
+                'existStatus' => "new",
+            );
+
+            return response()->json($data);
+
+        }
+
+    }
+
+    public function addNewWatcher(Request $request){
+        $serviceId = $request->serviceId;
+        $watcherPhone = $request->watcherStorePhone;
+        $watcherId = $request->watcherId;
+        $watcherEmail = $request->watcherEmail;
+        $watcherFirstName = $request->watcherFirstName;
+        $watcherLastName = $request->watcherLastName;
+        $watcherType = $request->watcherType;
+
+        if($watcherId == null){
+
+            $dbName = 'watchoverme';
+            $tableNameUser = 'users';
+            $tableNameService = 'services';
+            $tableNameWatcherRelation = 'watcher_relations';
+
+            $infoUser = DB::select('SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = ? AND   TABLE_NAME   = ?',[$dbName,$tableNameUser]);
+            $autoIncUser = $infoUser[0]->AUTO_INCREMENT;
+            $watcherId = 'WOMUSR00'. $autoIncUser;
+
+            $wT =new User();
+            $wT->person_id = $watcherId;
+            $wT->f_name = $watcherFirstName;
+            $wT->l_name = $watcherLastName;
+            $wT->email = $watcherEmail;
+            $wT->phone = $watcherPhone;
+            $wT->password = bcrypt("womperson");
+            $wTSaved = $wT->save();
+
+        }
+
+        $serviceDetails = DB::table('services')
+            ->where('service_id', '=', $serviceId)
+            ->get()->first();
+
+        $watcherNum = $serviceDetails->no_of_watchers;
+
+        $watcherNum = $watcherNum + 1;
+
+        $update = DB::table('services')
+            ->where('service_id', '=',  $serviceId)
+            ->update(['no_of_watchers' => $watcherNum]);
+
+
+        $wR =new WatcherRelation();
+        $wR->svc_id = $serviceId;
+        $wR->watcher_id = $watcherId;
+        $wR->priority_num = $watcherNum;
+        $wR->watcher_status = $watcherType;
+        $wRSaved = $wR->save();
+
+
+        return response()->json("success");
+
+    }
+
+    public function updatePriorityOrder(Request $request){
+
+        $serviceId = $request->serviceId;
+
+        $length = count($request->priorityChanges);
+
+
+        for ($i = 0; $i<$length; $i++){
+            $watcherId = $request->priorityChanges[$i][0];
+            $priorityNum = $request->priorityChanges[$i][1];
+
+            $update = DB::table('watcher_relations')
+                ->where('svc_id', '=',  $serviceId)
+                ->where('watcher_id', '=', $watcherId)
+                ->update(['priority_num' => $priorityNum]);
+
+
+        }
+
+        return response()->json("success");
     }
 
     public function createService(){

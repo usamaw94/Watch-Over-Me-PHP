@@ -42,3 +42,10 @@ Route::get('/adminGetPerson', 'AdminController@getPerson')->name('admin.get.pers
 Route::get('/adminGetWatchersList', 'AdminController@getWatchersList')->name('admin.get.watchers.list');
 Route::get('/adminServiceDetails', 'AdminController@serviceDetails')->name('admin.service.details');
 Route::get('/adminServiceLogs', 'AdminController@serviceLogs')->name('admin.service.logs');
+Route::get('/adminActivateService', 'AdminController@activateService')->name('admin.activate.service');
+Route::get('/adminDeactivateService', 'AdminController@deactivateService')->name('admin.deactivate.service');
+
+Route::post('/adminVerifyServiceWatcherPhone', 'AdminController@verifyServiceWatcherPhone')->name('admin.verify.service.watcher.phone');
+
+Route::post('/adminAddNewWatcher', 'AdminController@addNewWatcher')->name('admin.add.new.watcher');
+Route::post('/adminUpdatePriorityOrder', 'AdminController@updatePriorityOrder')->name('admin.update.priority.order');

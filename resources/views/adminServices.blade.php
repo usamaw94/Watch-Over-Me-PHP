@@ -391,6 +391,84 @@
         </div>
     </div>
 
+    <div class="modal fade" id="addWatcher" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="nc-icon nc-simple-remove"></i>
+                    </button>
+                    <h4 class="title title-up">Add Watcher</h4>
+                </div>
+
+                <form class="add-new-watcher-form" method="#" action="#">
+
+                    <div class="modal-body">
+                        <div class="card card-plain">
+                            <input id="modalServiceId" type="text" class="form-control" readonly>
+
+                            <label>Phone Number</label>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input id="modalWatcherPhoneNum" type="tel" class="form-control" placeholder="Valid phone number" name="watcherPhone" autocomplete="off">
+                                        <label id="watcherPhoneNum-error" style="color: #ef8157" class="error wearer-required-error" for="modalWatcherPhoneNum"></label>
+                                        <span id="watcher-valid-msg" class="sr-only">✓ Valid</span>
+                                        <span id="watcher-error-msg" class="sr-only"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div id="modalVerifyWatcherPhone" class="btn btn-block btn-outline-info no-margin" disabled="true">
+                                        Verify
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="modalWatcherFormContainer">
+                                <input id="modalWatcherId" type="text" class="form-control" name="watcherId" readonly>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>Email</label>
+                                        <div class="form-group">
+                                            <input id="modalWatcherEmail" type="email" name="watcherEmail" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <label>Name</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input id="modalWatcherFirstName" type="text" name="watcherFirstName" class="form-control" placeholder="First Name" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input id="modalWatcherLastName" type="text" name="watcherLastName" class="form-control" placeholder="Last Name" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="left-side">
+                            <button type="submit" class="btn btn-link btn-success">
+                                <i class="fa fa-plus"></i> &nbsp; Add
+                            </button>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="right-side">
+                            <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-danger btn-link">Close</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('script')

@@ -164,4 +164,33 @@ class ApiController extends Controller
         return response()->json($res,500);
 
     }
+
+    public function getWatchers(Request $request) {
+        $watchers = DB::table('users')
+        ->join('watcher_relations','watcher_relations.watcher_id', '=', 'users.person_id')
+        ->where('watcher_relations.svc_id', '=', $request->serviceId)
+        ->where('watcher_relations.watcher_status', '=', 'Responding')
+        ->orderBy('watcher_relations.priority_num', 'asc')
+        ->select('users.person_id','users.f_name','users.l_name','users.phone','watcher_relations.priority_num')
+        ->get();
+
+        if($watchers != null){
+            $res = array (
+                'connection' => true,
+                'queryStatus' => true,
+                'message' => "Watchers retrieved",
+                'data' => $watchers
+            );
+        }
+        else {
+            $res = array (
+                'connection' => false,
+                'queryStatus' => false,
+                'message' => "Error retrieving watchers",
+                'data' => $watchers
+            );
+        }
+
+       return response()->json($res);
+    }
 }

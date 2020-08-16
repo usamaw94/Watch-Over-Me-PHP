@@ -226,6 +226,14 @@ class ApiController extends Controller
 
         return response()->json(curl_exec($ch));
     }
+
+    public function helpMeRequestInitiate(Request $request){
+
+    }
+
+    public function updateDeviceToken(Request $request){
+        
+    }
 }
 
 

@@ -1,6 +1,16 @@
 $(document).ready(function () {
 
+    window.Echo.channel('showlogs.'+$('#serviceId').text())
+        .listen('HourlyLogCreated', (e) => {
+
+            alert(e.serviceId);
+
+            $( "#logsContainer" ).load(window.location.href + " #logsContent" );
+
+        });
+
     initialMap();
+    // listen();
 
     $('.logs-date-picker').datetimepicker({
         format: 'MM/DD/YYYY',
@@ -79,5 +89,6 @@ $(document).ready(function () {
         marker.setMap(map);
 
     });
+
 
 });

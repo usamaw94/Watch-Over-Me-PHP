@@ -23,7 +23,6 @@ class CreateLogsTable extends Migration
             $table->string("log_time");
             $table->string("log_type");
             $table->string("service_id");
-            $table->string('request_status');
             $table->timestamps();
         });
     }

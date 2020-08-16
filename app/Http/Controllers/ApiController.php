@@ -8,6 +8,7 @@ use App\User;
 use App\WatcherRelation;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -230,10 +231,50 @@ class ApiController extends Controller
 
     public function helpMeRequestInitiate(Request $request){
 
+        $alertLog = new Log();
+
+        $alertLog->battery_percentage = $request->batteryLevel;
+        $alertLog->location_latitude = $request->locationLatitude;
+        $alertLog->location_longitude = $request->locationLongitude;
+        $alertLog->log_text = $request->logText;
+        $alertLog->log_date = $request->logDate;
+        $alertLog->log_time = $request->logTime;
+        $alertLog->log_type = $request->logType;
+        $alertLog->service_id = $request->serviceId;
+        $alertLog->request_status = $request->requestStatus;
+
+        $alertSaved = $alertLog->save();
+
+        $watchers = DB::table('users')
+            ->join('watcher_relations', 'watcher_relations.watcher_id', '=', 'users.person_id')
+            ->where('watcher_relations.svc_id', '=', $request->serviceId)
+            ->where('watcher_relations.watcher_status', '=', 'Responding')
+            ->orderBy('watcher_relations.priority_num', 'asc')
+            ->select('users.person_id', 'users.f_name', 'users.l_name', 'users.phone', 'watcher_relations.priority_num')
+            ->get();
+
+        if ($watchers != null) {
+            $res = array(
+                'connection' => true,
+                'queryStatus' => true,
+                'message' => "Watchers retrieved",
+                'data' => $watchers
+            );
+        } else {
+            $res = array(
+                'connection' => false,
+                'queryStatus' => false,
+                'message' => "Error retrieving watchers",
+                'data' => $watchers
+            );
+        }
+
+        return response()->json($res);
+
     }
 
     public function updateDeviceToken(Request $request){
-        
+
     }
 
     public function createHourlyLog(Request $request){

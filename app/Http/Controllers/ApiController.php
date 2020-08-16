@@ -270,6 +270,8 @@ class ApiController extends Controller
             );
         }
 
+        event(new NewLog($request->serviceId));
+
         return response()->json($res);
 
     }
@@ -281,8 +283,6 @@ class ApiController extends Controller
     public function createHourlyLog(Request $request){
 
         $serviceId = $request->serviceId;
-
-        event(new NewLog($serviceId));
 
         return response()->json($serviceId);
 

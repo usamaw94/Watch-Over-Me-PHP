@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\HourlyLogCreated;
 use App\Service;
 use App\User;
 use App\WatcherRelation;
@@ -162,6 +163,16 @@ class ApiController extends Controller
         );
 
         return response()->json($res,500);
+
+    }
+
+    public function createHourlyLog(Request $request){
+
+        $serviceId = $request->serviceId;
+
+        event(new HourlyLogCreated($serviceId));
+
+        return response()->json($serviceId);
 
     }
 }

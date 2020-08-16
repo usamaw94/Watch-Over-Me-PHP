@@ -148,7 +148,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header ">
-                            <h4 class="card-title">Service ID: {{ $serviceDetails->service_id }}</h4>
+                            <h4 class="card-title">Service ID: <span id="serviceId">{{ $serviceDetails->service_id }}</span></h4>
                             <button id="showWearerLocation" data-toggle="modal" data-target="#trackWearer" class="btn btn-outline-primary btn-round btn-sm">Track Wearer</button>
                         </div>
                     </div>
@@ -172,54 +172,58 @@
                             <h4 class='card-title'>Log list</h4>
                             <hr class="no-space">
                         </div>
-                        <div class="card-body logs-container">
+                        <div id="logsContainer" class="card-body logs-container">
 
-                            @foreach($logs as $lg)
+                            <div id="logsContent">
 
-                                @if ($lg->log_type == 'Hourly Log')
+                                @foreach($logs as $lg)
 
-                                    <div data-lat="{{ $lg->location_latitude }}" data-long="{{ $lg->location_longitude }}" class="timeline-panel logs">
-                                        <div class="timeline-body">
-                                            <div class="logs-action">
-                                                <a target="_blank" href="https://www.google.com/maps/dir//-37.{{ $lg->location_latitude }},{{ $lg->location_longitude }}"
-                                                   title="Get directions"
-                                                   class="btn btn-outline-info btn-icon btn-round">
-                                                    <i class="fa fa-location-arrow"></i>
-                                                </a>
-                                                <button title="View log details" type="button" data-toggle="modal" data-target="#hourlyLogDetails" class="btn btn-outline-info btn-icon btn-round">
-                                                    <i class="fa fa-info-circle"></i>
-                                                </button>
+                                    @if ($lg->log_type == 'Hourly Log')
+
+                                        <div data-lat="{{ $lg->location_latitude }}" data-long="{{ $lg->location_longitude }}" class="timeline-panel logs">
+                                            <div class="timeline-body">
+                                                <div class="logs-action">
+                                                    <a target="_blank" href="https://www.google.com/maps/dir//-37.{{ $lg->location_latitude }},{{ $lg->location_longitude }}"
+                                                       title="Get directions"
+                                                       class="btn btn-outline-info btn-icon btn-round">
+                                                        <i class="fa fa-location-arrow"></i>
+                                                    </a>
+                                                    <button title="View log details" type="button" data-toggle="modal" data-target="#hourlyLogDetails" class="btn btn-outline-info btn-icon btn-round">
+                                                        <i class="fa fa-info-circle"></i>
+                                                    </button>
+                                                </div>
+                                                <span class="badge badge-pill badge-info">{{ $lg->log_type }}</span><br>
+                                                <b>{{ $lg->log_time }} - {{ $lg->log_date }}</b>
+                                                <p>Watch battery: {{ $lg->battery_percentage }}%</p>
                                             </div>
-                                            <span class="badge badge-pill badge-info">{{ $lg->log_type }}</span><br>
-                                            <b>{{ $lg->log_time }} - {{ $lg->log_date }}</b>
-                                            <p>Watch battery: {{ $lg->battery_percentage }}%</p>
                                         </div>
-                                    </div>
-                                    <hr class="no-space">
+                                        <hr class="no-space">
 
-                                @elseif($lg->log_type == 'Alert Log')
+                                    @elseif($lg->log_type == 'Alert Log')
 
-                                    <div data-lat="{{ $lg->location_latitude }}" data-long="{{ $lg->location_longitude }}" class="timeline-panel logs">
-                                        <div class="timeline-body">
-                                            <div class="logs-action">
-                                                <a target="_blank" href="https://www.google.com/maps/dir//{{ $lg->location_latitude }},{{ $lg->location_longitude }}"
-                                                   title="Get directions"
-                                                   class="btn btn-outline-danger btn-icon btn-round">
-                                                    <i class="fa fa-location-arrow"></i>
-                                                </a>
-                                                <button title="View log details" type="button" data-toggle="modal" data-target="#alertLogDetails" class="btn btn-outline-danger btn-icon btn-round">
-                                                    <i class="fa fa-info-circle"></i>
-                                                </button>
+                                        <div data-lat="{{ $lg->location_latitude }}" data-long="{{ $lg->location_longitude }}" class="timeline-panel logs">
+                                            <div class="timeline-body">
+                                                <div class="logs-action">
+                                                    <a target="_blank" href="https://www.google.com/maps/dir//{{ $lg->location_latitude }},{{ $lg->location_longitude }}"
+                                                       title="Get directions"
+                                                       class="btn btn-outline-danger btn-icon btn-round">
+                                                        <i class="fa fa-location-arrow"></i>
+                                                    </a>
+                                                    <button title="View log details" type="button" data-toggle="modal" data-target="#alertLogDetails" class="btn btn-outline-danger btn-icon btn-round">
+                                                        <i class="fa fa-info-circle"></i>
+                                                    </button>
+                                                </div>
+                                                <span class="badge badge-pill badge-danger">{{ $lg->log_type }}</span><br>
+                                                <b>{{ $lg->log_time }} - {{ $lg->log_date }}</b>
+                                                <p>Watch battery: {{ $lg->battery_percentage }}%</p>
                                             </div>
-                                            <span class="badge badge-pill badge-danger">{{ $lg->log_type }}</span><br>
-                                            <b>{{ $lg->log_time }} - {{ $lg->log_date }}</b>
-                                            <p>Watch battery: {{ $lg->battery_percentage }}%</p>
                                         </div>
-                                    </div>
-                                    <hr class="no-space">
+                                        <hr class="no-space">
 
-                                @endif
-                            @endforeach
+                                    @endif
+                                @endforeach
+
+                            </div>
 
                         </div>
                     </div>
@@ -515,6 +519,17 @@
 @endsection
 
 @section('script')
+
+{{--    <script>--}}
+
+{{--        var serviceId = $('#serviceId').text();--}}
+
+{{--        window.Echo.channel('showlogs.'+serviceId)--}}
+{{--            .listen('HourlyLogCreated', (e) => {--}}
+{{--                alert("data");--}}
+{{--            });--}}
+
+{{--    </script>--}}
 
     <!--  Google Maps Plugin    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsaBSLRpDtQYzD5md-bnOYP61GBRN9oac&libraries=places&callback=initialMap"></script>

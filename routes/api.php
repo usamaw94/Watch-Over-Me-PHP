@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/testConnection','ApiController@testConnection')->name('api.test.connection');
 Route::post('/wearerLoginProcessing','ApiController@wearerLoginProcessing')->name('wearer.login.processing');
+
+Route::post('/createHourlyLog', 'ApiController@createHourlyLog')->name('create.hourly.log');

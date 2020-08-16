@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\HourlyLogCreated;
+use App\Events\NewLog;
 use App\Service;
 use App\User;
 use App\WatcherRelation;
@@ -281,7 +282,7 @@ class ApiController extends Controller
 
         $serviceId = $request->serviceId;
 
-        event(new HourlyLogCreated($serviceId));
+        event(new NewLog($serviceId));
 
         return response()->json($serviceId);
 

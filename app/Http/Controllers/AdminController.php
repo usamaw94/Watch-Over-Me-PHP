@@ -142,14 +142,21 @@ class AdminController extends Controller
     public function serviceLogs(Request $request){
         $serviceId = $request->id;
 
-        dd($serviceId);
+//        dd($serviceId);
 
         $serviceDetails = DB::table('services')
             ->where('service_id', '=', $serviceId)
             ->get()->first();
 
+        $logs = DB::table('logs')
+            ->where('service_id', '=', $serviceId)
+            ->orderBy('log_date', 'desc')
+            ->orderBy('log_time', 'desc')
+            ->get();
+
         $data = array(
             'serviceDetails' => $serviceDetails,
+            'logs' => $logs
         );
 
 

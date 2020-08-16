@@ -19,6 +19,7 @@ class CreateWatcherRelationsTable extends Migration
             $table->string('watcher_id');
             $table->integer('priority_num');
             $table->string('watcher_status');
+            $table->string('watcher_device_token');
             $table->timestamps();
         });
     }

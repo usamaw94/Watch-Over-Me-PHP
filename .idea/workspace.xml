@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9d9cb26-ea37-4934-8bab-a721bf3d3344" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Log.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Service.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Service.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/WatcherRelation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/WatcherRelation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_07_150204_create_services_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_07_150204_create_services_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_07_150948_create_watcher_relations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_07_150948_create_watcher_relations_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,8 +44,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/web.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="375">
-                  <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+                <state relative-caret-position="180">
+                  <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
                 </state>
               </provider>
             </entry>
@@ -48,8 +53,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="309">
-                  <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+                <state relative-caret-position="341">
+                  <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -57,8 +62,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3330">
-                  <caret line="259" selection-start-line="259" selection-end-line="259" />
+                <state relative-caret-position="1800">
+                  <caret line="157" column="27" selection-start-line="157" selection-start-column="13" selection-end-line="157" selection-end-column="27" />
                   <folding>
                     <element signature="e#40#56#0#PHP" expanded="true" />
                     <element signature="e#498#563#0#PHP" />
@@ -71,10 +76,28 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/views/adminServiceDetails.blade.php">
+            <entry file="file://$PROJECT_DIR$/database/migrations/2020_08_07_150948_create_watcher_relations_table.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="7410">
-                  <caret line="494" column="24" selection-start-line="494" selection-start-column="24" selection-end-line="494" selection-end-column="45" />
+                <state relative-caret-position="285">
+                  <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2250">
+                  <caret line="150" column="93" selection-start-line="150" selection-start-column="93" selection-end-line="150" selection-end-column="93" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/views/adminServices.blade.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2790">
+                  <caret line="186" column="44" selection-start-line="186" selection-start-column="44" selection-end-line="186" selection-end-column="66" />
                 </state>
               </provider>
             </entry>
@@ -86,11 +109,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/assets/js/serviceDetails.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="212">
+                <state relative-caret-position="185">
                   <caret line="439" column="64" selection-start-line="439" selection-start-column="64" selection-end-line="439" selection-end-column="64" />
-                  <folding>
-                    <element signature="e#228#234#0" expanded="true" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -150,6 +170,7 @@
       <find>bs</find>
       <find>modaSavePriorityOrder</find>
       <find>disable</find>
+      <find>orderby</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -178,22 +199,22 @@
         <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin.blade.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2020_08_07_150948_create_watcher_relations_table.php" />
         <option value="$PROJECT_DIR$/public/assets/js/createService.js" />
         <option value="$PROJECT_DIR$/resources/views/adminCreateService.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
-        <option value="$PROJECT_DIR$/app/Service.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2020_08_07_150204_create_services_table.php" />
         <option value="$PROJECT_DIR$/public/assets/js/services.js" />
-        <option value="$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php" />
-        <option value="$PROJECT_DIR$/app/WatcherRelation.php" />
         <option value="$PROJECT_DIR$/resources/views/adminServices.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/css/custom.css" />
         <option value="$PROJECT_DIR$/resources/views/layouts/adminApp.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
         <option value="$PROJECT_DIR$/resources/views/adminServiceDetails.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/js/serviceDetails.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
+        <option value="$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_08_07_150948_create_watcher_relations_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_08_07_150204_create_services_table.php" />
+        <option value="$PROJECT_DIR$/app/Service.php" />
+        <option value="$PROJECT_DIR$/app/WatcherRelation.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php" />
       </list>
     </option>
@@ -313,6 +334,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -320,11 +342,21 @@
               <item name="Watch-Over-Me-PHP" type="b2602c69:ProjectViewProjectNode" />
               <item name="Watch-Over-Me-PHP" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Watch-Over-Me-PHP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Watch-Over-Me-PHP" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Watch-Over-Me-PHP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Watch-Over-Me-PHP" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -497,7 +529,16 @@
       <workItem from="1597302124783" duration="916000" />
       <workItem from="1597311750977" duration="904000" />
       <workItem from="1597318391447" duration="1617000" />
-      <workItem from="1597320204290" duration="367000" />
+      <workItem from="1597320204290" duration="1111000" />
+      <workItem from="1597323704155" duration="1961000" />
+      <workItem from="1597326643032" duration="1822000" />
+      <workItem from="1597328510898" duration="486000" />
+      <workItem from="1597329871352" duration="520000" />
+      <workItem from="1597334475236" duration="30000" />
+      <workItem from="1597507355649" duration="525000" />
+      <workItem from="1597507939909" duration="624000" />
+      <workItem from="1597509752421" duration="553000" />
+      <workItem from="1597512704008" duration="2000" />
     </task>
     <task id="LOCAL-00001" summary="new changes">
       <created>1596192462049</created>
@@ -576,16 +617,23 @@
       <option name="project" value="LOCAL" />
       <updated>1597320270848</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="version 0.5">
+      <created>1597320815305</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1597320815305</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="172210000" />
+    <option name="totallyTimeSpent" value="179477000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="823" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26609442" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3004292" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -598,7 +646,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.28454173" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.28454173" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -854,62 +902,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Service.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_08_07_150204_create_services_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_08_07_150948_create_watcher_relations_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2460">
-          <caret line="164" column="26" selection-start-line="164" selection-start-column="26" selection-end-line="164" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/WatcherRelation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/adminServices.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="393" column="13" selection-start-line="393" selection-start-column="4" selection-end-line="469" selection-end-column="10" />
-          <folding>
-            <element signature="e#1725#5778#0#HTML" />
-            <element signature="e#11579#13856#0#HTML" />
-            <element signature="e#13862#16147#0#HTML" />
-            <element signature="e#14471#15759#0#HTML" />
-            <element signature="e#16153#17981#0#HTML" />
-            <element signature="e#17987#22362#0#HTML" />
-            <element signature="e#19277#19299#0#HTML" expanded="true" />
-            <element signature="e#21917#21923#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -934,17 +930,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/adminServiceDetails.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="494" column="24" selection-start-line="494" selection-start-column="24" selection-end-line="494" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/WatcherRelation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="91" selection-start-line="10" selection-start-column="91" selection-end-line="10" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Service.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="100" selection-start-line="9" selection-start-column="100" selection-end-line="9" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_08_07_150204_create_services_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="27" lean-forward="true" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+        <state relative-caret-position="180">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3330">
-          <caret line="259" selection-start-line="259" selection-end-line="259" />
+        <state relative-caret-position="1800">
+          <caret line="157" column="27" selection-start-line="157" selection-start-column="13" selection-end-line="157" selection-end-column="27" />
           <folding>
             <element signature="e#40#56#0#PHP" expanded="true" />
             <element signature="e#498#563#0#PHP" />
@@ -955,23 +979,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/adminServiceDetails.blade.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_08_07_150948_create_watcher_relations_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7410">
-          <caret line="494" column="24" selection-start-line="494" selection-start-column="24" selection-end-line="494" selection-end-column="45" />
+        <state relative-caret-position="285">
+          <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2250">
+          <caret line="150" column="93" selection-start-line="150" selection-start-column="93" selection-end-line="150" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/adminServices.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2790">
+          <caret line="186" column="44" selection-start-line="186" selection-start-column="44" selection-end-line="186" selection-end-column="66" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+        <state relative-caret-position="341">
+          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/js/serviceDetails.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
+        <state relative-caret-position="185">
           <caret line="439" column="64" selection-start-line="439" selection-start-column="64" selection-end-line="439" selection-end-column="64" />
           <folding>
             <element signature="e#228#234#0" expanded="true" />

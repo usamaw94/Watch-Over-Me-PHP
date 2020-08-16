@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9d9cb26-ea37-4934-8bab-a721bf3d3344" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Service.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Service.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/WatcherRelation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/WatcherRelation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_07_150204_create_services_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_07_150204_create_services_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_07_150948_create_watcher_relations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_07_150948_create_watcher_relations_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="e9d9cb26-ea37-4934-8bab-a721bf3d3344" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +102,9 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="185">
                   <caret line="439" column="64" selection-start-line="439" selection-start-column="64" selection-end-line="439" selection-end-column="64" />
+                  <folding>
+                    <element signature="e#228#234#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -342,17 +336,6 @@
               <item name="Watch-Over-Me-PHP" type="b2602c69:ProjectViewProjectNode" />
               <item name="Watch-Over-Me-PHP" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Watch-Over-Me-PHP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Watch-Over-Me-PHP" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Watch-Over-Me-PHP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Watch-Over-Me-PHP" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -539,6 +522,7 @@
       <workItem from="1597507939909" duration="624000" />
       <workItem from="1597509752421" duration="553000" />
       <workItem from="1597512704008" duration="2000" />
+      <workItem from="1597570065725" duration="154000" />
     </task>
     <task id="LOCAL-00001" summary="new changes">
       <created>1596192462049</created>
@@ -624,16 +608,23 @@
       <option name="project" value="LOCAL" />
       <updated>1597320815305</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="version 0.5">
+      <created>1597570105421</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1597570105421</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="179477000" />
+    <option name="totallyTimeSpent" value="179631000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="823" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3004292" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30472103" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -646,8 +637,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.28454173" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49928468" visible="true" weight="0.28454173" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007153" side_tool="true" weight="0.28454173" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />

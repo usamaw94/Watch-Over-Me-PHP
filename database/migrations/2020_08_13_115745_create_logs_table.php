@@ -22,7 +22,6 @@ class CreateLogsTable extends Migration
             $table->string("log_date");
             $table->string("log_time");
             $table->string("log_type");
-            $table->string("registration_token");
             $table->string("service_id");
             $table->string('request_status');
             $table->timestamps();

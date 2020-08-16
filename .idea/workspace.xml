@@ -2,150 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9d9cb26-ea37-4934-8bab-a721bf3d3344" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Events/HourlyLogCreated.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/appveyor.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/autoload-fast.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/autoload-pedantic.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/autoload-php7.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/autoload-phpunit.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/autoload.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/build-phar.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/composer-php52.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/dist/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/dist/box.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/lib/constants.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/lib/namespaced.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/lib/php72compat.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/lib/php72compat_const.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/lib/sodium_compat.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Compat.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/BLAKE2b.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/ChaCha20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/ChaCha20/Ctx.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/ChaCha20/IetfCtx.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/Curve25519.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/Curve25519/Fe.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/Curve25519/Ge/Cached.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/Curve25519/Ge/P1p1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/Curve25519/Ge/P2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/Curve25519/Ge/P3.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/Curve25519/Ge/Precomp.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/Curve25519/H.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/Ed25519.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/HChaCha20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/HSalsa20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/Poly1305.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/Poly1305/State.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/Salsa20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/SipHash.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/Util.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/X25519.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/XChaCha20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Core/Xsalsa20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/Crypto.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/namespaced/File.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/phpunit.xml.dist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/psalm-above-3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/psalm-below-3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Compat.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/BLAKE2b.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Base64/Common.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Base64/Original.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Base64/UrlSafe.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/ChaCha20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/ChaCha20/Ctx.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/ChaCha20/IetfCtx.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Curve25519.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Curve25519/Fe.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Curve25519/Ge/Cached.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Curve25519/Ge/P1p1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Curve25519/Ge/P2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Curve25519/Ge/P3.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Curve25519/Ge/Precomp.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Curve25519/H.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Curve25519/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Ed25519.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/HChaCha20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/HSalsa20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Poly1305.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Poly1305/State.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Salsa20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/SecretStream/State.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/SipHash.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/Util.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/X25519.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/XChaCha20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core/XSalsa20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/BLAKE2b.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/ChaCha20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/ChaCha20/Ctx.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/ChaCha20/IetfCtx.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/Curve25519.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/Curve25519/Fe.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/Curve25519/Ge/Cached.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/Curve25519/Ge/P1p1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/Curve25519/Ge/P2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/Curve25519/Ge/P3.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/Curve25519/Ge/Precomp.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/Curve25519/H.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/Curve25519/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/Ed25519.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/HChaCha20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/HSalsa20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/Int32.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/Int64.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/Poly1305.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/Poly1305/State.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/Salsa20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/SecretStream/State.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/SipHash.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/Util.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/X25519.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/XChaCha20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Core32/XSalsa20.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Crypto.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/Crypto32.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/File.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/PHP52/SplFixedArray.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/paragonie/sodium_compat/src/SodiumException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/CHANGELOG.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/encryption.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/scripts/travis-install.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/src/Pusher.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/src/PusherCrypto.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/src/PusherException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/src/PusherInstance.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/pusher/pusher-php-server/src/Webhook.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Watch-Over-Me-PHP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Watch-Over-Me-PHP.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ApiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/broadcasting.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/broadcasting.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/serviceLogs.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/serviceLogs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/admin-login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/admin-login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/adminApp.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/adminApp.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Log.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Log.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -198,18 +57,29 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="334">
+                <state relative-caret-position="3345">
                   <caret line="223" column="43" selection-start-line="223" selection-start-column="43" selection-end-line="223" selection-end-column="43" />
-                  <folding>
-                    <element signature="e#0#26779#0#Blade" />
-                    <element signature="e#12535#14479#0#HTML" />
-                    <element signature="e#14485#17202#0#HTML" />
-                    <element signature="e#17208#24590#0#HTML" />
-                    <element signature="e#24596#25984#0#HTML" />
-                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/Log.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="180">
+                  <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/Service.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="120">
+                  <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="10" selection-end-column="6" />
                 </state>
               </provider>
             </entry>
@@ -250,11 +120,20 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/assets/js/serviceLogs.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="7" column="76" selection-start-line="7" selection-start-column="65" selection-end-line="7" selection-end-column="76" />
+                <state relative-caret-position="75">
+                  <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="341">
+                  <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
                 </state>
               </provider>
             </entry>
@@ -333,7 +212,6 @@
         <option value="$PROJECT_DIR$/database/migrations/2020_08_07_150204_create_services_table.php" />
         <option value="$PROJECT_DIR$/app/Service.php" />
         <option value="$PROJECT_DIR$/app/WatcherRelation.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/config/broadcasting.php" />
         <option value="$PROJECT_DIR$/resources/js/app.js" />
@@ -347,6 +225,8 @@
         <option value="$PROJECT_DIR$/resources/views/layouts/adminApp.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/js/serviceLogs.js" />
         <option value="$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php" />
+        <option value="$PROJECT_DIR$/app/Log.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php" />
       </list>
     </option>
   </component>
@@ -477,20 +357,13 @@
             <path>
               <item name="Watch-Over-Me-PHP" type="b2602c69:ProjectViewProjectNode" />
               <item name="Watch-Over-Me-PHP" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Watch-Over-Me-PHP" type="b2602c69:ProjectViewProjectNode" />
               <item name="Watch-Over-Me-PHP" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Watch-Over-Me-PHP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Watch-Over-Me-PHP" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -688,7 +561,8 @@
       <workItem from="1597580444202" duration="1349000" />
       <workItem from="1597582433917" duration="1947000" />
       <workItem from="1597585023293" duration="1775000" />
-      <workItem from="1597586861783" duration="923000" />
+      <workItem from="1597586861783" duration="1771000" />
+      <workItem from="1597588734888" duration="22000" />
     </task>
     <task id="LOCAL-00001" summary="new changes">
       <created>1596192462049</created>
@@ -788,17 +662,24 @@
       <option name="project" value="LOCAL" />
       <updated>1597570251389</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="version 0.6">
+      <created>1597587818958</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1597587818958</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="190212000" />
+    <option name="totallyTimeSpent" value="191082000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="823" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20100144" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20386267" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -875,16 +756,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor>
-            <caret column="16" selection-start-column="16" selection-end-column="16" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -1033,13 +904,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Service.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="100" selection-start-line="9" selection-start-column="100" selection-end-line="9" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2020_08_07_150204_create_services_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1051,13 +915,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2790">
           <caret line="186" column="44" selection-start-line="186" selection-start-column="44" selection-end-line="186" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1197,6 +1054,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3345">
+          <caret line="223" column="43" selection-start-line="223" selection-start-column="43" selection-end-line="223" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Service.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="10" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -1218,6 +1089,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/js/serviceLogs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/js/serviceDetails.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6855">
@@ -1228,20 +1106,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/js/serviceLogs.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/adminServiceLogs.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Log.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="223" column="43" selection-start-line="223" selection-start-column="43" selection-end-line="223" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#26779#0#Blade" />
-            <element signature="e#12535#14479#0#HTML" />
-            <element signature="e#14485#17202#0#HTML" />
-            <element signature="e#17208#24590#0#HTML" />
-            <element signature="e#24596#25984#0#HTML" />
-          </folding>
+        <state relative-caret-position="180">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>

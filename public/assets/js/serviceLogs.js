@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     window.Echo.channel('showlogs.'+$('#serviceId').text())
-        .listen('HourlyLogCreated', (e) => {
+        .listen('NewLog', (e) => {
 
             alert(e.serviceId);
 

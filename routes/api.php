@@ -18,7 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::get('/testConnection','ApiController@testConnection')->name('test.connection');
 Route::post('/wearerLoginProcessing','ApiController@wearerLoginProcessing')->name('wearer.login.processing');
 Route::post('/getWatchers','ApiController@getWatchers')->name('get.watchers');

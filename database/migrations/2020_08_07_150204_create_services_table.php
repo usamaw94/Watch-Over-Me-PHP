@@ -21,6 +21,9 @@ class CreateServicesTable extends Migration
             $table->string('wom_num');
             $table->string('service_status');
             $table->integer('no_of_watchers');
+            $table->string('wearer_device_token');
+            $table->string('customer_device_token');
+            $table->string('wearer_logged_in');
             $table->timestamps();
         });
     }

@@ -168,49 +168,58 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="card">
                         <div class="card-header ">
-                            <button data-toggle="modal" data-target="#logFilters" style="float: right" class="btn btn-outline-info btn-icon btn-sm btn-round" title="Apply filters"><i class="fa fa-filter"></i></button>
+                            <button data-toggle="modal" data-target="#logFilters" style="float: right" class="btn btn-outline-light btn-icon btn-sm btn-round" title="Apply filters"><i class="fa fa-filter"></i></button>
                             <h4 class='card-title'>Log list</h4>
                             <hr class="no-space">
                         </div>
                         <div class="card-body logs-container">
 
-                            <div data-lat="-37.882833920280056" data-long="145.1416632143803" class="timeline-panel logs">
-                                <div class="timeline-body">
-                                    <div class="logs-action btn-group">
-                                        <a target="_blank" href="https://www.google.com/maps/dir//-37.882833920280056,145.1416632143803"
-                                           title="Get directions"
-                                           class="btn btn-outline-info btn-icon btn-round">
-                                            <i class="fa fa-location-arrow"></i>
-                                        </a>
-                                        <button title="View log details" type="button" data-toggle="modal" data-target="#hourlyLogDetails" class="btn btn-outline-info btn-icon btn-round">
-                                            <i class="fa fa-info-circle"></i>
-                                        </button>
-                                    </div>
-                                    <span class="badge badge-pill badge-info">Hourly log</span><br>
-                                    <b>14:24:09 - 27/12/2019</b>
-                                    <p>Watch battery: 27%</p>
-                                </div>
-                            </div>
-                            <hr class="no-space">
+                            @foreach($logs as $lg)
 
-                            <div data-lat="-38.042411928573614" data-long="145.1096239604738" class="timeline-panel logs">
-                                <div class="timeline-body">
-                                    <div class="logs-action btn-group">
-                                        <a target="_blank" href="https://www.google.com/maps/dir//-38.042411928573614,145.1096239604738"
-                                           title="Get directions"
-                                           class="btn btn-outline-danger btn-icon btn-round">
-                                            <i class="fa fa-location-arrow"></i>
-                                        </a>
-                                        <button title="View log details" type="button" data-toggle="modal" data-target="#alertLogDetails" class="btn btn-outline-danger btn-icon btn-round">
-                                            <i class="fa fa-info-circle"></i>
-                                        </button>
+                                @if ($lg->log_type == 'Hourly Log')
+
+                                    <div data-lat="{{ $lg->location_latitude }}" data-long="{{ $lg->location_longitude }}" class="timeline-panel logs">
+                                        <div class="timeline-body">
+                                            <div class="logs-action">
+                                                <a target="_blank" href="https://www.google.com/maps/dir//-37.{{ $lg->location_latitude }},{{ $lg->location_longitude }}"
+                                                   title="Get directions"
+                                                   class="btn btn-outline-info btn-icon btn-round">
+                                                    <i class="fa fa-location-arrow"></i>
+                                                </a>
+                                                <button title="View log details" type="button" data-toggle="modal" data-target="#hourlyLogDetails" class="btn btn-outline-info btn-icon btn-round">
+                                                    <i class="fa fa-info-circle"></i>
+                                                </button>
+                                            </div>
+                                            <span class="badge badge-pill badge-info">{{ $lg->log_type }}</span><br>
+                                            <b>{{ $lg->log_time }} - {{ $lg->log_date }}</b>
+                                            <p>Watch battery: {{ $lg->battery_percentage }}%</p>
+                                        </div>
                                     </div>
-                                    <span class="badge badge-pill badge-danger">Alert log</span><br>
-                                    <b>14:24:09 - 27/12/2019</b>
-                                    <p>Watch battery: 27%</p>
-                                </div>
-                            </div>
-                            <hr class="no-space">
+                                    <hr class="no-space">
+
+                                @elseif($lg->log_type == 'Alert Log')
+
+                                    <div data-lat="{{ $lg->location_latitude }}" data-long="{{ $lg->location_longitude }}" class="timeline-panel logs">
+                                        <div class="timeline-body">
+                                            <div class="logs-action">
+                                                <a target="_blank" href="https://www.google.com/maps/dir//{{ $lg->location_latitude }},{{ $lg->location_longitude }}"
+                                                   title="Get directions"
+                                                   class="btn btn-outline-danger btn-icon btn-round">
+                                                    <i class="fa fa-location-arrow"></i>
+                                                </a>
+                                                <button title="View log details" type="button" data-toggle="modal" data-target="#alertLogDetails" class="btn btn-outline-danger btn-icon btn-round">
+                                                    <i class="fa fa-info-circle"></i>
+                                                </button>
+                                            </div>
+                                            <span class="badge badge-pill badge-danger">{{ $lg->log_type }}</span><br>
+                                            <b>{{ $lg->log_time }} - {{ $lg->log_date }}</b>
+                                            <p>Watch battery: {{ $lg->battery_percentage }}%</p>
+                                        </div>
+                                    </div>
+                                    <hr class="no-space">
+
+                                @endif
+                            @endforeach
 
                         </div>
                     </div>
@@ -399,52 +408,68 @@
                         </table>
                     </div>
 
-                    <div class="table-responsive">
-                        <h5>Log Responses</h5>
-                        <table class="table no-border">
-                            <thead class="">
-                            <th>
-                                From
-                            </th>
-                            <th>
-                                To
-                            </th>
-                            <th>
-                                Type
-                            </th>
-                            <th>
-                                Send date-time
-                            </th>
-                            <th>
-                                Status
-                            </th>
-                            <th>
-                                Reply date/time
-                            </th>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    Wearer
-                                </td>
-                                <td>
-                                    Watcher
-                                </td>
-                                <td>
-                                    SMS
-                                </td>
-                                <td>
-                                    13:00 - 01/06/2017
-                                </td>
-                                <td>
-                                    Replied
-                                </td>
-                                <td>
-                                    13:00 - 01/06/2017
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                    <div style="background: #f4f3ed" class="card card-timeline card-plain">
+                        <div class="card-body">
+                            <ul class="timeline timeline-inverted">
+                                <li class="timeline">
+                                    <div class="timeline-badge danger">
+                                        <i class="nc-icon nc-single-copy-04"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <span class="badge badge-pill badge-danger">Some Title</span>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>Wifey made the best Father's Day meal ever. So thankful so happy so blessed. Thank you for making my family We just had fun with the “future” theme !!! It was a fun night all together ... The always rude Kanye Show at 2am Sold Out Famous viewing @ Figueroa and 12th in downtown.</p>
+                                        </div>
+                                        <h6>
+                                            <i class="ti-time"></i>
+                                            11 hours ago via Twitter
+                                        </h6>
+                                    </div>
+                                </li>
+                                <li class="timeline-inverted">
+                                    <div class="timeline-badge success">
+                                        <i class="nc-icon nc-sun-fog-29"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <span class="badge badge-pill badge-success">Another One</span>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>Thank God for the support of my wife and real friends. I also wanted to point out that it’s the first album to go number 1 off of streaming!!! I love you Ellen and also my number one design rule of anything I do from shoes to music to homes is that Kim has to like it....</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="timeline-inverted">
+                                    <div class="timeline-badge info">
+                                        <i class="nc-icon nc-world-2"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <span class="badge badge-pill badge-info">Another Title</span>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>Called I Miss the Old Kanye That’s all it was Kanye And I love you like Kanye loves Kanye Famous viewing @ Figueroa and 12th in downtown LA 11:10PM</p>
+                                            <p>What if Kanye made a song about Kanye Royère doesn't make a Polar bear bed but the Polar bear couch is my favorite piece of furniture we own It wasn’t any Kanyes Set on his goals Kanye</p>
+                                            <hr>
+                                        </div>
+                                        <div class="timeline-footer">
+                                            <div class="dropdown">
+                                                <button type="button" class="btn btn-round btn-info dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="nc-icon nc-settings-gear-65"></i>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
                 </div>

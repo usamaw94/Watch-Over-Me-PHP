@@ -437,6 +437,7 @@ $(document).ready( function () {
             $(this).children().each(function (index) {
                 if($(this).attr('data-priority-num') != index+1){
                     $(this).attr('data-priority-num',(index+1)).addClass('updatedPriority');
+                    $(this).find('.priority-num').text(index+1);
                 }
             });
             $("#modalBtnSavePriorityOrder").attr("disabled", false);
@@ -530,9 +531,11 @@ $(document).ready( function () {
                         "<div class='row'>" +
                         "<div class='col-12'>" +
                         "<div class='float-right'>" +
-                        "<span class='card-category'>" + personPhone + "</span>" +
+                        "<span class='badge badge-default priority-num'>" + priorityNum + "</span>" +
                         "</div>" +
-                        "<h6 class='card-title'>" + personName + "</h6>" +
+                        "<h6 class='card-title'>" + personName + " &nbsp;" +
+                        "<span class='card-category'>" + personPhone + "</span>" +
+                        "</h6>" +
                         "<h6 class='text-muted text-lowercase'>" + personEmail + "</h6>" +
                         "</div>" +
                         "</div>" +

@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9d9cb26-ea37-4934-8bab-a721bf3d3344" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Log.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Log.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php" afterDir="false" />
-    </list>
+    <list default="true" id="e9d9cb26-ea37-4934-8bab-a721bf3d3344" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,11 +62,23 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Log.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="180">
                   <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ApiController.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="8">
+                  <caret line="153" column="32" lean-forward="true" selection-start-line="153" selection-start-column="32" selection-end-line="153" selection-end-column="32" />
+                  <folding>
+                    <element signature="e#40#72#0#PHP" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -175,7 +183,6 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -357,13 +364,20 @@
             <path>
               <item name="Watch-Over-Me-PHP" type="b2602c69:ProjectViewProjectNode" />
               <item name="Watch-Over-Me-PHP" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Watch-Over-Me-PHP" type="b2602c69:ProjectViewProjectNode" />
               <item name="Watch-Over-Me-PHP" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Watch-Over-Me-PHP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Watch-Over-Me-PHP" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -562,7 +576,7 @@
       <workItem from="1597582433917" duration="1947000" />
       <workItem from="1597585023293" duration="1775000" />
       <workItem from="1597586861783" duration="1771000" />
-      <workItem from="1597588734888" duration="22000" />
+      <workItem from="1597588734888" duration="347000" />
     </task>
     <task id="LOCAL-00001" summary="new changes">
       <created>1596192462049</created>
@@ -669,15 +683,21 @@
       <option name="project" value="LOCAL" />
       <updated>1597587818958</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="version 0.6">
+      <created>1597588794553</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1597588794553</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="191082000" />
+    <option name="totallyTimeSpent" value="191407000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="823" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20386267" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -692,8 +712,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49928468" visible="true" weight="0.28454173" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007153" side_tool="true" weight="0.28454173" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4985694" visible="true" weight="0.28454173" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="11" sideWeight="0.50143063" side_tool="true" visible="true" weight="0.28454173" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1020,16 +1040,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ApiController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="174" column="28" lean-forward="true" selection-start-line="174" selection-start-column="28" selection-end-line="174" selection-end-column="28" />
-          <folding>
-            <element signature="e#40#72#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
@@ -1090,11 +1100,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/js/serviceLogs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/js/serviceDetails.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1106,6 +1112,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Log.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1113,10 +1126,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_08_13_115745_create_logs_table.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ApiController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="8">
+          <caret line="153" column="32" lean-forward="true" selection-start-line="153" selection-start-column="32" selection-end-line="153" selection-end-column="32" />
+          <folding>
+            <element signature="e#40#72#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

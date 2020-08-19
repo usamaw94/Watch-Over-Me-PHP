@@ -150,8 +150,8 @@ class AdminController extends Controller
 
         $logs = DB::table('logs')
             ->where('service_id', '=', $serviceId)
-            ->orderBy('log_date', 'desc')
-            ->orderBy('log_time', 'desc')
+            ->orderBy('created_at', 'desc')
+//            ->orderBy('log_time', 'desc')
             ->get();
 
         $data = array(

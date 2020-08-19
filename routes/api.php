@@ -27,4 +27,5 @@ Route::post('/updateDeviceToken','ApiController@updateDeviceToken')->name('updat
 Route::get('/testConnection','ApiController@testConnection')->name('api.test.connection');
 Route::post('/wearerLoginProcessing','ApiController@wearerLoginProcessing')->name('wearer.login.processing');
 
-Route::post('/createHourlyLog', 'ApiController@createHourlyLog')->name('create.hourly.log');
+Route::post('/contactWatcher', 'ApiController@contactWatcher')->name('contact.watcher');
+

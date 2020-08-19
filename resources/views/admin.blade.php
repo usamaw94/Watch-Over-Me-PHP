@@ -22,6 +22,12 @@
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
+                <li>
+                    <a href="#">
+                        <i class="nc-icon nc-single-02"></i>
+                        <p id="userId">{{ Auth::user()->id }}</p>
+                    </a>
+                </li>
                 <li class="active ">
                     <a href="/admin">
                         <i class="nc-icon nc-bank"></i>
@@ -71,7 +77,7 @@
                             <span class="navbar-toggler-bar bar3"></span>
                         </button>
                     </div>
-                    <a class="navbar-brand" href="/admin">Admin</a>
+                    <a class="navbar-brand" href="javascript:;">Admin</a>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -79,45 +85,35 @@
                     <span class="navbar-toggler-bar navbar-kebab"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                    <form>
-                        <div class="input-group no-border">
-                            <input type="text" value="" class="form-control" placeholder="Search...">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <i class="nc-icon nc-zoom-split"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link btn-magnify" href="javascript:;">
-                                <i class="nc-icon nc-layout-11"></i>
-                                <p>
-                                    <span class="d-lg-none d-md-block">Stats</span>
-                                </p>
-                            </a>
-                        </li>
                         <li class="nav-item btn-rotate dropdown">
-                            <a class="nav-link dropdown-toggle" href="http://example.com/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="nc-icon nc-bell-55"></i>
                                 <p>
-                                    <span class="d-lg-none d-md-block">Some Actions</span>
+                                    <span class="d-lg-none d-md-block">Show notification</span>
                                 </p>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-menu dropdown-menu-right notification-panel" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item notification-panel-item" href="#">
+                                    <div class="timeline-panel">
+                                        <div class="timeline-body">
+                                            <span class="badge badge-pill badge-danger">Help me request</span> &nbsp; <p>14:24:09 - 27/12/2019</p><br>
+                                            <p>Service Id: <b>WOMSVC001</b></p><br>
+                                            <p>Wearer: <b class="font-weight-bold text-uppercase">Usama Waheed</b> - <span>WOMUSR001</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a class="dropdown-item notification-panel-item" href="#">
+                                    <div class="timeline-panel">
+                                        <div class="timeline-body">
+                                            <span class="badge badge-pill badge-danger">Help me request</span> &nbsp; <p>14:24:09 - 27/12/2019</p><br>
+                                            <p>Service Id: <b>WOMSVC001</b></p><br>
+                                            <p>Wearer: <b class="font-weight-bold text-uppercase">Usama Waheed</b> - <span>WOMUSR001</span></p>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn-rotate" href="javascript:;">
-                                <i class="nc-icon nc-settings-gear-65"></i>
-                                <p>
-                                    <span class="d-lg-none d-md-block">Account</span>
-                                </p>
-                            </a>
                         </li>
                     </ul>
                 </div>
@@ -180,6 +176,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="btn btn-default" onclick="showNotification('top','right')">Show Notification</div>
             </div>
         </div>
 
@@ -199,6 +196,70 @@
 @endsection
 
 @section('script')
+
+    <script>
+
+        window.Echo.channel('notifyAlertLog.'+$('#userId').text())
+            .listen('NewAlertLog', (e) => {
+
+                alert("notification received");
+
+                console.log(e);
+
+                $.notify({
+                    icon: "nc-icon nc-bell-55",
+                    message: "Wearer: <b>"+ e.wearerName +"</b> needs your help.</br>" +
+                        "Service ID: <b>"+ e.serviceId +"<b><br>" +
+                        "Created at: "+ e.created_at +"<br>" +
+                        "<b>Click this dialogue to respond</b>",
+                    url: "https://www.google.com/",
+
+                }, {
+                    type: 'danger',
+                    timer: 5000,
+                    placement: {
+                        from: 'top',
+                        align: 'right'
+                    }
+                });
+
+                // $( "#logsContainer" ).load(window.location.href + " #logsContent", function () {
+                //
+                //     var index = localStorage.getItem("activeLogId");
+                //
+                //     var id  = "#"+index;
+                //
+                //     $(id).addClass("logs-active");
+                //
+                // });
+
+
+            });
+
+    </script>
+
+    <script>
+        function showNotification(from, align) {
+            color = 'danger';
+
+            $.notify({
+                icon: "nc-icon nc-bell-55",
+                message: "Wearer: <b>Usama Waheed</b> needs your help.</br>" +
+                    "Service ID: <b>WOM001<b><br>" +
+                    "Created at: 01/02/2020 - 14:00<br>" +
+                    "<b>Click this dialogue to respond</b>",
+                url: "https://www.google.com/",
+
+            }, {
+                type: color,
+                timer: 5000,
+                placement: {
+                    from: from,
+                    align: align
+                }
+            });
+        }
+    </script>
 
 @endsection
 

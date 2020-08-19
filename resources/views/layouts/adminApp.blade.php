@@ -13,7 +13,7 @@
         Watch Over Me - Admin
     </title>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -41,10 +41,12 @@
 <!--   Core JS Files   -->
 <script src="/assets/js/core/jquery.min.js"></script>
 <script src="/assets/js/core/popper.min.js"></script>
-<script src="/assets/js/core/bootstrap.min.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+{{--<script src="/assets/js/core/bootstrap.min.js"></script>--}}
 <script src="/assets/js/core/jquery-ui.js"></script>
 <script src="/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <script src="/assets/js/plugins/moment.min.js"></script>
+
 <!-- Forms Validations Plugin -->
 <script src="/assets/js/plugins/jquery.validate.min.js"></script>
 <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->

@@ -121,16 +121,16 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-9">
-                                    <form style="margin-top: 10px">
+                                    <div style="margin-top: 10px">
                                         <div class="input-group no-border">
-                                            <input type="text" value="" class="form-control" placeholder="Search services">
-                                            <div class="input-group-append">
-                                                <div class="input-group-text">
-                                                    <i class="nc-icon nc-zoom-split"></i>
-                                                </div>
+                                            <input type="text" id="servicesSearchText" class="form-control" placeholder="Search user">
+                                            <div id="searchServices" class="input-group-append btn btn-default">
+                                                <i style="font-size: 16px" class="nc-icon nc-zoom-split"></i>
+                                                &nbsp;&nbsp;
+                                                <span id="servicesSearchLoad" class="sr-only"><i class="fa fa-refresh fa-spin"></i></span>
                                             </div>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
                                     <a href="/adminCreateService" class="btn btn-outline-primary btn-block btn-round"><i class="fa fa-plus"></i> &nbsp; Create new service</a>
@@ -142,6 +142,19 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
+                            <div class="pull-right">
+                                <div id="paginationContainer">
+                                    Showing {{($services->currentPage()-1)* $services->perPage() + 1}} to
+                                    {{ ($services->currentPage()-1)* $services->perPage() + $services->perPage() }} of
+                                    {{ $services->total() }} services &nbsp;
+                                    <a href="{{ $services->previousPageUrl() }}" class="btn btn-outline-default btn-sm btn-icon btn-round">
+                                        <i class="fa fa-angle-left" style="font-size: 25px" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="{{ $services->nextPageUrl() }}" class="btn btn-outline-default btn-sm btn-icon btn-round">
+                                        <i class="fa fa-angle-right" style="font-size: 25px" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
                             <h4 class="card-title"> Services List</h4>
                         </div>
                         <div class="card-body">
@@ -170,7 +183,7 @@
                                         Actions
                                     </th>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="showServiceList">
                                     @foreach($services as $svc)
                                     <tr>
                                         <td class="text-center">

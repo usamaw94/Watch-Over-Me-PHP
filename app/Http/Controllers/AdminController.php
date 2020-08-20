@@ -32,21 +32,60 @@ class AdminController extends Controller
 
     public function services(){
 
+
         $services = DB::table('services')
             ->join('users as wearer', 'wearer.person_id', '=', 'services.wearer_id')
             ->join('users as customer', 'customer.person_id', '=', 'services.customer_id')
             ->select('services.service_id', 'services.wearer_id', 'services.customer_id', 'services.wom_num', 'services.service_status', 'services.no_of_watchers',
                 'wearer.person_id as wearerId', 'wearer.f_name as wearerFName', 'wearer.l_name as wearerLName',
                 'customer.person_id as customerId', 'customer.f_name as customerFName', 'customer.l_name as customerLName')
-            ->get();
+            ->paginate(2);
+
+            $data = array(
+                'services' => $services,
+            );
+
+            return view('adminServices')->with($data);
+
+    }
+
+    public function searchServices(Request $request){
+
+        $searchText = $request->searchText;
+
+
+        $services = DB::table('services')
+            ->join('users as wearer', 'wearer.person_id', '=', 'services.wearer_id')
+            ->join('users as customer', 'customer.person_id', '=', 'services.customer_id')
+            ->select('services.service_id', 'services.wearer_id', 'services.customer_id', 'services.wom_num', 'services.service_status', 'services.no_of_watchers',
+                'wearer.person_id as wearerId', 'wearer.f_name as wearerFName', 'wearer.l_name as wearerLName', 'wearer.full_name as wearerFullName',
+                'customer.person_id as customerId', 'customer.f_name as customerFName', 'customer.l_name as customerLName', 'customer.full_name as customerFullName')
+                    ->orwhere('services.service_id', 'like', '%'.$searchText.'%')
+                    ->orWhere('services.wearer_id', 'like', '%'.$searchText.'%')
+                    ->orWhere('services.customer_id', 'like', '%'.$searchText.'%')
+                    ->orWhere('services.wom_num', 'like', '%'.$searchText.'%')
+                    ->orWhere('services.service_status', 'like', '%'.$searchText.'%')
+                    ->orWhere('services.no_of_watchers', 'like', '%'.$searchText.'%')
+                    ->orWhere('wearer.person_id', 'like', '%'.$searchText.'%')
+                    ->orWhere('wearer.f_name', 'like', '%'.$searchText.'%')
+                    ->orWhere('wearer.l_name', 'like', '%'.$searchText.'%')
+                    ->orWhere('wearer.full_name', 'like', '%'.$searchText.'%')
+                    ->orWhere('customer.person_id', 'like', '%'.$searchText.'%')
+                    ->orWhere('customer.f_name', 'like', '%'.$searchText.'%')
+                    ->orWhere('customer.l_name', 'like', '%'.$searchText.'%')
+                    ->orWhere('customer.full_name', 'like', '%'.$searchText.'%')
+                    ->get();
+
+        dd($services->count());
 
         $data = array(
+            'total' => $services->count(),
             'services' => $services,
         );
 
-        return view('adminServices')->with($data);
-    }
 
+
+    }
 
     public function getPerson(Request $request) {
         $id =  $request->personId;
@@ -227,6 +266,7 @@ class AdminController extends Controller
             $wT->person_id = $watcherId;
             $wT->f_name = $watcherFirstName;
             $wT->l_name = $watcherLastName;
+            $wT->full_name = $watcherFirstName. " " .$watcherLastName;
             $wT->email = $watcherEmail;
             $wT->phone = $watcherPhone;
             $wT->password = bcrypt("womperson");
@@ -457,6 +497,7 @@ class AdminController extends Controller
                 $wR->person_id = $wearerId;
                 $wR->f_name = $wearerFName;
                 $wR->l_name = $wearerLName;
+                $wR->full_name = $wearerFName. " " .$wearerLName;
                 $wR->email = $wearerEmail;
                 $wR->phone = $wearerPhone;
                 $wR->password = bcrypt("womperson");
@@ -477,6 +518,7 @@ class AdminController extends Controller
                 $wT->person_id = $watcherId;
                 $wT->f_name = $watcherFName;
                 $wT->l_name = $watcherLName;
+                $wT->full_name = $watcherFName. " " .$watcherLName;
                 $wT->email = $watcherEmail;
                 $wT->phone = $watcherPhone;
                 $wT->password = bcrypt("womperson");
@@ -498,6 +540,7 @@ class AdminController extends Controller
                 $c->person_id = $customerId;
                 $c->f_name = $customerFName;
                 $c->l_name = $customerLName;
+                $c->full_name = $customerFName. " " .$customerLName;
                 $c->email = $customerEmail;
                 $c->phone = $customerPhone;
                 $c->password = bcrypt("womperson");

@@ -30,14 +30,18 @@ Route::get('/adminLogout', 'Auth\AdminLoginController@logout')->name('admin.logo
 
 
 Route::get('/admin', 'AdminController@index')->name('admin');
+
 Route::get('/adminServices', 'AdminController@services')->name('admin.services');
+
 Route::get('/adminCreateService', 'AdminController@createService')->name('admin.create.service');
 Route::get('/adminCheckWearerPhone/{phone}', 'AdminController@checkWearerPhone')->name('admin.check.wearer.phone');
 Route::get('/adminCheckWatcherPhone/{phone}', 'AdminController@checkWatcherPhone')->name('admin.check.watcher.phone');
 Route::get('/adminCheckCustomerPhone/{phone}', 'AdminController@checkCustomerPhone')->name('admin.check.customer.phone');
 Route::get('/adminCheckEmail', 'AdminController@checkEmail')->name('admin.check.email');
-
 Route::post('/adminProcessNewService', 'AdminController@processNewService')->name('admin.process.new.service');
+
+Route::get('/adminSearchServices', 'AdminController@searchServices')->name('admin.search.services');
+
 Route::get('/adminGetPerson', 'AdminController@getPerson')->name('admin.get.person');
 Route::get('/adminGetWatchersList', 'AdminController@getWatchersList')->name('admin.get.watchers.list');
 Route::get('/adminServiceDetails', 'AdminController@serviceDetails')->name('admin.service.details');

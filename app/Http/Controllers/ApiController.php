@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Events\HourlyLogCreated;
-use App\Events\NewAlertLog;
 use App\Events\NewLog;
 use App\Service;
 use App\User;
@@ -266,7 +265,7 @@ class ApiController extends Controller
     {
         $alertLog = new Log();
 
-        
+
         $alertLog->battery_percentage = $request->batteryLevel;
         $alertLog->location_latitude = $request->locationLatitude;
         $alertLog->location_longitude = $request->locationLongitude;
@@ -382,29 +381,12 @@ class ApiController extends Controller
         }
     }
 
-<<<<<<< HEAD
     public function createHourlyLog(Request $request)
     {
-=======
->>>>>>> a37769d6df13abbba45e0c5b4e91c6fdd6867446
 
-    public function contactWatcher(Request $request){
+        $serviceId = $request->serviceId;
 
-<<<<<<< HEAD
         return response()->json($serviceId);
-=======
-        $notificationData = array(
-            'serviceId' => $request->serviceId,
-            'wearerId' => $request->wearerId,
-            'wearerName' => $request->wearerName,
-            'watcherId' => $request->watcherId,
-            'createdAt' => $request->createdAt,
-
-        );
-
-        event(new NewAlertLog($request->serviceId, $request->wearerId, $request->wearerName, $request->watcherId, $request->createdAt));
-
->>>>>>> a37769d6df13abbba45e0c5b4e91c6fdd6867446
     }
 }
 

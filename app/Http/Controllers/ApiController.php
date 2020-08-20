@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\HourlyLogCreated;
+use App\Events\NewAlertLog;
 use App\Events\NewLog;
 use App\Service;
 use App\User;
@@ -380,6 +381,29 @@ class ApiController extends Controller
             return response()->json("Token updation failed");
         }
     }
+
+    public function contactWatcher(Request $request){
+
+        $serviceId = $request->serviceId;
+        $wearerId = $request->wearerId;
+        $wearerName = $request->wearerName;
+        $watcherId = $request->watcherId;
+        $createdAt = $request->createdAt;
+
+        $data = array(
+            'serviceId' => $serviceId,
+            'wearerId' => $wearerId,
+            'wearerName' => $wearerName,
+            'watcherId' => $watcherId,
+            'createdAt' => $createdAt,
+        );
+
+        event(new NewAlertLog($serviceId,$wearerId,$wearerName,$watcherId,$createdAt));
+
+        return response()->json($data);
+
+    }
+
 }
     // {
     //     $data = [

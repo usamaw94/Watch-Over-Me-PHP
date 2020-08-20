@@ -370,20 +370,9 @@ class ApiController extends Controller
     public function updateDeviceToken(Request $request)
     {
 
-<<<<<<< HEAD
         $update = DB::table('services')
             ->where('service_id', '=', $request->serviceId)
             ->update(['wearer_device_token' => $request->deviceToken]);
-=======
-        //new addition
-
-        $notificationData = array(
-            'serviceId' => $request->serviceId,
-            'wearerId' => $request->wearerId,
-            'wearerName' => $request->wearerName,
-            'watcherId' => $request->watcherId,
-            'createdAt' => $request->createdAt,
->>>>>>> 2b7c49da109f50ee72671a597dad60ad24caa4a9
 
         if ($update) {
             return response()->json("Token updated");
@@ -392,18 +381,6 @@ class ApiController extends Controller
         }
     }
 
-    public function createHourlyLog(Request $request)
-    {
-
-        $serviceId = $request->serviceId;
-
-        return response()->json($serviceId);
-    }
-}
-
-
-
-    // public function sendNotification($token, $message, $title)
     // {
     //     $data = [
     //         "to" => $token,

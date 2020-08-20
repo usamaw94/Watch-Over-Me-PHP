@@ -380,7 +380,7 @@ class ApiController extends Controller
             return response()->json("Token updation failed");
         }
     }
-
+}
     // {
     //     $data = [
     //         "to" => $token,

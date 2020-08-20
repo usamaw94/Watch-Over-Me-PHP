@@ -78,45 +78,35 @@
                     <span class="navbar-toggler-bar navbar-kebab"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                    <form>
-                        <div class="input-group no-border">
-                            <input type="text" value="" class="form-control" placeholder="Search...">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <i class="nc-icon nc-zoom-split"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link btn-magnify" href="javascript:;">
-                                <i class="nc-icon nc-layout-11"></i>
-                                <p>
-                                    <span class="d-lg-none d-md-block">Stats</span>
-                                </p>
-                            </a>
-                        </li>
                         <li class="nav-item btn-rotate dropdown">
-                            <a class="nav-link dropdown-toggle" href="http://example.com/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="nc-icon nc-bell-55"></i>
                                 <p>
-                                    <span class="d-lg-none d-md-block">Some Actions</span>
+                                    <span class="d-lg-none d-md-block">Show notification</span>
                                 </p>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-menu dropdown-menu-right notification-panel" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item notification-panel-item" href="#">
+                                    <div class="timeline-panel">
+                                        <div class="timeline-body">
+                                            <span class="badge badge-pill badge-danger">Help me request</span> &nbsp; <p>14:24:09 - 27/12/2019</p><br>
+                                            <p>Service Id: <b>WOMSVC001</b></p><br>
+                                            <p>Wearer: <b class="font-weight-bold text-uppercase">Usama Waheed</b> - <span>WOMUSR001</span></p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a class="dropdown-item notification-panel-item" href="#">
+                                    <div class="timeline-panel">
+                                        <div class="timeline-body">
+                                            <span class="badge badge-pill badge-danger">Help me request</span> &nbsp; <p>14:24:09 - 27/12/2019</p><br>
+                                            <p>Service Id: <b>WOMSVC001</b></p><br>
+                                            <p>Wearer: <b class="font-weight-bold text-uppercase">Usama Waheed</b> - <span>WOMUSR001</span></p>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn-rotate" href="javascript:;">
-                                <i class="nc-icon nc-settings-gear-65"></i>
-                                <p>
-                                    <span class="d-lg-none d-md-block">Account</span>
-                                </p>
-                            </a>
                         </li>
                     </ul>
                 </div>
@@ -131,16 +121,16 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-9">
-                                    <form style="margin-top: 10px">
+                                    <div style="margin-top: 10px">
                                         <div class="input-group no-border">
-                                            <input type="text" value="" class="form-control" placeholder="Search services">
-                                            <div class="input-group-append">
-                                                <div class="input-group-text">
-                                                    <i class="nc-icon nc-zoom-split"></i>
-                                                </div>
+                                            <input type="text" id="servicesSearchText" class="form-control" placeholder="Search user">
+                                            <div id="searchServices" class="input-group-append btn btn-default">
+                                                <i style="font-size: 16px" class="nc-icon nc-zoom-split"></i>
+                                                &nbsp;&nbsp;
+                                                <span id="servicesSearchLoad" class="sr-only"><i class="fa fa-refresh fa-spin"></i></span>
                                             </div>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
                                     <a href="/adminCreateService" class="btn btn-outline-primary btn-block btn-round"><i class="fa fa-plus"></i> &nbsp; Create new service</a>
@@ -152,6 +142,19 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
+                            <div class="pull-right">
+                                <div id="paginationContainer">
+                                    Showing {{($services->currentPage()-1)* $services->perPage() + 1}} to
+                                    {{ ($services->currentPage()-1)* $services->perPage() + $services->perPage() }} of
+                                    {{ $services->total() }} services &nbsp;
+                                    <a href="{{ $services->previousPageUrl() }}" class="btn btn-outline-default btn-sm btn-icon btn-round">
+                                        <i class="fa fa-angle-left" style="font-size: 25px" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="{{ $services->nextPageUrl() }}" class="btn btn-outline-default btn-sm btn-icon btn-round">
+                                        <i class="fa fa-angle-right" style="font-size: 25px" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
                             <h4 class="card-title"> Services List</h4>
                         </div>
                         <div class="card-body">
@@ -180,7 +183,7 @@
                                         Actions
                                     </th>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="showServiceList">
                                     @foreach($services as $svc)
                                     <tr>
                                         <td class="text-center">

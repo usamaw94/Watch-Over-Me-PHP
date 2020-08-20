@@ -24,6 +24,7 @@ class CreateServicesTable extends Migration
             $table->string('wearer_device_token');
             $table->string('customer_device_token');
             $table->string('wearer_logged_in');
+            $table->string('alert_request_status');
             $table->timestamps();
         });
     }

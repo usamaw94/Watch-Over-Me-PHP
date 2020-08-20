@@ -15,6 +15,7 @@ class CreateLogsTable extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->increments("id");
+            $table->string("log_id")->unique();
             $table->string("battery_percentage");
             $table->string("location_latitude");
             $table->string("location_longitude");
@@ -23,7 +24,6 @@ class CreateLogsTable extends Migration
             $table->string("log_time");
             $table->string("log_type");
             $table->string("service_id");
-            $table->string('request_status');
             $table->timestamps();
         });
     }

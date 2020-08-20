@@ -31,4 +31,5 @@ Route::post('/wearerLoginProcessing','ApiController@wearerLoginProcessing')->nam
 Route::post('/verifyHelpMeRequest','ApiController@verifyHelpMeRequest')->name('verify.help.me.request');
 Route::post('/deactivateHelpMeRequest','ApiController@deactivateHelpMeRequest')->name('deactivate.help.me.request');
 
-Route::post('/createHourlyLog', 'ApiController@createHourlyLog')->name('create.hourly.log');
+Route::post('/contactWatcher', 'ApiController@contactWatcher')->name('contact.watcher');
+

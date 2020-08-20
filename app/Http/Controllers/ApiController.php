@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\HourlyLogCreated;
+use App\Events\NewAlertLog;
 use App\Events\NewLog;
 use App\Service;
 use App\User;
@@ -381,12 +382,29 @@ class ApiController extends Controller
         }
     }
 
+<<<<<<< HEAD
     public function createHourlyLog(Request $request)
     {
+=======
+>>>>>>> a37769d6df13abbba45e0c5b4e91c6fdd6867446
 
-        $serviceId = $request->serviceId;
+    public function contactWatcher(Request $request){
 
+<<<<<<< HEAD
         return response()->json($serviceId);
+=======
+        $notificationData = array(
+            'serviceId' => $request->serviceId,
+            'wearerId' => $request->wearerId,
+            'wearerName' => $request->wearerName,
+            'watcherId' => $request->watcherId,
+            'createdAt' => $request->createdAt,
+
+        );
+
+        event(new NewAlertLog($request->serviceId, $request->wearerId, $request->wearerName, $request->watcherId, $request->createdAt));
+
+>>>>>>> a37769d6df13abbba45e0c5b4e91c6fdd6867446
     }
 }
 

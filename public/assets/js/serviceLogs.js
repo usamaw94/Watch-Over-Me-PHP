@@ -5,7 +5,16 @@ $(document).ready(function () {
 
             alert(e.serviceId);
 
-            $( "#logsContainer" ).load(window.location.href + " #logsContent" );
+            $( "#logsContainer" ).load(window.location.href + " #logsContent", function () {
+
+                var index = localStorage.getItem("activeLogId");
+
+                var id  = "#"+index;
+
+                $(id).addClass("logs-active");
+
+            });
+
 
         });
 
@@ -61,6 +70,8 @@ $(document).ready(function () {
         var long=$(this).attr('data-long');
 
         $(".logs").removeClass("logs-active");
+
+        localStorage.setItem("activeLogId", $(this).attr('id'));
 
         $(this).addClass("logs-active");
 

@@ -10,6 +10,7 @@ use App\WatcherRelation;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Log;
+use Dotenv\Result\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -48,7 +49,6 @@ class ApiController extends Controller
                         $service = DB::table('services')->where('wearer_id', '=', $user->person_id)->where('service_status', '=', 'Active')->first();
 
                         // login sucessfull
-
                         $data = array(
                             'wearerId' => $user->person_id,
                             'serviceId' => $service->service_id,
@@ -167,6 +167,29 @@ class ApiController extends Controller
         return response()->json($res, 500);
     }
 
+    public function checkLoginStatus(Request $request)
+    {
+
+
+        $service = DB::table('services')->where('service_id', '=', $request->serviceId)->first();
+
+        return response()->json($service->wearer_logged_in);
+    }
+
+
+    public function setLoginStatus(Request $request)
+    {
+        $serviceId = $request->serviceId;
+        $status = $request->status;
+
+        $update = DB::table('services')
+            ->where('service_id', '=', $serviceId)
+            ->update(['wearer_logged_in' => $status]);
+
+
+        return response()->json("done");
+    }
+
     public function getWatchers(Request $request)
     {
         $watchers = DB::table('users')
@@ -199,41 +222,50 @@ class ApiController extends Controller
     public function helpmeRequest(Request $request)
     {
 
-        $data = [
-            "to" => 'c-20ad9SQ4SNurTQHqnWAc:APA91bGajpXu10Y8tPNEAL1GduL-G-Sxsq4KdDXT4DOwzye0JQw1ycQpG3qexM00FrvlSkvVfZPkRONe7VE52zRf6Ulg_VIh1siVxwTKYXhfwn_8jY6N6o1uz0Al98SGIfuGZ4oboPKA',
-            "notification" =>
-            [
-                "title" => "New Notification",
-                "body" => "This is a test"
-            ],
-        ];
-
-        $dataString = json_encode($data);
-
-        $headers = [
-            'Authorization: key=' . 'AAAAOag5k6Q:APA91bGWiOFxRiKvtRJXrVUdX0pMKqPygeFQD3uJaQykRq7Si_IFbzksVHTbtJZEBt3ZpozNb6NfA_4TK8TA3p0o3UFg5PVpEKj4G3iMbSw98zFbkralNOXJ4F_W_3OmabB2qWqxmfr3',
-            'Content-Type: application/json',
-        ];
-
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, $this->firebaseUrl);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $service = DB::table('services')
+            ->where('service_id', '=', $request->serviceId)
+            ->get()->first();
 
 
+        if ($service) {
 
-        return response()->json(curl_exec($ch));
+            $data = [
+                "to" => $service->wearer_device_token,
+                "data" =>
+                [
+                    "title" => $request->logType,
+                    "body" => $request->logText
+                ],
+                "priority" => "high"
+            ];
+
+            $dataString = json_encode($data);
+
+            $headers = [
+                'Authorization: key=' . $this->serverApiKey,
+                'Content-Type: application/json',
+            ];
+
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, $this->firebaseUrl);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+
+            return response()->json(curl_exec($ch));
+        }
     }
 
-    public function helpMeRequestInitiate(Request $request){
-
+    public function helpMeRequestInitiate(Request $request)
+    {
         $alertLog = new Log();
 
+        
         $alertLog->battery_percentage = $request->batteryLevel;
         $alertLog->location_latitude = $request->locationLatitude;
         $alertLog->location_longitude = $request->locationLongitude;
@@ -242,7 +274,8 @@ class ApiController extends Controller
         $alertLog->log_time = $request->logTime;
         $alertLog->log_type = $request->logType;
         $alertLog->service_id = $request->serviceId;
-        $alertLog->request_status = $request->requestStatus;
+
+
 
         $alertSaved = $alertLog->save();
 
@@ -254,18 +287,57 @@ class ApiController extends Controller
             ->select('users.person_id', 'users.f_name', 'users.l_name', 'users.phone', 'watcher_relations.priority_num')
             ->get();
 
+
         if ($watchers != null) {
+
+            $service = DB::table('services')
+                ->where('service_id', '=', $request->serviceId)
+                ->get()->first();
+
+            $data = [
+                "to" => $service->wearer_device_token,
+                "data" =>
+                [
+                    "title" => $request->logType,
+                    "body" => $request->logText
+                ],
+            ];
+
+            $dataString = json_encode($data);
+
+            $headers = [
+                'Authorization: key=' . $this->serverApiKey,
+                'Content-Type: application/json',
+            ];
+
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, $this->firebaseUrl);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+            $notify = curl_exec($ch);
+
+            $update = DB::table('services')
+                ->where('service_id', '=', $request->serviceId)
+                ->update(['alert_request_status' => "active"]);
+
+
             $res = array(
                 'connection' => true,
                 'queryStatus' => true,
-                'message' => "Watchers retrieved",
+                'message' => $notify,
                 'data' => $watchers
             );
         } else {
             $res = array(
                 'connection' => false,
                 'queryStatus' => false,
-                'message' => "Error retrieving watchers",
+                'message' => "Error in request initiation",
                 'data' => $watchers
             );
         }
@@ -273,19 +345,48 @@ class ApiController extends Controller
         event(new NewLog($request->serviceId));
 
         return response()->json($res);
-
     }
 
-    public function updateDeviceToken(Request $request){
+    public function verifyHelpMeRequest(Request $request)
+    {
 
+        if (DB::table('services')
+            ->where('service_id', '=', $request->serviceId)
+            ->where('alert_request_status', '=', 'active')
+            ->exists()
+        ) {
+            return response()->json('active');
+        }
+        return response()->json("inactive");
     }
 
-    public function createHourlyLog(Request $request){
+    public function deactivateHelpMeRequest(Request $request)
+    {
+        $update = DB::table('services')
+            ->where('service_id', '=', $request->serviceId)
+            ->update(['alert_request_status' => "inactive"]);
+    }
+
+    public function updateDeviceToken(Request $request)
+    {
+
+        $update = DB::table('services')
+            ->where('service_id', '=', $request->serviceId)
+            ->update(['wearer_device_token' => $request->deviceToken]);
+
+        if ($update) {
+            return response()->json("Token updated");
+        } else {
+            return response()->json("Token updation failed");
+        }
+    }
+
+    public function createHourlyLog(Request $request)
+    {
 
         $serviceId = $request->serviceId;
 
         return response()->json($serviceId);
-
     }
 }
 
@@ -320,4 +421,3 @@ class ApiController extends Controller
 
     //     curl_exec($ch);
     // }
-

@@ -20,11 +20,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/testConnection','ApiController@testConnection')->name('test.connection');
 Route::post('/wearerLoginProcessing','ApiController@wearerLoginProcessing')->name('wearer.login.processing');
+Route::post('/setLoginStatus','ApiController@setLoginStatus')->name('set.login.status');
+Route::post('/checkLoginStatus','ApiController@checkLoginStatus')->name('check.login.status');
 Route::post('/getWatchers','ApiController@getWatchers')->name('get.watchers');
 Route::post('/helpmeRequest','ApiController@helpmeRequest')->name('helpme.request');
 Route::post('/helpMeRequestInitiate','ApiController@helpMeRequestInitiate')->name('help.me.request.initiate');
 Route::post('/updateDeviceToken','ApiController@updateDeviceToken')->name('update.device.token');
 Route::get('/testConnection','ApiController@testConnection')->name('api.test.connection');
 Route::post('/wearerLoginProcessing','ApiController@wearerLoginProcessing')->name('wearer.login.processing');
+Route::post('/verifyHelpMeRequest','ApiController@verifyHelpMeRequest')->name('verify.help.me.request');
+Route::post('/deactivateHelpMeRequest','ApiController@deactivateHelpMeRequest')->name('deactivate.help.me.request');
 
 Route::post('/createHourlyLog', 'ApiController@createHourlyLog')->name('create.hourly.log');

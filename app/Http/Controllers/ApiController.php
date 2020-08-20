@@ -284,6 +284,8 @@ class ApiController extends Controller
 
     public function contactWatcher(Request $request){
 
+        //new addition
+
         $notificationData = array(
             'serviceId' => $request->serviceId,
             'wearerId' => $request->wearerId,

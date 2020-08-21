@@ -8,67 +8,72 @@
 
 @section('content')
 
-    <div class="sidebar" data-color="default" data-active-color="danger">
-        <!--
-          Tip 1: You can change the color of the sidebar using: data-color=" default | primary | info | success | warning | danger |"
-      -->
+    <div class="sidebar" data-color="white" data-active-color="danger">
         <div class="logo">
-            <a href="https://www.creative-tim.com/" class="simple-text logo-mini">
-                <div class="logo-image-small">
-                    <img src="/assets/img/logo-small.png">
-                </div>
+            <a href="/admin" class="simple-text logo-mini">
+                <!-- <div class="logo-image-small">
+                  <img src="./assets/img/logo-small.png">
+                </div> -->
                 <!-- <p>CT</p> -->
             </a>
-            <a href="https://www.creative-tim.com/" class="simple-text logo-normal">
+            <a href="/admin" class="simple-text logo-normal">
                 Watch Over Me
                 <!-- <div class="logo-image-big">
-                  <img src="../../assets/img/logo-big.png">
+                  <img src="../assets/img/logo-big.png">
                 </div> -->
             </a>
         </div>
-        <div class="sidebar" data-color="white" data-active-color="danger">
-            <div class="logo">
-                <a href="https://www.creative-tim.com" class="simple-text logo-mini">
-                    <!-- <div class="logo-image-small">
-                      <img src="./assets/img/logo-small.png">
-                    </div> -->
-                    <!-- <p>CT</p> -->
-                </a>
-                <a href="https://www.creative-tim.com" class="simple-text logo-normal">
-                    Watch Over Me
-                    <!-- <div class="logo-image-big">
-                      <img src="../assets/img/logo-big.png">
-                    </div> -->
-                </a>
+        <div class="sidebar-wrapper">
+            <div class="user">
+                <div class="photo">
+                    <img src="/assets/img/faces/wom-admin.png" />
+                </div>
+                <div class="info">
+                    <a data-id="{{ Auth::user()->id }}" data-toggle="collapse" href="#collapseExample" class="collapsed">
+              <span>
+                {{ Auth::user()->name }}
+                <b class="caret"></b>
+              </span>
+                    </a>
+                    <div class="clearfix"></div>
+                    <div class="collapse" id="collapseExample">
+                        <ul class="nav">
+                            <li>
+                                <a href="#">
+                                    <span class="sidebar-mini-icon">EP</span>
+                                    <span class="sidebar-normal">Edit Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/adminLogout">
+                                    <i class="nc-icon nc-button-power"></i>
+                                    <span class="sidebar-normal">Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="sidebar-wrapper">
-                <ul class="nav">
-                    <li>
-                        <a href="dashboard.html">
-                            <i class="nc-icon nc-bank"></i>
-                            <p>Home</p>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="services.html">
-                            <i class="nc-icon nc-settings-gear-65"></i>
-                            <p>Services</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <i class="nc-icon nc-single-02"></i>
-                            <p>People</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <i class="nc-icon nc-button-power"></i>
-                            <p>Logout</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <ul class="nav">
+                <li>
+                    <a href="/admin">
+                        <i class="nc-icon nc-bank"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li class="active ">
+                    <a href="/adminServices">
+                        <i class="nc-icon nc-settings-gear-65"></i>
+                        <p>Services</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/adminUsers">
+                        <i class="nc-icon nc-single-02"></i>
+                        <p>Users</p>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 

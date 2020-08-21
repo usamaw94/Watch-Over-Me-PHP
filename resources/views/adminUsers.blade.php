@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
     <div class="sidebar" data-color="white" data-active-color="danger">
         <div class="logo">
             <a href="/admin" class="simple-text logo-mini">
@@ -52,7 +53,7 @@
                 </div>
             </div>
             <ul class="nav">
-                <li class="active ">
+                <li>
                     <a href="/admin">
                         <i class="nc-icon nc-bank"></i>
                         <p>Home</p>
@@ -64,7 +65,7 @@
                         <p>Services</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="/adminUsers">
                         <i class="nc-icon nc-single-02"></i>
                         <p>Users</p>
@@ -74,9 +75,7 @@
         </div>
     </div>
 
-
-    <div class="main-panel" style="height: 100vh;">
-
+    <div class="main-panel">
 
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
@@ -95,7 +94,7 @@
                             <span class="navbar-toggler-bar bar3"></span>
                         </button>
                     </div>
-                    <a class="navbar-brand" href="javascript:;">Admin</a>
+                    <a class="navbar-brand" href="/adminUsers">Users</a>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -139,69 +138,104 @@
         </nav>
         <!-- End Navbar -->
 
-
         <div class="content">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-body ">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
                             <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-settings-gear-65 text-warning"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-md-8">
-                                    <div class="numbers">
-                                        <p class="card-category">WOM</p>
-                                        <p class="card-title">Services<p>
+                                <div class="col-md-12">
+                                    <div style="margin-top: 10px">
+                                        <div class="input-group no-border">
+                                            <input type="text" id="usersSearchText" class="form-control" placeholder="Search users">
+                                            <div id="searchUsers" class="input-group-append btn btn-default">
+                                                <i style="font-size: 16px" class="nc-icon nc-zoom-split"></i>
+                                                &nbsp;&nbsp;
+                                                <span id="usersSearchLoad" class="sr-only"><i class="fa fa-refresh fa-spin"></i></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <a href="/adminServices" class="stats">
-                                <i class="fa fa-eye"></i>
-                                View
-                            </a>
-                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5 col-md-4">
-                                    <div class="icon-big text-center icon-warning">
-                                        <i class="nc-icon nc-single-02 text-success"></i>
-                                    </div>
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="pull-right">
+                                <div id="userSearchControl" class="sr-only">
+                                    Total users: &nbsp;<b id="noOfUsers"></b> &nbsp;&nbsp; <a href="/adminUsers" class="btn btn-outline-default">Reset search</a>
                                 </div>
-                                <div class="col-7 col-md-8">
-                                    <div class="numbers">
-                                        <p class="card-category">WOM</p>
-                                        <p class="card-title">Users<p>
-                                    </div>
+                                <div id="usersPaginationContainer">
+                                    Showing {{($users->currentPage()-1)* $users->perPage() + 1}} to
+                                    {{ ($users->currentPage()-1)* $users->perPage() + $users->perPage() }} of
+                                    {{ $users->total() }} users &nbsp;
+                                    <a href="{{ $users->previousPageUrl() }}" class="btn btn-outline-default btn-sm btn-icon btn-round">
+                                        <i class="fa fa-angle-left" style="font-size: 25px" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="{{ $users->nextPageUrl() }}" class="btn btn-outline-default btn-sm btn-icon btn-round">
+                                        <i class="fa fa-angle-right" style="font-size: 25px" aria-hidden="true"></i>
+                                    </a>
                                 </div>
                             </div>
+                            <h4 class="card-title"> Users List</h4>
                         </div>
-                        <div class="card-footer ">
-                            <hr>
-                            <a href="/adminUsers" class="stats">
-                                <i class="fa fa-eye"></i>
-                                View
-                            </a>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="text-primary">
+                                    <th class="text-center">
+                                        User Id
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Phone Number
+                                    </th>
+                                    <th>
+                                        Email
+                                    </th>
+                                    <th class="text-center">
+                                        Actions
+                                    </th>
+                                    </thead>
+                                    <tbody id="showUserList">
+                                    @foreach($users as $usr)
+                                    <tr>
+                                        <td class="text-center">
+                                            {{ $usr->person_id }}
+                                        </td>
+                                        <td>
+                                            {{ $usr->full_name }}
+                                        </td>
+                                        <td>
+                                            {{ $usr->phone }}
+                                        </td>
+                                        <td>
+                                            {{ $usr->email }}
+                                        </td>
+                                        <td class="text-center">
+                                            <a target="_blank" href="/adminUserDetails?id={{$usr->person_id}}" type="button" rel="tooltip" class="btn btn-outline-default btn-round btn-sm">
+                                                Details
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="btn btn-default" onclick="showNotification('top','right')">Show Notification</div>
             </div>
         </div>
-
-
-        <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
+        <footer class="footer footer-black  footer-white ">
             <div class="container-fluid">
                 <div class="row">
+                    <nav class="footer-nav">
+                    </nav>
                     <div class="credits ml-auto">
               <span class="copyright">
                 Watch Over Me
@@ -211,74 +245,12 @@
             </div>
         </footer>
     </div>
+
 @endsection
 
 @section('script')
 
-    <script>
-
-        window.Echo.channel('notifyAlertLog.'+$('#userId').text())
-            .listen('NewAlertLog', (e) => {
-
-                alert("notification received");
-
-                console.log(e);
-
-                $.notify({
-                    icon: "nc-icon nc-bell-55",
-                    message: "Wearer: <b>"+ e.wearerName +"</b> needs your help.</br>" +
-                        "Service ID: <b>"+ e.serviceId +"<b><br>" +
-                        "Created at: "+ e.created_at +"<br>" +
-                        "<b>Click this dialogue to respond</b>",
-                    url: "https://www.google.com/",
-
-                }, {
-                    type: 'danger',
-                    timer: 5000,
-                    placement: {
-                        from: 'top',
-                        align: 'right'
-                    }
-                });
-
-                // $( "#logsContainer" ).load(window.location.href + " #logsContent", function () {
-                //
-                //     var index = localStorage.getItem("activeLogId");
-                //
-                //     var id  = "#"+index;
-                //
-                //     $(id).addClass("logs-active");
-                //
-                // });
-
-
-            });
-
-    </script>
-
-    <script>
-        function showNotification(from, align) {
-            color = 'danger';
-
-            $.notify({
-                icon: "nc-icon nc-bell-55",
-                message: "Wearer: <b>Usama Waheed</b> needs your help.</br>" +
-                    "Service ID: <b>WOM001<b><br>" +
-                    "Created at: 01/02/2020 - 14:00<br>" +
-                    "<b>Click this dialogue to respond</b>",
-                url: "https://www.google.com/",
-
-            }, {
-                type: color,
-                timer: 5000,
-                placement: {
-                    from: from,
-                    align: align
-                }
-            });
-        }
-    </script>
+    <script src="/assets/js/users.js" type="text/javascript"></script>
 
 @endsection
-
 

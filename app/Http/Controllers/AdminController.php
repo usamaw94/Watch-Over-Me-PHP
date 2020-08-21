@@ -76,14 +76,12 @@ class AdminController extends Controller
                     ->orWhere('customer.full_name', 'like', '%'.$searchText.'%')
                     ->get();
 
-        dd($services->count());
 
         $data = array(
-            'total' => $services->count(),
             'services' => $services,
         );
 
-
+        return response()->json($services);
 
     }
 
@@ -191,7 +189,7 @@ class AdminController extends Controller
             ->where('service_id', '=', $serviceId)
             ->orderBy('created_at', 'desc')
 //            ->orderBy('log_time', 'desc')
-            ->get();
+            ->take(50)->get();
 
         $data = array(
             'serviceDetails' => $serviceDetails,
@@ -599,6 +597,133 @@ class AdminController extends Controller
             dd("Error!!. Service can't be created. Wearer already exist as wearer for another service");
         }
 
+    }
+
+
+
+
+
+
+    public function users(Request $request){
+
+        $users = DB::table('users')
+            ->paginate(2);
+
+        $data = array(
+            'users' => $users,
+        );
+
+        return view('adminUsers')->with($data);
+    }
+
+    public function searchUsers(Request $request){
+
+        $searchText = $request->searchText;
+
+
+        $users = DB::table('users')
+            ->orwhere('person_id', 'like', '%'.$searchText.'%')
+            ->orWhere('f_name', 'like', '%'.$searchText.'%')
+            ->orWhere('l_name', 'like', '%'.$searchText.'%')
+            ->orWhere('full_name', 'like', '%'.$searchText.'%')
+            ->orWhere('email', 'like', '%'.$searchText.'%')
+            ->orWhere('phone', 'like', '%'.$searchText.'%')
+            ->orWhere('created_at', 'like', '%'.$searchText.'%')
+            ->get();
+
+
+        $data = array(
+            'users' => $users,
+        );
+
+        return response()->json($users);
+
+    }
+
+    public function userDetails(Request $request){
+
+        $userId = $request->id;
+
+        $userDetails = DB::table('users')
+            ->where('person_id', '=', $userId)
+            ->get()->first();
+
+        $serviceAsWearer = DB::table('services')
+            ->join('users as wearer', 'wearer.person_id', '=', 'services.wearer_id')
+            ->join('users as customer', 'customer.person_id', '=', 'services.customer_id')
+            ->select('services.service_id', 'services.wearer_id', 'services.customer_id', 'services.wom_num', 'services.service_status', 'services.no_of_watchers', 'services.created_at',
+                'wearer.person_id as wearerId', 'wearer.f_name as wearerFName', 'wearer.l_name as wearerLName', 'wearer.full_name as wearerFullName',
+                'customer.person_id as customerId', 'customer.f_name as customerFName', 'customer.l_name as customerLName', 'customer.full_name as customerFullName')
+            ->where('wearer.person_id', '=', $userId)
+            ->get()->first();
+
+        $serviceAsCustomer = DB::table('services')
+            ->join('users as wearer', 'wearer.person_id', '=', 'services.wearer_id')
+            ->join('users as customer', 'customer.person_id', '=', 'services.customer_id')
+            ->select('services.service_id', 'services.wearer_id', 'services.customer_id', 'services.wom_num', 'services.service_status', 'services.no_of_watchers', 'services.created_at',
+                'wearer.person_id as wearerId', 'wearer.f_name as wearerFName', 'wearer.l_name as wearerLName', 'wearer.full_name as wearerFullName',
+                'customer.person_id as customerId', 'customer.f_name as customerFName', 'customer.l_name as customerLName', 'customer.full_name as customerFullName')
+            ->where('customer.person_id', '=', $userId)
+            ->orderBy('services.created_at', 'desc')
+            ->get();
+
+        $serviceAsWatcher = DB::table('services')
+            ->join('watcher_relations', 'watcher_relations.svc_id', '=', 'services.service_id')
+            ->join('users as wearer', 'wearer.person_id', '=', 'services.wearer_id')
+            ->join('users as customer', 'customer.person_id', '=', 'services.customer_id')
+            ->select('services.service_id', 'services.wearer_id', 'services.customer_id', 'services.wom_num', 'services.service_status', 'services.no_of_watchers', 'services.created_at',
+                'wearer.person_id as wearerId', 'wearer.f_name as wearerFName', 'wearer.l_name as wearerLName', 'wearer.full_name as wearerFullName',
+                'customer.person_id as customerId', 'customer.f_name as customerFName', 'customer.l_name as customerLName', 'customer.full_name as customerFullName')
+            ->where('watcher_relations.watcher_id', '=', $userId)
+            ->orderBy('services.created_at', 'desc')
+            ->get();
+
+
+
+        if ($serviceAsWearer == null){
+            $countServiceAsWearer = 0;
+        } else {
+            $countServiceAsWearer = 1;
+        }
+
+
+        if ($serviceAsCustomer == null){
+            $countServiceAsCustomer = 0;
+        } else {
+            $countServiceAsCustomer = count($serviceAsCustomer);
+        }
+
+        if ($serviceAsWatcher == null){
+            $countServiceAsWatcher = 0;
+        } else {
+            $countServiceAsWatcher = count($serviceAsWatcher);
+        }
+
+        $data = array(
+            'userDetails' => $userDetails,
+            'serviceAsWearer' => $serviceAsWearer,
+            'countServiceAsWearer' => $countServiceAsWearer,
+            'serviceAsCustomer' => $serviceAsCustomer,
+            'countServiceAsCustomer' => $countServiceAsCustomer,
+            'serviceAsWatcher' => $serviceAsWatcher,
+            'countServiceAsWatcher' => $countServiceAsWatcher
+        );
+
+        return view('adminUserDetails')->with($data);
+
+    }
+
+
+    public function applyLogFilters(Request $request){
+        $serviceId = $request->serviceId;
+        $logsType = $request->logsType;
+        $lodsDate = $request->logsDate;
+
+        if ($logsType == "All") {
+
+        } else {
+
+        }
     }
 
 }

@@ -19,6 +19,7 @@ class CreateLogsTable extends Migration
             $table->string("battery_percentage");
             $table->string("location_latitude");
             $table->string("location_longitude");
+            $table->string("locality");
             $table->string("log_text");
             $table->string("log_date");
             $table->string("log_time");

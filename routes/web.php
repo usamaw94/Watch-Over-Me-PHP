@@ -53,3 +53,17 @@ Route::post('/adminVerifyServiceWatcherPhone', 'AdminController@verifyServiceWat
 
 Route::post('/adminAddNewWatcher', 'AdminController@addNewWatcher')->name('admin.add.new.watcher');
 Route::post('/adminUpdatePriorityOrder', 'AdminController@updatePriorityOrder')->name('admin.update.priority.order');
+
+Route::get('/adminUsers', 'AdminController@users')->name('admin.users');
+
+Route::get('/adminUserDetails', 'AdminController@userDetails')->name('admin.user.details');
+
+Route::get('/adminSearchUsers', 'AdminController@searchUsers')->name('admin.search.users');
+
+Route::get('/adminApplyLogFilters', 'AdminController@applyLogFilters')->name('admin.apply.log.filters');
+
+
+//---------------------------------------------------//
+
+Route::get('/hmr', 'WebController@helpMeRequest')->name('help.me.request');
+

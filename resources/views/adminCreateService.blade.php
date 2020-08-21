@@ -23,6 +23,36 @@
             </a>
         </div>
         <div class="sidebar-wrapper">
+            <div class="user">
+                <div class="photo">
+                    <img src="/assets/img/faces/wom-admin.png" />
+                </div>
+                <div class="info">
+                    <a data-id="{{ Auth::user()->id }}" data-toggle="collapse" href="#collapseExample" class="collapsed">
+              <span>
+                {{ Auth::user()->name }}
+                <b class="caret"></b>
+              </span>
+                    </a>
+                    <div class="clearfix"></div>
+                    <div class="collapse" id="collapseExample">
+                        <ul class="nav">
+                            <li>
+                                <a href="#">
+                                    <span class="sidebar-mini-icon">EP</span>
+                                    <span class="sidebar-normal">Edit Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/adminLogout">
+                                    <i class="nc-icon nc-button-power"></i>
+                                    <span class="sidebar-normal">Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             <ul class="nav">
                 <li>
                     <a href="/admin">
@@ -30,22 +60,16 @@
                         <p>Home</p>
                     </a>
                 </li>
-                <li class="active">
+                <li class="active ">
                     <a href="/adminServices">
                         <i class="nc-icon nc-settings-gear-65"></i>
                         <p>Services</p>
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:;">
+                    <a href="/adminUsers">
                         <i class="nc-icon nc-single-02"></i>
-                        <p>People</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/adminLogout">
-                        <i class="nc-icon nc-button-power"></i>
-                        <p>Logout</p>
+                        <p>Users</p>
                     </a>
                 </li>
             </ul>

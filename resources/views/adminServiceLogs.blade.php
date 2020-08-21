@@ -6,69 +6,75 @@
 
 @section('content')
 
-    <div class="sidebar" data-color="default" data-active-color="danger">
-        <!--
-          Tip 1: You can change the color of the sidebar using: data-color=" default | primary | info | success | warning | danger |"
-      -->
+    <div class="sidebar" data-color="white" data-active-color="danger">
         <div class="logo">
-            <a href="https://www.creative-tim.com/" class="simple-text logo-mini">
-                <div class="logo-image-small">
-                    <img src="../../assets/img/logo-small.png">
-                </div>
+            <a href="/admin" class="simple-text logo-mini">
+                <!-- <div class="logo-image-small">
+                  <img src="./assets/img/logo-small.png">
+                </div> -->
                 <!-- <p>CT</p> -->
             </a>
-            <a href="https://www.creative-tim.com/" class="simple-text logo-normal">
+            <a href="/admin" class="simple-text logo-normal">
                 Watch Over Me
                 <!-- <div class="logo-image-big">
-                  <img src="../../assets/img/logo-big.png">
+                  <img src="../assets/img/logo-big.png">
                 </div> -->
             </a>
         </div>
-        <div class="sidebar" data-color="white" data-active-color="danger">
-            <div class="logo">
-                <a href="https://www.creative-tim.com" class="simple-text logo-mini">
-                    <!-- <div class="logo-image-small">
-                      <img src="./assets/img/logo-small.png">
-                    </div> -->
-                    <!-- <p>CT</p> -->
-                </a>
-                <a href="https://www.creative-tim.com" class="simple-text logo-normal">
-                    Watch Over Me
-                    <!-- <div class="logo-image-big">
-                      <img src="../assets/img/logo-big.png">
-                    </div> -->
-                </a>
+        <div class="sidebar-wrapper">
+            <div class="user">
+                <div class="photo">
+                    <img src="/assets/img/faces/wom-admin.png" />
+                </div>
+                <div class="info">
+                    <a data-id="{{ Auth::user()->id }}" data-toggle="collapse" href="#collapseExample" class="collapsed">
+              <span>
+                {{ Auth::user()->name }}
+                <b class="caret"></b>
+              </span>
+                    </a>
+                    <div class="clearfix"></div>
+                    <div class="collapse" id="collapseExample">
+                        <ul class="nav">
+                            <li>
+                                <a href="#">
+                                    <span class="sidebar-mini-icon">EP</span>
+                                    <span class="sidebar-normal">Edit Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/adminLogout">
+                                    <i class="nc-icon nc-button-power"></i>
+                                    <span class="sidebar-normal">Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="sidebar-wrapper">
-                <ul class="nav">
-                    <li>
-                        <a href="dashboard.html">
-                            <i class="nc-icon nc-bank"></i>
-                            <p>Home</p>
-                        </a>
-                    </li>
-                    <li class="active">
-                        <a href="services.html">
-                            <i class="nc-icon nc-settings-gear-65"></i>
-                            <p>Services</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <i class="nc-icon nc-single-02"></i>
-                            <p>People</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <i class="nc-icon nc-button-power"></i>
-                            <p>Logout</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <ul class="nav">
+                <li>
+                    <a href="/admin">
+                        <i class="nc-icon nc-bank"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li class="active ">
+                    <a href="/adminServices">
+                        <i class="nc-icon nc-settings-gear-65"></i>
+                        <p>Services</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/adminUsers">
+                        <i class="nc-icon nc-single-02"></i>
+                        <p>Users</p>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
+
     <div class="main-panel">
 
         <!-- Navbar -->
@@ -147,7 +153,17 @@
                 <div class="col-md-8 col-sm-6">
                     <div class="card maps-container">
                         <div class="card-header ">
-                            <h4 class='card-title'>Wearer location</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class='card-title'>Wearer location</h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="text-right card-category">
+                                        <i class="fa fa-map-marker"></i> &nbsp;
+                                        <span>Greenvale, Victoria, Australia</span>
+                                    </h5>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body ">
                             <div id="googleMap"></div>
@@ -158,7 +174,8 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="card">
                         <div class="card-header ">
-                            <button data-toggle="modal" data-target="#logFilters" style="float: right" class="btn btn-outline-light btn-icon btn-sm btn-round" title="Apply filters"><i class="fa fa-filter"></i></button>
+                            <button class="pull-right btn btn-default btn-sm">Logs History</button>
+{{--                            <button data-toggle="modal" data-target="#logFilters" style="float: right" class="btn btn-outline-light btn-icon btn-sm btn-round" title="Apply filters"><i class="fa fa-filter"></i></button>--}}
                             <h4 class='card-title'>Log list</h4>
                             <hr class="no-space">
                         </div>
@@ -170,7 +187,10 @@
 
                                     @if ($lg->log_type == 'Hourly Log')
 
-                                        <div id="logID{{ $lg->id }}" data-lat="{{ $lg->location_latitude }}" data-long="{{ $lg->location_longitude }}" class="timeline-panel logs">
+                                        <div id="logID{{ $lg->id }}"
+                                             data-lat="{{ $lg->location_latitude }}"
+                                             data-long="{{ $lg->location_longitude }}"
+                                             class="timeline-panel logs">
                                             <div class="timeline-body">
                                                 <div class="logs-action">
                                                     <a target="_blank" href="https://www.google.com/maps/dir//-37.{{ $lg->location_latitude }},{{ $lg->location_longitude }}"
@@ -178,7 +198,13 @@
                                                        class="btn btn-outline-info btn-icon btn-round">
                                                         <i class="fa fa-location-arrow"></i>
                                                     </a>
-                                                    <button title="View log details" type="button" data-toggle="modal" data-target="#hourlyLogDetails" class="btn btn-outline-info btn-icon btn-round">
+                                                    <button title="View log details" type="button" class="btn btn-outline-info btn-icon btn-round show-hourly-log-details"
+                                                    data-id="{{ $lg->id }}"
+                                                    data-date="{{ $lg->log_date }}"
+                                                    data-time="{{ $lg->log_time }}"
+                                                    data-description="{{ $lg->log_text }}"
+                                                    data-type="{{ $lg->log_type }}"
+                                                    data-battery="{{ $lg->battery_percentage }}">
                                                         <i class="fa fa-info-circle"></i>
                                                     </button>
                                                 </div>
@@ -191,7 +217,10 @@
 
                                     @elseif($lg->log_type == 'Alert Log')
 
-                                        <div id="logID{{ $lg->id }}" data-lat="{{ $lg->location_latitude }}" data-long="{{ $lg->location_longitude }}" class="timeline-panel logs">
+                                        <div id="logID{{ $lg->id }}"
+                                             data-lat="{{ $lg->location_latitude }}"
+                                             data-long="{{ $lg->location_longitude }}"
+                                             class="timeline-panel logs">
                                             <div class="timeline-body">
                                                 <div class="logs-action">
                                                     <a target="_blank" href="https://www.google.com/maps/dir//{{ $lg->location_latitude }},{{ $lg->location_longitude }}"
@@ -199,7 +228,14 @@
                                                        class="btn btn-outline-danger btn-icon btn-round">
                                                         <i class="fa fa-location-arrow"></i>
                                                     </a>
-                                                    <button title="View log details" type="button" data-toggle="modal" data-target="#alertLogDetails" class="btn btn-outline-danger btn-icon btn-round">
+                                                    <button title="View log details" type="button" class="btn btn-outline-danger btn-icon btn-round show-alert-log-details"
+                                                            data-id="{{ $lg->id }}"
+                                                            data-date="{{ $lg->log_date }}"
+                                                            data-time="{{ $lg->log_time }}"
+                                                            data-description="{{ $lg->log_text }}"
+                                                            data-type="{{ $lg->log_type }}"
+                                                            data-battery="{{ $lg->battery_percentage }}">
+                                                        <i style="margin-left: -12px;margin-top: -12px" class="fa fa-spinner fa-spin sr-only"></i>
                                                         <i class="fa fa-info-circle"></i>
                                                     </button>
                                                 </div>
@@ -249,27 +285,32 @@
                     <h4 class="title title-up">Search filters</h4>
                 </div>
 
-                <form method="#" action="#">
+                <form id="logFiltersForm">
 
                     <div class="modal-body">
+                        <input type="text" value="{{ $serviceDetails->service_id }}" name="serviceId" readonly>
                         <div class="card card-plain">
                             <label>Logs type</label>
                             <div class="form-group">
                                 <select class="form-control" name="logsType">
+                                    <option>All</option>
                                     <option>Alert log</option>
                                     <option>Hourly log</option>
                                 </select>
                             </div>
                             <label>Date</label>
                             <div class="form-group">
-                                <input type="text" class="form-control logs-date-picker">
+                                <input type="text" name="logsDate" class="form-control logs-date-picker">
                             </div>
                         </div>
                     </div>
 
                     <div class="modal-footer">
                         <div class="left-side">
-                            <button type="button" class="btn btn-link">Apply filters</button>
+                            <button type="submit" class="btn btn-link">
+                                Apply filters
+                                 &nbsp; <span><i id="apllyLogFilterLoad" class="fa fa-spinner fa-spin sr-only"></i></span>
+                            </button>
                         </div>
                         <div class="divider"></div>
                         <div class="right-side">
@@ -299,7 +340,7 @@
                                 <th>
                                     Log ID:
                                 </th>
-                                <td>
+                                <td id="hModalId">
                                     WOMP00000875
                                 </td>
                             </tr>
@@ -307,7 +348,7 @@
                                 <th>
                                     Date/Time:
                                 </th>
-                                <td>
+                                <td id="hModalDateTime">
                                     21/05/2020 - 20:30
                                 </td>
                             </tr>
@@ -315,7 +356,7 @@
                                 <th>
                                     Description:
                                 </th>
-                                <td>
+                                <td id="hModalDescription">
                                     Log on hourly basis
                                 </td>
                             </tr>
@@ -323,7 +364,7 @@
                                 <th>
                                     Type:
                                 </th>
-                                <td>
+                                <td id="hModalType">
                                     Hourly log
                                 </td>
                             </tr>
@@ -331,7 +372,7 @@
                                 <th>
                                     Device Battery level
                                 </th>
-                                <td>
+                                <td id="hModalBattery">
                                     35%
                                 </td>
                             </tr>
@@ -382,19 +423,19 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>
+                                <td id="aModalId">
                                     1
                                 </td>
-                                <td>
+                                <td id="aModalDateTime">
                                     13:00 - 01/06/2017
                                 </td>
-                                <td>
+                                <td id="aModalDescription">
                                     I need help
                                 </td>
-                                <td>
+                                <td id="aModalType">
                                     Alert Log
                                 </td>
-                                <td>
+                                <td id="aModalBattery">
                                     50%
                                 </td>
                             </tr>

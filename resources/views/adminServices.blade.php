@@ -22,6 +22,36 @@
             </a>
         </div>
         <div class="sidebar-wrapper">
+            <div class="user">
+                <div class="photo">
+                    <img src="/assets/img/faces/wom-admin.png" />
+                </div>
+                <div class="info">
+                    <a data-id="{{ Auth::user()->id }}" data-toggle="collapse" href="#collapseExample" class="collapsed">
+              <span>
+                {{ Auth::user()->name }}
+                <b class="caret"></b>
+              </span>
+                    </a>
+                    <div class="clearfix"></div>
+                    <div class="collapse" id="collapseExample">
+                        <ul class="nav">
+                            <li>
+                                <a href="#">
+                                    <span class="sidebar-mini-icon">EP</span>
+                                    <span class="sidebar-normal">Edit Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/adminLogout">
+                                    <i class="nc-icon nc-button-power"></i>
+                                    <span class="sidebar-normal">Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             <ul class="nav">
                 <li>
                     <a href="/admin">
@@ -36,15 +66,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:;">
+                    <a href="/adminUsers">
                         <i class="nc-icon nc-single-02"></i>
-                        <p>People</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/adminLogout">
-                        <i class="nc-icon nc-button-power"></i>
-                        <p>Logout</p>
+                        <p>Users</p>
                     </a>
                 </li>
             </ul>
@@ -123,7 +147,7 @@
                                 <div class="col-md-9">
                                     <div style="margin-top: 10px">
                                         <div class="input-group no-border">
-                                            <input type="text" id="servicesSearchText" class="form-control" placeholder="Search user">
+                                            <input type="text" id="servicesSearchText" class="form-control" placeholder="Search services">
                                             <div id="searchServices" class="input-group-append btn btn-default">
                                                 <i style="font-size: 16px" class="nc-icon nc-zoom-split"></i>
                                                 &nbsp;&nbsp;
@@ -143,6 +167,9 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="pull-right">
+                                <div id="serviceSearchControl" class="sr-only">
+                                    Total services: &nbsp;<b id="noOfServices"></b> &nbsp;&nbsp; <a href="/adminServices" class="btn btn-outline-default">Reset search</a>
+                                </div>
                                 <div id="paginationContainer">
                                     Showing {{($services->currentPage()-1)* $services->perPage() + 1}} to
                                     {{ ($services->currentPage()-1)* $services->perPage() + $services->perPage() }} of

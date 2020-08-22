@@ -427,6 +427,9 @@ class ApiController extends Controller
     {
 
         if ($request->cycle < 1) {
+
+            $responseLink = 
+
             $watcherResponses = new HelpMeResponse();
 
             $watcherResponses->alert_log_id = $request->alertLogId;

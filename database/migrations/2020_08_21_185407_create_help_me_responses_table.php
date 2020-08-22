@@ -26,6 +26,7 @@ class CreateHelpMeResponsesTable extends Migration
             $table->string('reply_text');
             $table->string('reply_date');
             $table->string('reply_time');
+            $table->string('response_link');
             $table->timestamps();
         });
     }

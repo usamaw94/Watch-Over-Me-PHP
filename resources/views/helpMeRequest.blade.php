@@ -58,7 +58,7 @@
                         <div class="card-header ">
                         </div>
                         <div class="card-body ">
-                            <h4 class="card-title" style="margin-top: 0px;margin-bottom: 20px"><b>Ali Abbas</b> needs your help !!</h4>
+                            <h4 class="card-title" style="margin-top: 0px;margin-bottom: 20px"><b>{{ $serviceDetails->wearerFullName }}</b> needs your help !!</h4>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead class="text-primary">
@@ -78,16 +78,16 @@
                                     <tbody>
                                     <tr>
                                         <td class="text-center">
-                                            WOMS00000694
+                                            {{ $serviceDetails->service_id }}
                                         </td>
                                         <td>
-                                            +61435467229
+                                            {{ $serviceDetails->wearerPhone }}
                                         </td>
                                         <td>
-                                            ali@gmail.com
+                                            {{ $serviceDetails->wearerEmail }}
                                         </td>
                                         <td>
-                                            04:36:54 am - 22 August 2020
+                                            {{ $logDetails->log_time }} - {{ $logDetails->log_date }}
                                         </td>
                                     </tr>
                                     </tbody>
@@ -96,31 +96,34 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <h5 class="text-muted text-left card-category font-weight-normal">
-                                        <i class="fa fa-map-marker"></i> &nbsp; Wearer initial location: <b>Greenvale, Victoria Australia</b>
+                                        <i class="fa fa-map-marker"></i> &nbsp; Wearer initial location: <b>{{ $logDetails->locality }}</b>
                                     </h5>
                                 </div>
                                 <div class="col-md-4">
-                                    <button class="pull-right btn btn-default btn-sm">
+                                    <a href="https://www.google.com/maps/dir//{{ $logDetails->location_latitude }},{{ $logDetails->location_longitude }}"
+                                        class="pull-right btn btn-default btn-sm">
                                         <i class="fa fa-location-arrow"></i> &nbsp; Get direction
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
+                            <input type="hidden" id="latitude" value="{{ $logDetails->location_latitude }}" readonly>
+                            <input type="hidden" id="longitude" value="{{ $logDetails->location_longitude }}" readonly>
                             <div id="helpMeWearerLocation">
                             </div>
                             <hr>
                             <div class="row text-left">
                                 <div class="col-md-6">
                                     <h5 class="text-info">
-                                        <b>Can you physically visit Ali Abbas?</b>
+                                        <b>Can you physically visit {{ $serviceDetails->wearerFullName }}?</b>
                                     </h5>
                                 </div>
                                 <div class="col-md-3 col-sm-7">
-                                    <button class="btn btn-block btn-success btn-lg btn-round">
+                                    <button data-user-id="{{ $userId }}" data-service-id="{{ $serviceDetails->service_id }}" data-log-id="{{ $logDetails->log_id }}" class="btn btn-block btn-success btn-lg btn-round">
                                         <i class="fa fa-check"></i> &nbsp; Yes
                                     </button>
                                 </div>
                                 <div class="col-md-3 col-sm-5">
-                                    <button class="btn btn-block btn-danger btn-lg btn-round">
+                                    <button data-user-id="{{ $userId }}" data-service-id="{{ $serviceDetails->service_id }}" data-log-id="{{ $logDetails->log_id }}" class="btn btn-block btn-danger btn-lg btn-round">
                                         <i class="fa fa-times"></i> &nbsp; No
                                     </button>
                                 </div>

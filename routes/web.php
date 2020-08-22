@@ -65,5 +65,5 @@ Route::get('/adminApplyLogFilters', 'AdminController@applyLogFilters')->name('ad
 
 //---------------------------------------------------//
 
-Route::get('/hmr', 'WebController@helpMeRequest')->name('help.me.request');
+Route::get('/hmr/{logId}/{userId}', 'WebController@helpMeRequest')->name('help.me.request');
 

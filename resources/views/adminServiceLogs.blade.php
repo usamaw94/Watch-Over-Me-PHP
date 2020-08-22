@@ -193,7 +193,7 @@
                                              class="timeline-panel logs">
                                             <div class="timeline-body">
                                                 <div class="logs-action">
-                                                    <a target="_blank" href="https://www.google.com/maps/dir//-37.{{ $lg->location_latitude }},{{ $lg->location_longitude }}"
+                                                    <a target="_blank" href="https://www.google.com/maps/dir//{{ $lg->location_latitude }},{{ $lg->location_longitude }}"
                                                        title="Get directions"
                                                        class="btn btn-outline-info btn-icon btn-round">
                                                         <i class="fa fa-location-arrow"></i>

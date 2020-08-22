@@ -48,6 +48,8 @@ class WebController extends Controller
 
 //        dd($logDetails);
 
+            ////
+
             if ($serviceDetails) {
 
                 $data = array(

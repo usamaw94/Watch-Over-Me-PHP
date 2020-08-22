@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\HourlyLogCreated;
 use App\Events\NewAlertLog;
 use App\Events\NewLog;
+use App\HelpMeResponse;
 use App\Service;
 use App\User;
 use App\WatcherRelation;
@@ -262,40 +263,40 @@ class ApiController extends Controller
         }
     }
 
-    public function sendNotificationToWearer($serviceId,$title,$message) {
+    public function sendNotificationToWearer($serviceId, $title, $message)
+    {
 
         $service = DB::table('services')
-                ->where('service_id', '=', $serviceId)
-                ->get()->first();
+            ->where('service_id', '=', $serviceId)
+            ->get()->first();
 
-            $data = [
-                "to" => $service->wearer_device_token,
-                "data" =>
-                [
-                    "title" => $title,
-                    "body" => $message
-                ],
-            ];
+        $data = [
+            "to" => $service->wearer_device_token,
+            "data" =>
+            [
+                "title" => $title,
+                "body" => $message
+            ],
+        ];
 
-            $dataString = json_encode($data);
+        $dataString = json_encode($data);
 
-            $headers = [
-                'Authorization: key=' . $this->serverApiKey,
-                'Content-Type: application/json',
-            ];
+        $headers = [
+            'Authorization: key=' . $this->serverApiKey,
+            'Content-Type: application/json',
+        ];
 
-            $ch = curl_init();
+        $ch = curl_init();
 
-            curl_setopt($ch, CURLOPT_URL, $this->firebaseUrl);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_URL, $this->firebaseUrl);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-            curl_exec($ch);
-
+        curl_exec($ch);
     }
 
     public function helpMeRequestInitiate(Request $request)
@@ -303,9 +304,9 @@ class ApiController extends Controller
         $dbName = 'watchoverme';
         $tableNameLogs = 'logs';
 
-        $infoLog = DB::select('SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = ? AND   TABLE_NAME   = ?',[$dbName,$tableNameLogs]);
-                $autoIncLog = $infoLog[0]->AUTO_INCREMENT;
-                $logId = 'ALR'. $autoIncLog;
+        $infoLog = DB::select('SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = ? AND   TABLE_NAME   = ?', [$dbName, $tableNameLogs]);
+        $autoIncLog = $infoLog[0]->AUTO_INCREMENT;
+        $logId = 'ALR' . $autoIncLog;
 
         $alertLog = new Log();
 
@@ -313,6 +314,7 @@ class ApiController extends Controller
         $alertLog->battery_percentage = $request->batteryLevel;
         $alertLog->location_latitude = $request->locationLatitude;
         $alertLog->location_longitude = $request->locationLongitude;
+        $alertLog->locality = $request->locality;
         $alertLog->log_text = $request->logText;
         $alertLog->log_date = $request->logDate;
         $alertLog->log_time = $request->logTime;
@@ -334,7 +336,7 @@ class ApiController extends Controller
 
         if ($watchers != null) {
 
-            $this->sendNotificationToWearer($request->serviceId,$request->logType,$request->logText);
+            $this->sendNotificationToWearer($request->serviceId, $request->logType, $request->logText);
 
             $update = DB::table('services')
                 ->where('service_id', '=', $request->serviceId)
@@ -367,7 +369,7 @@ class ApiController extends Controller
             ->where('service_id', '=', $request->serviceId)
             ->update(['alert_request_status' => "inactive"]);
 
-        $this->sendNotificationToWearer($request->serviceId,$request->responseTitle,$request->responseText);
+        $this->sendNotificationToWearer($request->serviceId, $request->responseTitle, $request->responseText);
     }
 
     public function updateDeviceToken(Request $request)
@@ -384,14 +386,15 @@ class ApiController extends Controller
         }
     }
 
-    public function regularLog(Request $request){
+    public function regularLog(Request $request)
+    {
 
         $dbName = 'watchoverme';
         $tableNameLogs = 'logs';
 
-        $infoLog = DB::select('SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = ? AND   TABLE_NAME   = ?',[$dbName,$tableNameLogs]);
-                $autoIncLog = $infoLog[0]->AUTO_INCREMENT;
-                $logId = 'REG'. $autoIncLog;
+        $infoLog = DB::select('SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = ? AND   TABLE_NAME   = ?', [$dbName, $tableNameLogs]);
+        $autoIncLog = $infoLog[0]->AUTO_INCREMENT;
+        $logId = 'REG' . $autoIncLog;
 
         $regularLog = new Log();
 
@@ -399,6 +402,7 @@ class ApiController extends Controller
         $regularLog->battery_percentage = $request->batteryLevel;
         $regularLog->location_latitude = $request->locationLatitude;
         $regularLog->location_longitude = $request->locationLongitude;
+        $regularLog->locality = $request->locality;
         $regularLog->log_text = $request->logText;
         $regularLog->log_date = $request->logDate;
         $regularLog->log_time = $request->logTime;
@@ -411,20 +415,32 @@ class ApiController extends Controller
 
         event(new NewLog($request->serviceId));
 
-        if($regularLogSaved){
+        if ($regularLogSaved) {
             return response()->json("Saved");
-        }
-        else{
+        } else {
             return response()->json("Error");
         }
-
     }
 
 
-    public function contactWatcher(Request $request){
+    public function contactWatcher(Request $request)
+    {
 
-        $this->sendNotificationToWearer($request->serviceId,$request->responseTitle,$request->responseText);
+        if ($request->cycle < 1) {
+            $watcherResponses = new HelpMeResponse();
 
+            $watcherResponses->alert_log_id = $request->alertLogId;
+            $watcherResponses->response_from = $request->wearerId;
+            $watcherResponses->response_to = $request->watcherId;
+            $watcherResponses->send_text = "Requested for help";
+            $watcherResponses->send_date = $request->sendDate;
+            $watcherResponses->send_time = $request->sendTime;
+            $watcherResponses->response_type = "No";
+            $watcherResponses->response_status = "false";
+            $watcherResponses->reply_text = "";
+            $watcherResponses->reply_date = "";
+            $watcherResponses->reply_time = "";
+        }
 
         // $serviceId = $request->serviceId;
         // $wearerId = $request->wearerId;
@@ -442,11 +458,11 @@ class ApiController extends Controller
         //     'createdAt' => $createdAt,
         // );
 
+        $this->sendNotificationToWearer($request->serviceId, $request->responseTitle, $request->responseText);
 
         //event(new NewAlertLog($serviceId,$wearerId,$wearerName,$watcherId,$createdAt));
 
         return response()->json("data");
-
     }
 }
     // {

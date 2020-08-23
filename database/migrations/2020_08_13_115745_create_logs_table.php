@@ -25,6 +25,9 @@ class CreateLogsTable extends Migration
             $table->string("log_time");
             $table->string("log_type");
             $table->string("service_id");
+            $table->string("response_status");
+            $table->string("responded_by_id");
+            $table->string("responded_by_name");
             $table->timestamps();
         });
     }

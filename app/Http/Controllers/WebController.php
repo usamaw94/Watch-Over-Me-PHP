@@ -24,17 +24,40 @@ class WebController extends Controller
 
         $time = substr ($request->userId, -6);
 
-        $finalTime = \DateTime::createFromFormat('His', $time)->format('H:i:s');
+        $finalTime = \DateTime::createFromFormat('His', $time)->format('H:i:s a');
 
         $finalDate = \DateTime::createFromFormat('Ydm', $date)->format('d F Y');
 
 
-
-        $logDetails = DB::table('logs')
-            ->where('log_id', '=', $logId)
+        $helpMeResponse = DB::table('help_me_responses')
+            ->join('users as watcher', 'watcher.person_id', '=', 'response_to')
+            ->select('help_me_responses.id', 'help_me_responses.alert_log_id', 'help_me_responses.response_from', 'help_me_responses.response_to' ,'help_me_responses.send_text', 'help_me_responses.send_date', 'help_me_responses.send_time', 'help_me_responses.response_type',
+                'help_me_responses.response_status', 'help_me_responses.reply_text', 'help_me_responses.reply_date', 'help_me_responses.reply_time',
+                'watcher.person_id as watcherId', 'watcher.f_name as watcherFName', 'watcher.l_name as watcherLName', 'watcher.full_name as watcherFullName',
+                'watcher.email as watcherEmail', 'watcher.phone as watcherPhone')
+            ->where('alert_log_id', '=', $logId)
+            ->where('response_to', '=', $userId)
+            ->where('send_date', '=', $finalDate)
+            ->where('send_time', '=', $finalTime)
             ->get()->first();
 
-        if($logDetails){
+
+        if ($helpMeResponse){
+
+            $helpMeResponseList = DB::table('help_me_responses')
+                ->join('users as watcher', 'watcher.person_id', '=', 'response_to')
+                ->select('help_me_responses.id', 'help_me_responses.alert_log_id', 'help_me_responses.response_from', 'help_me_responses.response_to' ,'help_me_responses.send_text', 'help_me_responses.send_date', 'help_me_responses.send_time', 'help_me_responses.response_type',
+                    'help_me_responses.response_status', 'help_me_responses.reply_text', 'help_me_responses.reply_date', 'help_me_responses.reply_time',
+                    'watcher.person_id as watcherId', 'watcher.f_name as watcherFName', 'watcher.l_name as watcherLName', 'watcher.full_name as watcherFullName',
+                    'watcher.email as watcherEmail', 'watcher.phone as watcherPhone')
+                ->where('alert_log_id', '=', $logId)
+                ->get();
+
+            $logDetails = DB::table('logs')
+                ->where('log_id', '=', $logId)
+                ->get()->first();
+
+            dd($logDetails);
 
             $serviceId = $logDetails->service_id;
 
@@ -46,22 +69,23 @@ class WebController extends Controller
                 ->where('services.service_id', '=', $serviceId)
                 ->get()->first();
 
-//        dd($logDetails);
-
-            if ($serviceDetails) {
-
-                $data = array(
-                    'userId' => $userId,
-                    'serviceDetails' => $serviceDetails,
-                    'logDetails' => $logDetails
-                );
 
 
-                return view('helpMeRequest')->with($data);
+            $data = array(
+                'helpMeResponse' => $helpMeResponse,
+                'helpMeResponseList' => $helpMeResponseList,
+                'serviceDetails' => $serviceDetails,
+                'logDetails' => $logDetails
+            );
 
-            }
+            return view('helpMeRequest')->with($data);
+
+        } else {
+
+            dd("Page not found");
 
         }
+
     }
 
 }

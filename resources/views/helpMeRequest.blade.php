@@ -58,7 +58,11 @@
                         <div class="card-header ">
                         </div>
                         <div class="card-body ">
-                            <h4 class="card-title" style="margin-top: 0px;margin-bottom: 20px"><b>{{ $serviceDetails->wearerFullName }}</b> needs your help !!</h4>
+                            @if($logDetails->response_status == 'No')
+                                <h4 class="card-title" style="margin-top: 0px;margin-bottom: 20px"><b>{{ $serviceDetails->wearerFullName }}</b> needs your help !!</h4>
+                            @else
+                                <h4 class="card-title" style="margin-top: 0px;margin-bottom: 20px"><b>{{ $serviceDetails->wearerFullName }}</b> requested for help !!</h4>
+                            @endif
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead class="text-primary">
@@ -87,7 +91,7 @@
                                             {{ $serviceDetails->wearerEmail }}
                                         </td>
                                         <td>
-                                            {{ $logDetails->log_time }} - {{ $logDetails->log_date }}
+                                            {{ $helpMeResponse->send_date }} - {{ $helpMeResponse->send_time }}
                                         </td>
                                     </tr>
                                     </tbody>
@@ -114,16 +118,20 @@
                             <div class="row text-left">
                                 <div class="col-md-6">
                                     <h5 class="text-info">
-                                        <b>Can you physically visit {{ $serviceDetails->wearerFullName }}?</b>
+                                        @if($logDetails->response_status == 'No')
+                                            <b>{{ $helpMeResponse->watcherFName }}, can you physically visit {{ $serviceDetails->wearerFullName }}?</b>
+                                        @else
+                                            <b>{{ $helpMeResponse->responded_by_name }}, accepted {{ $serviceDetails->wearerFullName }}'s request for help?</b>
+                                        @endif
                                     </h5>
                                 </div>
                                 <div class="col-md-3 col-sm-7">
-                                    <button data-user-id="{{ $userId }}" data-service-id="{{ $serviceDetails->service_id }}" data-log-id="{{ $logDetails->log_id }}" class="btn btn-block btn-success btn-lg btn-round">
+                                    <button data-user-id="{{ $helpMeResponse->watcherId }}" data-service-id="{{ $serviceDetails->service_id }}" data-log-id="{{ $logDetails->log_id }}" class="btn btn-block btn-success btn-lg btn-round">
                                         <i class="fa fa-check"></i> &nbsp; Yes
                                     </button>
                                 </div>
                                 <div class="col-md-3 col-sm-5">
-                                    <button data-user-id="{{ $userId }}" data-service-id="{{ $serviceDetails->service_id }}" data-log-id="{{ $logDetails->log_id }}" class="btn btn-block btn-danger btn-lg btn-round">
+                                    <button data-user-id="{{ $helpMeResponse->watcherId }}" data-service-id="{{ $serviceDetails->service_id }}" data-log-id="{{ $logDetails->log_id }}" class="btn btn-block btn-danger btn-lg btn-round">
                                         <i class="fa fa-times"></i> &nbsp; No
                                     </button>
                                 </div>
@@ -149,20 +157,34 @@
                                             </th>
                                             </thead>
                                             <tbody>
+                                            @foreach($helpMeResponseList as $hMRL)
                                             <tr>
                                                 <td class="text-center">
-                                                    Waqas Waheed
+                                                    {{ $hMRL->watcherFullName }}
                                                 </td>
                                                 <td>
-                                                    04:36:54 am - 22 August 2020
+                                                    {{ $hMRL->send_date }} - {{ $hMRL->send_time }}
                                                 </td>
                                                 <td>
-                                                    04:36:54 am - 22 August 2020
+                                                    @if($hMRL->response_status == 'false')
+                                                        --
+                                                    @else
+                                                        {{ $hMRL->reply_date }} - {{ $hMRL->reply_time }}
+                                                    @endif
                                                 </td>
                                                 <td>
-                                                    Yes
+                                                    @if($hMRL->response_status == 'false')
+                                                        Not responded
+                                                    @else
+                                                        @if($hMRL->response_type == 'No')
+                                                            Refused to help
+                                                        @else
+                                                            Accepted to help
+                                                        @endif
+                                                     @endif
                                                 </td>
                                             </tr>
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>

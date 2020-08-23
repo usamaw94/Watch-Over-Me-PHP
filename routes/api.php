@@ -23,7 +23,7 @@ Route::post('/wearerLoginProcessing','ApiController@wearerLoginProcessing')->nam
 Route::post('/setLoginStatus','ApiController@setLoginStatus')->name('set.login.status');
 Route::post('/checkLoginStatus','ApiController@checkLoginStatus')->name('check.login.status');
 Route::post('/getWatchers','ApiController@getWatchers')->name('get.watchers');
-Route::post('/helpmeRequest','ApiController@helpmeRequest')->name('helpme.request');
+Route::post('/wearerNotification','ApiController@wearerNotification')->name('wearer.notification');
 Route::post('/helpMeRequestInitiate','ApiController@helpMeRequestInitiate')->name('help.me.request.initiate');
 Route::post('/updateDeviceToken','ApiController@updateDeviceToken')->name('update.device.token');
 Route::get('/testConnection','ApiController@testConnection')->name('api.test.connection');

@@ -221,46 +221,11 @@ class ApiController extends Controller
         return response()->json($res);
     }
 
-    public function helpmeRequest(Request $request)
+    public function wearerNotification(Request $request)
     {
+        $this->sendNotificationToWearer($request->serviceId,$request->notificationTitle,$request->notificationText);
 
-        $service = DB::table('services')
-            ->where('service_id', '=', $request->serviceId)
-            ->get()->first();
-
-
-        if ($service) {
-
-            $data = [
-                "to" => $service->wearer_device_token,
-                "data" =>
-                [
-                    "title" => $request->logType,
-                    "body" => $request->logText
-                ],
-                "priority" => "high"
-            ];
-
-            $dataString = json_encode($data);
-
-            $headers = [
-                'Authorization: key=' . $this->serverApiKey,
-                'Content-Type: application/json',
-            ];
-
-            $ch = curl_init();
-
-            curl_setopt($ch, CURLOPT_URL, $this->firebaseUrl);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-
-            return response()->json(curl_exec($ch));
-        }
+        return response()->json("Done");
     }
 
     public function sendNotificationToWearer($serviceId, $title, $message)
@@ -426,9 +391,42 @@ class ApiController extends Controller
     public function contactWatcher(Request $request)
     {
 
-        if ($request->cycle < 1) {
 
-            $responseLink = 
+        $positiveResponder = DB::table('help_me_responses')
+            ->where('response_status', '=', "true")
+            ->where('response_type', '=', 'Yes')
+            ->select('response_to')
+            ->first();
+
+        if ($positiveResponder) {
+            $res = array(
+                'connection' => true,
+                'queryStatus' => true,
+                'message' => "Responded",
+                'data' => $positiveResponder->response_to
+            );
+
+            return response()->json($res);
+        }
+
+        $negativeResponse = DB::table('help_me_responses')
+            ->where('response_status', '=', "true")
+            ->where('response_type', '=', 'No')
+            ->where('response_to', '=', $request->watcherId)
+            ->select('response_to')
+            ->first();
+
+        if($negativeResponse){
+            $res = array(
+                'connection' => true,
+                'queryStatus' => false,
+                'message' => "Skip",
+                'data' => $negativeResponse->response_to
+            );
+            return response()->json($res);
+        }
+
+        if ($request->cycle == "0") {
 
             $watcherResponses = new HelpMeResponse();
 
@@ -443,29 +441,32 @@ class ApiController extends Controller
             $watcherResponses->reply_text = "";
             $watcherResponses->reply_date = "";
             $watcherResponses->reply_time = "";
+            $watcherResponses->response_link = $request->responseLink;
+            $watcherPhone = $request->watcherPhone;
+            $wearerFullName = $request->wearerFullName;
+
+            $watcherResponses->save();
+
+            //email function will be called here
         }
 
-        // $serviceId = $request->serviceId;
-        // $wearerId = $request->wearerId;
-        // $wearerName = $request->wearerName;
+        else {
+            //call function will be called here
 
-        // $watcherId = $request->watcherId;
-        // $createdAt = $request->createdAt;
-
-
-        // $data = array(
-        //     'serviceId' => $serviceId,
-        //     'wearerId' => $wearerId,
-        //     'wearerName' => $wearerName,
-        //     'watcherId' => $watcherId,
-        //     'createdAt' => $createdAt,
-        // );
+        }
 
         $this->sendNotificationToWearer($request->serviceId, $request->responseTitle, $request->responseText);
 
-        //event(new NewAlertLog($serviceId,$wearerId,$wearerName,$watcherId,$createdAt));
+        $createdAt = $request->sendDate . "-" . $request->sendTime;
+        //event(new NewAlertLog($request->serviceId,$request->wearerId,$request->wearerFullName,$request->watcherId,$createdAt);
 
-        return response()->json("data");
+        $res = array(
+            'connection' => false,
+            'queryStatus' => false,
+            'message' => "Continue",
+            'data' => "Continue"
+        );
+        return response()->json($res);
     }
 }
     // {

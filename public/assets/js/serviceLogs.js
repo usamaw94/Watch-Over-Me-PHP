@@ -19,6 +19,8 @@ $(document).ready(function () {
         });
 
 
+    // alert('location.'+$('#serviceId').text()+'.'+$('#showWearerLocation').attr('data-user-id'));
+
     window.Echo.channel('location.'+$('#serviceId').text()+'.'+$('#showWearerLocation').attr('data-user-id'))
         .listen('WearerLocation', (e) => {
 

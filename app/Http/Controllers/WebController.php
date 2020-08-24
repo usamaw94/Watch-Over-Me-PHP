@@ -24,7 +24,7 @@ class WebController extends Controller
 
         $time = substr ($request->userId, -6);
 
-        $finalTime = \DateTime::createFromFormat('His', $time)->format('H:i:s a');
+        $finalTime = \DateTime::createFromFormat('His', $time)->format('h:i:s a');
 
         $finalDate = \DateTime::createFromFormat('Ydm', $date)->format('d F Y');
 
@@ -41,6 +41,7 @@ class WebController extends Controller
             ->where('send_time', '=', $finalTime)
             ->get()->first();
 
+//        dd($helpMeResponse);
 
         if ($helpMeResponse){
 
@@ -57,7 +58,6 @@ class WebController extends Controller
                 ->where('log_id', '=', $logId)
                 ->get()->first();
 
-            dd($logDetails);
 
             $serviceId = $logDetails->service_id;
 
@@ -85,6 +85,74 @@ class WebController extends Controller
             dd("Page not found");
 
         }
+
+    }
+
+    public function helpMeRespond(Request $request){
+
+        $userId = $request->userId;
+        $serviceId = $request->serviceId;
+        $logId = $request->logId;
+        $response = $request->response;
+        $sentDate = $request->sentDate;
+        $sentTime = $request->sentTime;
+        $responderName = $request->responderName;
+
+        $responseDate = date("d F Y");
+        $responseTime = date("h:i:s a");
+
+
+        $logDetails = DB::table('logs')
+            ->where('log_id', '=', $logId)
+            ->where('service_id', '=', $serviceId)
+            ->get()->first();
+
+        if($logDetails->response_status  == 'false') {
+
+            if ($response == 'Yes') {
+
+                $updateLog = DB::table('logs')
+                    ->where('log_id', '=', $logId)
+                    ->where('service_id', '=', $serviceId)
+                    ->update([
+                        'response_status' => 'true',
+                        'responded_by_id' => $userId,
+                        'responded_by_name' => $responderName,
+                    ]);
+
+
+                $updateResponse = DB::table('help_me_responses')
+                    ->where('alert_log_id', '=', $logId)
+                    ->where('response_to', '=', $userId)
+                    ->where('send_date', '=', $sentDate)
+                    ->where('send_time', '=', $sentTime)
+                    ->update([
+                        'response_type' => $response,
+                        'response_status' => 'true',
+                        'reply_text' => 'Help request accepted',
+                        'reply_date' => $responseDate,
+                        'reply_time' => $responseTime,
+                    ]);
+
+            } else {
+
+                $updateResponse = DB::table('help_me_responses')
+                    ->where('alert_log_id', '=', $logId)
+                    ->where('response_to', '=', $userId)
+                    ->where('send_date', '=', $sentDate)
+                    ->where('send_time', '=', $sentTime)
+                    ->update([
+                        'response_type' => $response,
+                        'response_status' => 'true',
+                        'reply_text' => 'Refused to help',
+                        'reply_date' => $responseDate,
+                        'reply_time' => $responseTime,
+                    ]);
+
+            }
+
+        }
+
 
     }
 

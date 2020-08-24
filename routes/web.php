@@ -62,8 +62,10 @@ Route::get('/adminSearchUsers', 'AdminController@searchUsers')->name('admin.sear
 
 Route::get('/adminApplyLogFilters', 'AdminController@applyLogFilters')->name('admin.apply.log.filters');
 
+Route::get('/adminTrackWearer', 'AdminController@trackWearer')->name('admin.track.wearer');
 
 //---------------------------------------------------//
 
 Route::get('/hmr/{logId}/{userId}', 'WebController@helpMeRequest')->name('help.me.request');
+Route::get('/helpMeRespond', 'WebController@helpMeRespond')->name('help.me.respond');
 

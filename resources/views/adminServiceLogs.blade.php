@@ -145,7 +145,9 @@
                     <div class="card">
                         <div class="card-header ">
                             <h4 class="card-title">Service ID: <span id="serviceId">{{ $serviceDetails->service_id }}</span></h4>
-                            <button id="showWearerLocation" data-toggle="modal" data-target="#trackWearer" class="btn btn-outline-primary btn-round btn-sm">Track Wearer</button>
+                            <button data-user-id="{{ Auth::user()->id }}" data-user-name="{{ Auth::user()->name }}" data-service-id="{{ $serviceDetails->service_id }}" id="showWearerLocation" class="btn btn-outline-primary btn-round btn-sm">
+                                Track Wearer &nbsp; <span><i id="trackWearerLoad" class="fa fa-spinner fa-spin sr-only"></i></span>
+                            </button>
                         </div>
                     </div>
                 </div>

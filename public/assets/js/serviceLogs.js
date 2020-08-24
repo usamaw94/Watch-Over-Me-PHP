@@ -18,6 +18,15 @@ $(document).ready(function () {
 
         });
 
+
+    window.Echo.channel('location.'+$('#serviceId').text()+'.'+$('#showWearerLocation').attr('data-user-id'))
+        .listen('NewLog', (e) => {
+
+            alert(e.locationLatitude);
+
+        });
+
+
     initialMap();
     // listen();
 
@@ -82,22 +91,54 @@ $(document).ready(function () {
         event.stopPropagation();
     });
 
+
+
     $(document).on("click",'#showWearerLocation', function(event) {
 
-        var lat = "-38.042411928573614";
-        var long = "145.1096239604738";
+
+        var id = $(this).attr('data-service-id');
+
+        var userId = $(this).attr('data-user-id');
+
+        var userName = $(this).attr('data-user-name');
+
+        $("#trackWearerLoad").removeClass("sr-only");
+
+        var url="/adminTrackWearer/";
 
 
-        var wearerPosition = new google.maps.LatLng(lat,long);
-        var mapOptions = {
-            center: wearerPosition,
-            zoom: 15,
-        };
-        var map = new google.maps.Map(document.getElementById("wearerLocationMap"), mapOptions);
-        var marker = new google.maps.Marker({
-            position: wearerPosition,
+        $.ajax({
+            url: url,
+            data: {
+                serviceId: id,
+                userName: userName,
+                userId:userId
+            },
+            datatype: "json",
+            method: "GET",
+            success: function (data) {
+                alert(data);
+            },
+            complete: function () {
+                $("#trackWearerLoad").addClass("sr-only");
+            }
         });
-        marker.setMap(map);
+
+
+        // var lat = "-38.042411928573614";
+        // var long = "145.1096239604738";
+        //
+        //
+        // var wearerPosition = new google.maps.LatLng(lat,long);
+        // var mapOptions = {
+        //     center: wearerPosition,
+        //     zoom: 15,
+        // };
+        // var map = new google.maps.Map(document.getElementById("wearerLocationMap"), mapOptions);
+        // var marker = new google.maps.Marker({
+        //     position: wearerPosition,
+        // });
+        // marker.setMap(map);
 
     });
 

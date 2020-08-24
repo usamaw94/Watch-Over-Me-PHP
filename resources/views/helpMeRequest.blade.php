@@ -51,14 +51,14 @@
 <div class="wrapper wrapper-full-page ">
     <div class="full-page lock-page section-image" filter-color="black">
         <!--   you can change the color of the filter page using: data-color="blue | green | orange | red | purple" -->
-        <div class="content" style="padding-top: 1vh">
-            <div class="container">
+        <div id="reloadPage" class="content" style="padding-top: 1vh">
+            <div id="reloadContent" class="container">
                 <div class="col-12">
                     <div class="card card-lock text-center">
                         <div class="card-header ">
                         </div>
                         <div class="card-body ">
-                            @if($logDetails->response_status == 'No')
+                            @if($logDetails->response_status == 'false')
                                 <h4 class="card-title" style="margin-top: 0px;margin-bottom: 20px"><b>{{ $serviceDetails->wearerFullName }}</b> needs your help !!</h4>
                             @else
                                 <h4 class="card-title" style="margin-top: 0px;margin-bottom: 20px"><b>{{ $serviceDetails->wearerFullName }}</b> requested for help !!</h4>
@@ -116,25 +116,106 @@
                             </div>
                             <hr>
                             <div class="row text-left">
-                                <div class="col-md-6">
-                                    <h5 class="text-info">
-                                        @if($logDetails->response_status == 'No')
-                                            <b>{{ $helpMeResponse->watcherFName }}, can you physically visit {{ $serviceDetails->wearerFullName }}?</b>
+                                @if($logDetails->response_status == 'false')
+
+                                    @if($helpMeResponse->response_status == 'false')
+
+                                        <div class="col-md-6">
+                                            <h5 class="text-info">
+                                                <b>{{ $helpMeResponse->watcherFName }}, can you physically visit {{ $serviceDetails->wearerFullName }}?</b>
+                                            </h5>
+                                        </div>
+                                        <div class="col-md-3 col-sm-7">
+                                            <button id="helpMeResponseYes"
+                                                    data-user-id="{{ $helpMeResponse->watcherId }}"
+                                                    data-service-id="{{ $serviceDetails->service_id }}"
+                                                    data-log-id="{{ $logDetails->log_id }}"
+                                                    data-sent-date="{{ $helpMeResponse->send_date }}"
+                                                    data-sent-time="{{ $helpMeResponse->send_time }}"
+                                                    data-responder-name="{{ $helpMeResponse->watcherFullName }}"
+                                                    class="btn btn-block btn-success btn-lg btn-round">
+                                                <i class="fa fa-check"></i> &nbsp; Yes &nbsp;
+                                                <i style="display: none" id="helpMeResponseYesLoad" class="fa fa-spinner fa-spin"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-3 col-sm-5">
+                                            <button id="helpMeResponseNo"
+                                                    data-user-id="{{ $helpMeResponse->watcherId }}"
+                                                    data-service-id="{{ $serviceDetails->service_id }}"
+                                                    data-log-id="{{ $logDetails->log_id }}"
+                                                    data-sent-date="{{ $helpMeResponse->send_date }}"
+                                                    data-sent-time="{{ $helpMeResponse->send_time }}"
+                                                    data-responder-name="{{ $helpMeResponse->watcherFullName }}"
+                                                    class="btn btn-block btn-danger btn-lg btn-round">
+                                                <i class="fa fa-times"></i> &nbsp; No &nbsp;
+                                                <i style="display: none" id="helpMeResponseNoLoad" class="fa fa-spinner fa-spin"></i>
+                                            </button>
+                                        </div>
+
+                                    @else
+
+                                        @if($helpMeResponse->response_type == 'No')
+
+                                            <div class="col-md-12">
+                                                <h5 class="text-info">
+                                                    <b>{{ $helpMeResponse->watcherFName }}, you have declined {{ $serviceDetails->wearerFullName }}'s request for help</b>
+                                                </h5>
+                                            </div>
+
                                         @else
-                                            <b>{{ $helpMeResponse->responded_by_name }}, accepted {{ $serviceDetails->wearerFullName }}'s request for help?</b>
+
+                                            <div class="col-md-12">
+                                                <h5 class="text-info">
+                                                    <b>{{ $logDetails->responded_by_name }}, you have accepted {{ $serviceDetails->wearerFullName }}'s request for help</b>
+                                                </h5>
+                                            </div>
+
                                         @endif
-                                    </h5>
-                                </div>
-                                <div class="col-md-3 col-sm-7">
-                                    <button data-user-id="{{ $helpMeResponse->watcherId }}" data-service-id="{{ $serviceDetails->service_id }}" data-log-id="{{ $logDetails->log_id }}" class="btn btn-block btn-success btn-lg btn-round">
-                                        <i class="fa fa-check"></i> &nbsp; Yes
-                                    </button>
-                                </div>
-                                <div class="col-md-3 col-sm-5">
-                                    <button data-user-id="{{ $helpMeResponse->watcherId }}" data-service-id="{{ $serviceDetails->service_id }}" data-log-id="{{ $logDetails->log_id }}" class="btn btn-block btn-danger btn-lg btn-round">
-                                        <i class="fa fa-times"></i> &nbsp; No
-                                    </button>
-                                </div>
+
+                                    @endif
+
+                                @elseif($logDetails->response_status == 'true')
+
+                                    @if($helpMeResponse->response_status == 'false')
+
+                                        <div class="col-md-12">
+                                            <h5 class="text-info">
+                                                <b>{{ $helpMeResponse->watcherFName }}, you didn't respond to {{ $serviceDetails->wearerFullName }}'s request for help</b>
+                                            </h5>
+                                        </div>
+
+                                    @else
+
+                                        @if($helpMeResponse->response_type == 'No')
+
+                                            <div class="col-md-12">
+                                                <h5 class="text-info">
+                                                    <b>{{ $helpMeResponse->watcherFName }}, you have declined {{ $serviceDetails->wearerFullName }}'s request for help</b>
+                                                </h5>
+                                            </div>
+
+                                        @else
+
+                                            <div class="col-md-12">
+                                                <h5 class="text-info">
+                                                    <b>{{ $logDetails->responded_by_name }}, you have accepted {{ $serviceDetails->wearerFullName }}'s request for help</b>
+                                                </h5>
+                                            </div>
+
+                                        @endif
+
+                                    @endif
+
+
+                                @else
+
+                                    <div class="col-md-12">
+                                        <h5 class="text-info">
+                                            <b>No one responded to {{ $serviceDetails->wearerFullName }}'s request for help</b>
+                                        </h5>
+                                    </div>
+
+                                @endif
                             </div>
                             <hr>
                             <div class="row">

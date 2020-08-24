@@ -30,6 +30,6 @@ Route::get('/testConnection','ApiController@testConnection')->name('api.test.con
 Route::post('/wearerLoginProcessing','ApiController@wearerLoginProcessing')->name('wearer.login.processing');
 Route::post('/deactivateHelpMeRequest','ApiController@deactivateHelpMeRequest')->name('deactivate.help.me.request');
 Route::post('/regularLog','ApiController@regularLog')->name('regular.log');
-
+Route::post('/sendLocation', 'ApiController@sendLocation')->name('send.location');
 Route::post('/contactWatcher', 'ApiController@contactWatcher')->name('contact.watcher');
 

@@ -18,8 +18,6 @@ use Illuminate\Support\Facades\Hash;
 
 class ApiController extends Controller
 {
-    protected $deviceToken = 'cEOmixJOTaO82NK5rzIACh:APA91bEFSBzw9Ei5uxwTnafvSeFl2zkovVsOAghrsQ3Tl-goZU5-i1GsieLmUAepiPSzPLO-lGEpCEVEL7H2tr9Ayd8O7x_0wHOTEHlDEwh69DOMSFslRw3ryVJwtdGzq1_xtEm1asn';
-
     protected $firebaseUrl = "https://fcm.googleapis.com/fcm/send";
     protected $serverApiKey = 'AAAAOag5k6Q:APA91bGWiOFxRiKvtRJXrVUdX0pMKqPygeFQD3uJaQykRq7Si_IFbzksVHTbtJZEBt3ZpozNb6NfA_4TK8TA3p0o3UFg5PVpEKj4G3iMbSw98zFbkralNOXJ4F_W_3OmabB2qWqxmfr3';
 
@@ -285,6 +283,7 @@ class ApiController extends Controller
         $alertLog->log_time = $request->logTime;
         $alertLog->log_type = $request->logType;
         $alertLog->service_id = $request->serviceId;
+        $alertLog->response_status = "false";
 
 
 
@@ -469,32 +468,16 @@ class ApiController extends Controller
         );
         return response()->json($res);
     }
+
+    public function sendLocation(Request $request){
+
+        $serviceId = $request->serviceId;
+        $receiverId = $request->receiverId;
+        $latitude = $request->latitude;
+        $longitude = $request->longitude;
+        $address = $request->address;
+
+        return response()->json("done");
+    }
+
 }
-    // {
-    //     $data = [
-    //         "to" => $token,
-    //         "notification" =>
-    //         [
-    //             "title" => $title,
-    //             "body" => $message
-    //         ],
-    //     ];
-
-    //     $dataString = json_encode($data);
-
-    //     $headers = [
-    //         'Authorization: key=' . $this->serverApiKey,
-    //         'Content-Type: application/json',
-    //     ];
-
-
-    //     $ch = curl_init();
-
-    //     curl_setopt($ch, CURLOPT_URL, $this->firebaseUrl);
-    //     curl_setopt($ch, CURLOPT_POST, true);
-    //     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    //     curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-
-    //     curl_exec($ch);
-    // }

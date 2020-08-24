@@ -442,11 +442,12 @@ class ApiController extends Controller
             $watcherResponses->reply_date = "";
             $watcherResponses->reply_time = "";
             $watcherResponses->response_link = $request->responseLink;
-            $watcherPhone = $request->watcherPhone;
-            $wearerFullName = $request->wearerFullName;
+
 
             $watcherResponses->save();
 
+            $createdAt = $request->sendDate . "-" . $request->sendTime;
+            event(new NewAlertLog($request->serviceId,$request->wearerId,$request->wearerFullName,$request->watcherId,$createdAt));
             //email function will be called here
         }
 

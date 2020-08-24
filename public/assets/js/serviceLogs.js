@@ -20,7 +20,7 @@ $(document).ready(function () {
 
 
     window.Echo.channel('location.'+$('#serviceId').text()+'.'+$('#showWearerLocation').attr('data-user-id'))
-        .listen('NewLog', (e) => {
+        .listen('WearerLocation', (e) => {
 
             alert(e.locationLatitude);
 
@@ -117,7 +117,6 @@ $(document).ready(function () {
             datatype: "json",
             method: "GET",
             success: function (data) {
-                alert(data);
             },
             complete: function () {
                 $("#trackWearerLoad").addClass("sr-only");

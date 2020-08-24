@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\HourlyLogCreated;
 use App\Events\NewAlertLog;
 use App\Events\NewLog;
+use App\Events\WearerLocation;
 use App\HelpMeResponse;
 use App\Service;
 use App\User;
@@ -476,6 +477,8 @@ class ApiController extends Controller
         $latitude = $request->latitude;
         $longitude = $request->longitude;
         $address = $request->address;
+
+        event(new WearerLocation($receiverId,$serviceId,$latitude,$longitude,$address));
 
         return response()->json("done");
     }

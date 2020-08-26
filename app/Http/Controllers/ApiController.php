@@ -175,7 +175,10 @@ class ApiController extends Controller
 
         $service = DB::table('services')->where('service_id', '=', $request->serviceId)->first();
 
-        return response()->json($service->wearer_logged_in);
+        if ($service->wearer_logged_in == null || $service->wearer_logged_in != "true") {
+            return response()->json("false");
+        }
+        return response()->json("true");
     }
 
 
@@ -223,7 +226,7 @@ class ApiController extends Controller
 
     public function wearerNotification(Request $request)
     {
-        $this->sendNotificationToWearer($request->serviceId,$request->notificationTitle,$request->notificationText);
+        $this->sendNotificationToWearer($request->serviceId, $request->notificationTitle, $request->notificationText);
 
         return response()->json("Done");
     }
@@ -394,6 +397,7 @@ class ApiController extends Controller
 
 
         $positiveResponder = DB::table('help_me_responses')
+            ->where('alert_log_id', '=', $request->alertLogId)
             ->where('response_status', '=', "true")
             ->where('response_type', '=', 'Yes')
             ->select('response_to')
@@ -411,13 +415,14 @@ class ApiController extends Controller
         }
 
         $negativeResponse = DB::table('help_me_responses')
+            ->where('alert_log_id', '=', $request->alertLogId)
             ->where('response_status', '=', "true")
             ->where('response_type', '=', 'No')
             ->where('response_to', '=', $request->watcherId)
             ->select('response_to')
             ->first();
 
-        if($negativeResponse){
+        if ($negativeResponse) {
             $res = array(
                 'connection' => true,
                 'queryStatus' => false,
@@ -448,34 +453,32 @@ class ApiController extends Controller
             $watcherResponses->save();
 
             $createdAt = $request->sendDate . "-" . $request->sendTime;
-            event(new NewAlertLog($request->serviceId,$request->wearerId,$request->wearerFullName,$request->watcherId,$createdAt));
+            event(new NewAlertLog($request->serviceId, $request->wearerId, $request->wearerFullName, $request->watcherId, $createdAt));
 
-//            $data = array(
-//                'bookingId' => $bookingId,
-//                'entryDate' => $entryDate,
-//                'entryTime' => $entryTime,
-//                'exitDate' => $exitDate,
-//                'exitTime' => $exitTime,
-//                'cost' => $cost,
-//                'days' => $days,
-//                'email' => $email,
-//                'customerName' => $customerName,
-//                'phone' => $phoneNumber,
-//                'rego' => $rego,
-//                'color' => $color,
-//                'make' => $make,
-//                'model' => $model
-//            );
+            //            $data = array(
+            //                'bookingId' => $bookingId,
+            //                'entryDate' => $entryDate,
+            //                'entryTime' => $entryTime,
+            //                'exitDate' => $exitDate,
+            //                'exitTime' => $exitTime,
+            //                'cost' => $cost,
+            //                'days' => $days,
+            //                'email' => $email,
+            //                'customerName' => $customerName,
+            //                'phone' => $phoneNumber,
+            //                'rego' => $rego,
+            //                'color' => $color,
+            //                'make' => $make,
+            //                'model' => $model
+            //            );
 
-//            Mail::send('emails.contactWatcher', $data ,function ($message) use ($data){
-//                $message->from('mailtest2194@gmail.com', 'Watch Over Me');
-//                $message->to($data['email']);
-//                $message->subject('Booking Confirmation');
-//            });
+            //            Mail::send('emails.contactWatcher', $data ,function ($message) use ($data){
+            //                $message->from('mailtest2194@gmail.com', 'Watch Over Me');
+            //                $message->to($data['email']);
+            //                $message->subject('Booking Confirmation');
+            //            });
 
-        }
-
-        else {
+        } else {
             //call function will be called here
 
         }
@@ -483,7 +486,7 @@ class ApiController extends Controller
         $this->sendNotificationToWearer($request->serviceId, $request->responseTitle, $request->responseText);
 
         $createdAt = $request->sendDate . "-" . $request->sendTime;
-        event(new NewAlertLog($request->serviceId,$request->wearerId,$request->wearerFullName,$request->watcherId,$createdAt));
+        event(new NewAlertLog($request->serviceId, $request->wearerId, $request->wearerFullName, $request->watcherId, $createdAt));
 
         $res = array(
             'connection' => false,
@@ -494,7 +497,8 @@ class ApiController extends Controller
         return response()->json($res);
     }
 
-    public function sendLocation(Request $request){
+    public function sendLocation(Request $request)
+    {
 
         $serviceId = $request->serviceId;
         $receiverId = $request->receiverId;
@@ -502,9 +506,8 @@ class ApiController extends Controller
         $longitude = $request->longitude;
         $address = $request->address;
 
-        event(new WearerLocation($receiverId,$serviceId,$latitude,$longitude,$address));
+        event(new WearerLocation($receiverId, $serviceId, $latitude, $longitude, $address));
 
         return response()->json("done");
     }
-
 }

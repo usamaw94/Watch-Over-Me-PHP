@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    localStorage.clear();
+
     window.Echo.channel('showlogs.'+$('#serviceId').text())
         .listen('NewLog', (e) => {
 
@@ -21,12 +23,6 @@ $(document).ready(function () {
 
     // alert('location.'+$('#serviceId').text()+'.'+$('#showWearerLocation').attr('data-user-id'));
 
-    window.Echo.channel('location.'+$('#serviceId').text()+'.'+$('#showWearerLocation').attr('data-user-id'))
-        .listen('WearerLocation', (e) => {
-
-            alert(e.locationLatitude);
-
-        });
 
 
     initialMap();
@@ -79,6 +75,7 @@ $(document).ready(function () {
     $(document).on("click", ".logs", function(){
         var lat=$(this).attr('data-lat');
         var long=$(this).attr('data-long');
+        var locality=$(this).attr('data-locality');
 
         $(".logs").removeClass("logs-active");
 
@@ -87,6 +84,9 @@ $(document).ready(function () {
         $(this).addClass("logs-active");
 
         myMap(lat,long);
+
+        $(".map-marker-icon").removeClass('sr-only');
+        $("#wearerLogLocality").text(locality);
     });
 
     $(document).on("click",'.logs-action', function(event) {
@@ -121,27 +121,43 @@ $(document).ready(function () {
             success: function (data) {
             },
             complete: function () {
-                $("#trackWearerLoad").addClass("sr-only");
             }
         });
 
-
-        // var lat = "-38.042411928573614";
-        // var long = "145.1096239604738";
-        //
-        //
-        // var wearerPosition = new google.maps.LatLng(lat,long);
-        // var mapOptions = {
-        //     center: wearerPosition,
-        //     zoom: 15,
-        // };
-        // var map = new google.maps.Map(document.getElementById("wearerLocationMap"), mapOptions);
-        // var marker = new google.maps.Marker({
-        //     position: wearerPosition,
-        // });
-        // marker.setMap(map);
-
     });
+
+    window.Echo.channel('location.'+$('#serviceId').text()+'.'+$('#showWearerLocation').attr('data-user-id'))
+        .listen('WearerLocation', (e) => {
+
+            var userId = e.userId;
+            var serviceId = e.serviceId;
+            var lat = e.locationLatitude;
+            var long = e.locationLongitude;
+            var locality = e.locality;
+
+            $("#wearerLocality").text(locality);
+
+            var getDirectionLink = "https://www.google.com/maps/dir//"+lat+","+long;
+
+
+            $("#wearerGetDirectionLink").attr("href", getDirectionLink);
+
+            var wearerPosition = new google.maps.LatLng(lat,long);
+            var mapOptions = {
+                center: wearerPosition,
+                zoom: 15,
+            };
+            var map = new google.maps.Map(document.getElementById("wearerLocationMap"), mapOptions);
+            var marker = new google.maps.Marker({
+                position: wearerPosition,
+            });
+            marker.setMap(map);
+
+            $('#trackWearer').modal('show');
+
+            $("#trackWearerLoad").addClass("sr-only");
+
+        });
 
 
     $(document).on("click",'.show-hourly-log-details', function(event) {
@@ -166,21 +182,166 @@ $(document).ready(function () {
 
     $(document).on("click",'.show-alert-log-details', function(event) {
 
+        $("#alertLogInfoIcon").addClass("sr-only");
+        $("#alertLogLoad").removeClass("sr-only");
+
         var id = $(this).attr('data-id');
-        var date = $(this).attr('data-date');
-        var time = $(this).attr('data-time');
-        var description = $(this).attr('data-description');
-        var type = $(this).attr('data-type');
-        var deviceBattery = $(this).attr('data-battery');
-
-        $("#aModalId").text(id);
-        $("#aModalDateTime").text(date +" - "+time);
-        $("#aModalDescription").text(description);
-        $("#aModalType").text(type);
-        $("#aModalBattery").text(deviceBattery+"%");
+        var wearerName = $(this).attr('data-wearer-name');
 
 
-        $('#alertLogDetails').modal('show');
+        var url="/adminAlertLogDetails/";
+
+
+        $.ajax({
+            url: url,
+            data: {
+                logId: id
+            },
+            datatype: "json",
+            method: "GET",
+            success: function (data) {
+
+                $("#aModalWearerName").text(wearerName);
+                $("#aModalTime").text(data.logDetails.log_time);
+                $("#aModalDate").text(data.logDetails.log_date);
+                $("#aModalBattery").text(data.logDetails.battery_percentage+"%");
+
+                $("#helpMeResponse").text("");
+
+                if(data.logDetails.response_status == "true"){
+                    $("#helpMeResponse").html(
+                        "<p class='text-success'><b>"+data.logDetails.responded_by_name+"</b> accepted the help request</p>");
+                } else {
+                    $("#helpMeResponse").html("<p class='text-danger'>No one accepted the help request</p>");
+                }
+
+                $("#alertLogTimeline").empty();
+
+                var length = data.logResponses.length;
+
+
+                for(i=0; i<data.logResponses.length; i++){
+                    var alertLogId = data.logResponses[i].alert_log_id;
+                    var responseFrom = data.logResponses[i].response_from;
+                    var responseTo = data.logResponses[i].response_to;
+                    var sendText = data.logResponses[i].send_text;
+                    var sendDate = data.logResponses[i].send_date;
+                    var sendTime = data.logResponses[i].send_time;
+                    var responseType = data.logResponses[i].response_type;
+                    var responseStatus = data.logResponses[i].response_status;
+                    var replyText = data.logResponses[i].reply_text;
+                    var replyDate = data.logResponses[i].reply_date;
+                    var replyTime = data.logResponses[i].reply_time;
+                    var responseLink = data.logResponses[i].response_link;
+                    var personId = data.logResponses[i].person_id;
+                    var fName = data.logResponses[i].f_name;
+                    var lName = data.logResponses[i].l_name;
+                    var fullName = data.logResponses[i].full_name;
+                    var email = data.logResponses[i].email;
+                    var phone = data.logResponses[i].phone;
+
+                    var response = "";
+
+                    if (responseStatus == "true") {
+
+                        if(responseType == "Yes") {
+
+                            //Yes
+
+                            response = "<li class='timeline-inverted'>" +
+                                "<div class='timeline-badge success'>" +
+                                "<i class='nc-icon nc-single-02'></i>" +
+                                "</div>" +
+                                "<div class='timeline-panel'>" +
+                                "<div class='timeline-heading'>" +
+                                "<span class='badge badge-pill badge-success'>Response</span>" +
+                                "</div>" +
+                                "<div class='timeline-body'>" +
+                                "<p><b>"+fName+"</b> accepted the help request</p>\n" +
+                                "</div>" +
+                                "<h6>" +
+                                "<i class='ti-time'></i>" +
+                                replyTime+" - "+ replyDate +
+                                "</h6>" +
+                                "</div>" +
+                                "</li>";
+
+
+                        } else {
+
+                            // No
+
+                            response = "<li class='timeline-inverted'>" +
+                                "<div class='timeline-badge danger'>" +
+                                "<i class='nc-icon nc-single-02'></i>" +
+                                "</div>" +
+                                "<div class='timeline-panel'>" +
+                                "<div class='timeline-heading'>" +
+                                "<span class='badge badge-pill badge-danger'>Response</span>" +
+                                "</div>" +
+                                "<div class='timeline-body'>" +
+                                "<p><b>"+fName+"</b> declined the help request</p>\n" +
+                                "</div>" +
+                                "<h6>" +
+                                "<i class='ti-time'></i>" +
+                                replyTime+" - "+ replyDate +
+                                "</h6>" +
+                                "</div>" +
+                                "</li>";
+
+                        }
+
+                    } else {
+
+                        // Didn't respond
+
+                        response = "<li class='timeline-inverted'>" +
+                            "<div class='timeline-badge warning'>" +
+                            "<i class='nc-icon nc-single-02'></i>" +
+                            "</div>" +
+                            "<div class='timeline-panel'>" +
+                            "<div class='timeline-heading'>" +
+                            "<span class='badge badge-pill badge-warning'>Response</span>" +
+                            "</div>" +
+                            "<div class='timeline-body'>" +
+                            "<p><b>"+fName+"</b> didn't respond</p>" +
+                            "</div>" +
+                            "</div>" +
+                            "</li>";
+
+                    }
+
+                    var row = "<li class='timeline'>" +
+                        "<div class='timeline-badge info'>" +
+                        "<i class='nc-icon nc-circle-10'></i>" +
+                        "</div>" +
+                        "<div class='timeline-panel'>" +
+                        "<div class='timeline-heading'>" +
+                        "<span class='badge badge-pill badge-info'>Help Me Request</span>" +
+                        "</div>" +
+                        "<div class='timeline-body'>" +
+                        "<p>Request was sent to <b>"+fullName+"</b></p>" +
+                        "</div>" +
+                        "<h6>" +
+                        "<i class='ti-time'></i>" +
+                        sendTime+" - "+sendDate+
+                        "</h6>" +
+                        "</div>" +
+                        "</li>" + response;
+
+
+                    $("#alertLogTimeline").append(row);
+                }
+
+
+                $('#alertLogDetails').modal('show');
+            },
+            complete: function () {
+                $("#alertLogInfoIcon").removeClass("sr-only");
+                $("#alertLogLoad").addClass("sr-only");
+            }
+        });
+
     });
 
     // $(document).on("submit", "#logFiltersForm", function (e) {

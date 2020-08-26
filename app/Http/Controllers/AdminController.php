@@ -7,6 +7,7 @@ use App\User;
 use App\WatcherRelation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -188,6 +189,13 @@ class AdminController extends Controller
             ->where('service_id', '=', $serviceId)
             ->get()->first();
 
+        $wearerId = $serviceDetails->wearer_id;
+
+        $wearerDetails = DB::table('users')
+            ->where('person_id', '=', $wearerId)
+            ->select('person_id', 'f_name' , 'l_name', 'full_name', 'email', 'phone')
+            ->get()->first();
+
         $logs = DB::table('logs')
             ->where('service_id', '=', $serviceId)
             ->orderBy('created_at', 'desc')
@@ -195,6 +203,7 @@ class AdminController extends Controller
             ->take(50)->get();
 
         $data = array(
+            'wearerDetails' => $wearerDetails,
             'serviceDetails' => $serviceDetails,
             'logs' => $logs
         );
@@ -449,6 +458,7 @@ class AdminController extends Controller
         $wearerEmail = $request->wearerEmail;
         $wearerFName = $request->wearerFirstName;
         $wearerLName = $request->wearerLastName;
+        $newWearer = false;
 
         $watcherPhone = $request->watcherStorePhoneNum;
         $watcherExistStatus = $request->watcherExistStatus;
@@ -456,6 +466,7 @@ class AdminController extends Controller
         $watcherEmail = $request->watcherEmail;
         $watcherFName = $request->watcherFirstName;
         $watcherLName = $request->watcherLastName;
+        $newWatcher = false;
 
         $customerType = $request->customerTypeRadio;
         $customerPhone = $request->customerStorePhoneNum;
@@ -464,6 +475,7 @@ class AdminController extends Controller
         $customerEmail = $request->customerEmail;
         $customerFName = $request->customerFirstName;
         $customerLName = $request->customerLastName;
+        $newCustomer = false;
 
 
         $dbName = 'watchoverme';
@@ -490,6 +502,11 @@ class AdminController extends Controller
 
                 // Wearer Not Exist
 
+                $wearerCode = date("dYmhis");
+
+                $newWearer = true;
+
+
                 $infoUser = DB::select('SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = ? AND   TABLE_NAME   = ?',[$dbName,$tableNameUser]);
                 $autoIncUser = $infoUser[0]->AUTO_INCREMENT;
                 $wearerId = 'WOMUSR00'. $autoIncUser;
@@ -501,8 +518,30 @@ class AdminController extends Controller
                 $wR->full_name = $wearerFName. " " .$wearerLName;
                 $wR->email = $wearerEmail;
                 $wR->phone = $wearerPhone;
+                $wR->verification_status = "false";
+                $wR->verification_code = $wearerCode;
                 $wR->password = bcrypt("womperson");
                 $wRSaved = $wR->save();
+
+                $wearerVerificationLink = "http://127.0.0.1:8000/userVerification/".$autoIncUser.$wearerCode;
+
+//                $data = array(
+//                    'wearerId' => $wearerId,
+//                    'wearerFName' => $wearerFName,
+//                    'wearerLName' => $wearerLName,
+//                    'wearerFullName' => $wearerFName. " " .$wearerLName,
+//                    'role' => "Wearer",
+//                    'wearerEmail' => $wearerEmail,
+//                    'wearerPhone' => $wearerPhone,
+//                    'serviceId' => $serviceId,
+//                    'wearerPhone' => $wearerPhone,
+//            );
+//
+//            Mail::send('emails.userVerification', $data ,function ($message) use ($data){
+//                $message->from('mailtest2194@gmail.com', 'Watch Over Me');
+//                $message->to($data['wearerEmail']);
+//                $message->subject('Watcher Over Me - Service Creation');
+//            });
 
                 error_log('New wearer');
             }
@@ -510,6 +549,10 @@ class AdminController extends Controller
             if ($watcherExistStatus == "not exist") {
 
                 // Watcher Not Exist
+
+                $newWatcher = true;
+
+                $watcherCode = date("dYmhis");
 
                 $infoUser = DB::select('SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = ? AND   TABLE_NAME   = ?',[$dbName,$tableNameUser]);
                 $autoIncUser = $infoUser[0]->AUTO_INCREMENT;
@@ -522,8 +565,12 @@ class AdminController extends Controller
                 $wT->full_name = $watcherFName. " " .$watcherLName;
                 $wT->email = $watcherEmail;
                 $wT->phone = $watcherPhone;
+                $wT->verification_status = "false";
+                $wT->verification_code = $watcherCode;
                 $wT->password = bcrypt("womperson");
                 $wTSaved = $wT->save();
+
+                $watcherVerificationLink = "http://127.0.0.1:8000/userVerification/".$autoIncUser.$watcherCode;
 
                 error_log('New watcher');
 
@@ -532,6 +579,10 @@ class AdminController extends Controller
             if ($customerExistStatus == "not exist") {
 
                 // Customer Not Exist
+
+                $newCustomer = true;
+
+                $customerCode = date("dYmhis");
 
                 $infoUser = DB::select('SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = ? AND   TABLE_NAME   = ?',[$dbName,$tableNameUser]);
                 $autoIncUser = $infoUser[0]->AUTO_INCREMENT;
@@ -544,8 +595,12 @@ class AdminController extends Controller
                 $c->full_name = $customerFName. " " .$customerLName;
                 $c->email = $customerEmail;
                 $c->phone = $customerPhone;
+                $c->verification_status = "false";
+                $c->verification_code = $customerCode;
                 $c->password = bcrypt("womperson");
                 $cSaved = $c->save();
+
+                $customerVerificationLink = "http://127.0.0.1:8000/userVerification/".$autoIncUser.$customerCode;
 
                 error_log('New customer');
 
@@ -576,8 +631,9 @@ class AdminController extends Controller
             $s->wearer_id = $wearerId;
             $s->customer_id = $customerId;
             $s->wom_num = $wearerPhone;
-            $s->service_status = "Pending";
+            $s->service_status = "User Verification Required";
             $s->no_of_watchers = 1;
+            $s->alert_request_status = "inactive";
             $sSaved = $s->save();
 
             $wR =new WatcherRelation();
@@ -592,6 +648,142 @@ class AdminController extends Controller
             $msg = array(
                 'message' => "New service created successfully",
             );
+
+
+            ////////////////////////////////////
+
+            $newServiceEmailData = array(
+                'contactName' => $wearerFName,
+
+                'serviceId' => $serviceId,
+                'wearerId' => $wearerId,
+                'wearerFName' => $wearerFName,
+                'wearerLName' => $wearerLName,
+                'wearerFullName' => $wearerFName. " " .$wearerLName,
+                'wearerEmail' => $wearerEmail,
+                'wearerPhone' => $wearerPhone,
+
+
+                'watcherId' => $watcherId,
+                'watcherFName' => $watcherFName,
+                'watcherLName' => $watcherLName,
+                'watcherFullName' => $watcherFName. " " .$watcherLName,
+                'watcherEmail' => $watcherEmail,
+                'watcherPhone' => $watcherPhone,
+
+
+                'customerType' => $customerType,
+
+                'customerId' => $customerId,
+                'customerFName' => $customerFName,
+                'customerLName' => $customerLName,
+                'customerFullName' => $customerFName. " " .$customerLName,
+                'customerEmail' => $customerEmail,
+                'customerPhone' => $customerPhone,
+
+            );
+
+            Mail::send('emails.newService', $newServiceEmailData ,function ($message) use ($wearerEmail){
+                $message->from('mailtest2194@gmail.com', 'Watch Over Me');
+                $message->to($wearerEmail);
+                $message->subject('Watcher Over Me - Service Creation');
+            });
+
+
+            $newServiceEmailData['contactName'] = $watcherFName;
+
+            Mail::send('emails.newService', $newServiceEmailData ,function ($message) use ($watcherEmail){
+                $message->from('mailtest2194@gmail.com', 'Watch Over Me');
+                $message->to($watcherEmail);
+                $message->subject('Watcher Over Me - Service Creation');
+            });
+
+
+            if($customerType != "wearer" && $customerType != "watcher"){
+
+                $newServiceEmailData['contactName'] = $customerFName;
+
+                Mail::send('emails.newService', $newServiceEmailData ,function ($message) use ($customerEmail){
+                    $message->from('mailtest2194@gmail.com', 'Watch Over Me');
+                    $message->to($customerEmail);
+                    $message->subject('Watcher Over Me - Service Creation');
+                });
+
+            }
+
+            if ($newWearer == true){
+
+                $userVerificationEmailData = array(
+
+                    'serviceId' => $serviceId,
+
+                    'userId' => $wearerId,
+                    'userFName' => $wearerFName,
+                    'userLName' => $wearerLName,
+                    'userFullName' => $wearerFName. " " .$wearerLName,
+                    'userEmail' => $wearerEmail,
+                    'userPhone' => $wearerPhone,
+                    'verificationLink' => $wearerVerificationLink
+
+
+                );
+
+                Mail::send('emails.userVerification', $userVerificationEmailData ,function ($message) use ($userVerificationEmailData){
+                    $message->from('mailtest2194@gmail.com', 'Watch Over Me');
+                    $message->to($userVerificationEmailData['userEmail']);
+                    $message->subject('Watcher Over Me - User Verification');
+                });
+            }
+
+            if ($newWatcher == true){
+
+                $userVerificationEmailData = array(
+
+                    'serviceId' => $serviceId,
+
+                    'userId' => $watcherId,
+                    'userFName' => $watcherFName,
+                    'userLName' => $watcherLName,
+                    'userFullName' => $watcherFName. " " .$watcherLName,
+                    'userEmail' => $watcherEmail,
+                    'userPhone' => $watcherPhone,
+                    'verificationLink' => $watcherVerificationLink
+
+
+                );
+
+                Mail::send('emails.userVerification', $userVerificationEmailData ,function ($message) use ($userVerificationEmailData){
+                    $message->from('mailtest2194@gmail.com', 'Watch Over Me');
+                    $message->to($userVerificationEmailData['userEmail']);
+                    $message->subject('Watcher Over Me - User Verification');
+                });
+
+            }
+
+            if ($newCustomer == true){
+
+                $userVerificationEmailData = array(
+
+                    'serviceId' => $serviceId,
+
+                    'userId' => $customerId,
+                    'userFName' => $customerFName,
+                    'userLName' => $customerLName,
+                    'userFullName' => $customerFName. " " .$customerLName,
+                    'userEmail' => $customerEmail,
+                    'userPhone' => $customerPhone,
+                    'verificationLink' => $customerVerificationLink
+
+
+                );
+
+                Mail::send('emails.userVerification', $userVerificationEmailData ,function ($message) use ($userVerificationEmailData){
+                    $message->from('mailtest2194@gmail.com', 'Watch Over Me');
+                    $message->to($userVerificationEmailData['userEmail']);
+                    $message->subject('Watcher Over Me - User Verification');
+                });
+
+            }
 
             return redirect('/adminServices')->with($msg);
 
@@ -781,6 +973,56 @@ class AdminController extends Controller
 
         }
     }
+
+    public function alertLogDetails(Request $request){
+        $logId = $request->logId;
+
+        $logDetails = DB::table('logs')
+            ->where('log_id', '=', $logId)
+            ->get()->first();
+
+        $logResponses = DB::table('help_me_responses')
+            ->join('users as watcher', 'watcher.person_id', '=', 'help_me_responses.response_to')
+            ->where('alert_log_id', '=', $logId)
+            ->select('help_me_responses.alert_log_id', 'help_me_responses.response_from', 'help_me_responses.response_to', 'help_me_responses.send_text', 'help_me_responses.send_date', 'help_me_responses.send_time', 'help_me_responses.response_type',
+                'help_me_responses.response_status', 'help_me_responses.reply_text', 'help_me_responses.reply_date', 'help_me_responses.reply_time', 'help_me_responses.response_link',
+                'watcher.person_id', 'watcher.f_name', 'watcher.l_name', 'watcher.full_name',  'watcher.email', 'watcher.phone')
+            ->orderBy('help_me_responses.created_at', 'asc')
+            ->get();
+
+        $data = array(
+            'logDetails' => $logDetails,
+            'logResponses' => $logResponses
+        );
+
+        return response()->json($data);
+
+    }
+
+    public function logHistory(Request $request){
+        $serviceId = $request->serviceId;
+        $date = $request->date;
+        $type = $request->type;
+
+        $logs = DB::table('logs')
+            ->where('service_id', '=', $serviceId)
+            ->where('log_date', 'like', '%'.$date.'%' )
+            ->where('log_type', 'like', '%'.$type.'%' )
+            ->paginate(2);
+
+
+        $data = array(
+            'serviceId' => $serviceId,
+            'date' => $date,
+            'type' => $type,
+            'logs' => $logs
+        );
+
+        return view('adminLogHistory')->with($data);
+
+
+    }
+
 
 }
 

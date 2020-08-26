@@ -16,6 +16,7 @@ use App\Log;
 use Dotenv\Result\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class ApiController extends Controller
 {
@@ -452,9 +453,40 @@ class ApiController extends Controller
             $watcherResponses->save();
 
             $createdAt = $request->sendDate . "-" . $request->sendTime;
+<<<<<<< HEAD
             event(new NewAlertLog($request->serviceId, $request->wearerId, $request->wearerFullName, $request->watcherId, $createdAt));
             //email function will be called here
         } else {
+=======
+            event(new NewAlertLog($request->serviceId,$request->wearerId,$request->wearerFullName,$request->watcherId,$createdAt));
+
+//            $data = array(
+//                'bookingId' => $bookingId,
+//                'entryDate' => $entryDate,
+//                'entryTime' => $entryTime,
+//                'exitDate' => $exitDate,
+//                'exitTime' => $exitTime,
+//                'cost' => $cost,
+//                'days' => $days,
+//                'email' => $email,
+//                'customerName' => $customerName,
+//                'phone' => $phoneNumber,
+//                'rego' => $rego,
+//                'color' => $color,
+//                'make' => $make,
+//                'model' => $model
+//            );
+
+//            Mail::send('emails.contactWatcher', $data ,function ($message) use ($data){
+//                $message->from('mailtest2194@gmail.com', 'Watch Over Me');
+//                $message->to($data['email']);
+//                $message->subject('Booking Confirmation');
+//            });
+
+        }
+
+        else {
+>>>>>>> 580670be6fc97b63b7c15495b1b571e7f1e276b2
             //call function will be called here
 
         }

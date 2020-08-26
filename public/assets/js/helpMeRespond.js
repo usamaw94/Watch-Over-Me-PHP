@@ -1,5 +1,18 @@
 $(document).ready(function () {
 
+    window.Echo.channel('help-me-response.'+$('#helpMeCredentials').attr('data-service-id')+'.'+$('#helpMeCredentials').attr('data-log-id'))
+        .listen('NewHelpMeResponse', (e) => {
+
+            var logId = e.logId;
+            var serviceId = e.serviceId;
+
+            $( "#reloadPage" ).load(window.location.href + " #reloadContent", function () {
+                initialMap();
+            });
+
+
+        });
+
     initialMap();
 
     function initialMap() {

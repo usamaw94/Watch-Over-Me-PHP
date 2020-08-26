@@ -57,6 +57,7 @@
                     <div class="card card-lock text-center">
                         <div class="card-header ">
                         </div>
+                        <span id="helpMeCredentials" data-service-id="{{ $serviceDetails->service_id }}" data-log-id="{{ $logDetails->log_id }}"></span>
                         <div class="card-body ">
                             @if($logDetails->response_status == 'false')
                                 <h4 class="card-title" style="margin-top: 0px;margin-bottom: 20px"><b>{{ $serviceDetails->wearerFullName }}</b> needs your help !!</h4>

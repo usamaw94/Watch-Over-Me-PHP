@@ -64,8 +64,14 @@ Route::get('/adminApplyLogFilters', 'AdminController@applyLogFilters')->name('ad
 
 Route::get('/adminTrackWearer', 'AdminController@trackWearer')->name('admin.track.wearer');
 
+Route::get('/adminAlertLogDetails', 'AdminController@alertLogDetails')->name('admin.alert.log.details');
+
+Route::get('/adminLogHistory/{serviceId}/{date}/{type}', 'AdminController@logHistory')->name('admin.log.history');
+
 //---------------------------------------------------//
 
 Route::get('/hmr/{logId}/{userId}', 'WebController@helpMeRequest')->name('help.me.request');
 Route::get('/helpMeRespond', 'WebController@helpMeRespond')->name('help.me.respond');
+Route::get('/userVerification/{code}', 'WebController@userVerification')->name('user.verification');
+
 

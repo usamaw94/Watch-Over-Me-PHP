@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewHelpMeResponse;
 use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class WebController extends Controller
 {
@@ -152,6 +154,59 @@ class WebController extends Controller
             }
 
         }
+
+        event(new NewHelpMeResponse($serviceId,$logId));
+
+        return response()->json("done");
+
+
+    }
+
+    public function userVerification(Request $request){
+
+        $userId =  substr($request->code, 0, -14);
+
+        $userId = "WOMUSR00".$userId;
+
+        $code = substr ($request->code, -14);
+
+//        dd($code);
+
+//        dd($userId);
+
+        if (DB::table('users')
+            ->where('person_id', '=', $userId)
+            ->where('verification_code', '=', $code)
+            ->exists()) {
+
+
+            $verifyUser = DB::table('users')
+                ->where('person_id', '=', $userId)
+                ->where('verification_code', '=', $code)
+                ->update([
+                    'verification_status' => 'true'
+                ]);
+
+
+            DB::table('services')
+                ->orWhere('wearer_id', '=', $userId)
+                ->orWhere('customer_id', '=', $userId)
+                ->select('service_id')
+                ->get();
+
+            DB::table('watcher_relations')
+                ->where('watcher_id', '=', 'svc_id')
+                ->select('svc_id')
+                ->get();
+
+
+            dd("User Verified");
+
+        } else {
+            dd("Invalid link");
+        }
+
+
 
 
     }

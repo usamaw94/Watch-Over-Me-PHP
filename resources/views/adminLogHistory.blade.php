@@ -94,7 +94,7 @@
                             <span class="navbar-toggler-bar bar3"></span>
                         </button>
                     </div>
-                    <a class="navbar-brand" href="javascript:;">Service Logs</a>
+                    <a class="navbar-brand" href="javascript:;">Service Logs History</a>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -178,7 +178,7 @@
                     <div class="card">
                         <div class="card-header ">
                             <button class="pull-right btn btn-default btn-sm">Logs History</button>
-{{--                            <button data-toggle="modal" data-target="#logFilters" style="float: right" class="btn btn-outline-light btn-icon btn-sm btn-round" title="Apply filters"><i class="fa fa-filter"></i></button>--}}
+                            {{--                            <button data-toggle="modal" data-target="#logFilters" style="float: right" class="btn btn-outline-light btn-icon btn-sm btn-round" title="Apply filters"><i class="fa fa-filter"></i></button>--}}
                             <h4 class='card-title'>Log list</h4>
                             <hr class="no-space">
                         </div>
@@ -203,12 +203,12 @@
                                                         <i class="fa fa-location-arrow"></i>
                                                     </a>
                                                     <button title="View log details" type="button" class="btn btn-outline-info btn-icon btn-round show-hourly-log-details"
-                                                    data-id="{{ $lg->id }}"
-                                                    data-date="{{ $lg->log_date }}"
-                                                    data-time="{{ $lg->log_time }}"
-                                                    data-description="{{ $lg->log_text }}"
-                                                    data-type="{{ $lg->log_type }}"
-                                                    data-battery="{{ $lg->battery_percentage }}">
+                                                            data-id="{{ $lg->id }}"
+                                                            data-date="{{ $lg->log_date }}"
+                                                            data-time="{{ $lg->log_time }}"
+                                                            data-description="{{ $lg->log_text }}"
+                                                            data-type="{{ $lg->log_type }}"
+                                                            data-battery="{{ $lg->battery_percentage }}">
                                                         <i class="fa fa-info-circle"></i>
                                                     </button>
                                                 </div>
@@ -310,7 +310,7 @@
                         <div class="left-side">
                             <button type="submit" class="btn btn-link">
                                 Apply filters
-                                 &nbsp; <span><i id="apllyLogFilterLoad" class="fa fa-spinner fa-spin sr-only"></i></span>
+                                &nbsp; <span><i id="apllyLogFilterLoad" class="fa fa-spinner fa-spin sr-only"></i></span>
                             </button>
                         </div>
                         <div class="divider"></div>
@@ -503,7 +503,7 @@
                     </button>
                     <h4 class="title title-up">Track Wearer</h4>
                     <p class="description"><i class="fa fa-map-marker"></i> &nbsp;
-                    <span id="wearerLocality"></span></p>
+                        <span id="wearerLocality"></span></p>
                 </div>
                 <div class="modal-body">
                     <div id="wearerLocationMap"></div>
@@ -528,16 +528,16 @@
 
 @section('script')
 
-{{--    <script>--}}
+    {{--    <script>--}}
 
-{{--        var serviceId = $('#serviceId').text();--}}
+    {{--        var serviceId = $('#serviceId').text();--}}
 
-{{--        window.Echo.channel('showlogs.'+serviceId)--}}
-{{--            .listen('HourlyLogCreated', (e) => {--}}
-{{--                alert("data");--}}
-{{--            });--}}
+    {{--        window.Echo.channel('showlogs.'+serviceId)--}}
+    {{--            .listen('HourlyLogCreated', (e) => {--}}
+    {{--                alert("data");--}}
+    {{--            });--}}
 
-{{--    </script>--}}
+    {{--    </script>--}}
 
     <!--  Google Maps Plugin    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsaBSLRpDtQYzD5md-bnOYP61GBRN9oac&libraries=places&callback=initialMap"></script>

@@ -478,7 +478,7 @@ class ApiController extends Controller
             );
 
             Mail::send('emails.contactWatcher', $data, function ($message) use ($data) {
-                $message->from('mailtest2194@gmail.com', 'Watch Over Me');
+                $message->from('watchoverme@uawdevstudios.com', 'Watch Over Me');
                 $message->to($data['watcherEmail']);
                 $message->subject('Watch Over Me - Help Me Request');
             });

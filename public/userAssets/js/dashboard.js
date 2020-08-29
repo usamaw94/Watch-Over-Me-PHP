@@ -4,7 +4,7 @@ $(document).ready(function () {
     window.Echo.channel('notifyAlertLog.'+$('#userCredentials').attr('data-id'))
         .listen('NewAlertLog', (e) => {
 
-            alert("notification received");
+
 
             console.log(e);
 

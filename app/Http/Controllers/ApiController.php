@@ -238,6 +238,8 @@ class ApiController extends Controller
             ->where('service_id', '=', $serviceId)
             ->get()->first();
 
+            
+
         $data = [
             "to" => $service->wearer_device_token,
             "data" =>
@@ -334,11 +336,17 @@ class ApiController extends Controller
 
     public function deactivateHelpMeRequest(Request $request)
     {
+        $this->sendNotificationToWearer($request->serviceId, "HelpMeResponse", "Help Me service is now available");
+
         $update = DB::table('services')
             ->where('service_id', '=', $request->serviceId)
             ->update(['alert_request_status' => "inactive"]);
 
-        $this->sendNotificationToWearer($request->serviceId, $request->responseTitle, $request->responseText);
+
+        if($update){
+            return response()->json("done");
+        }
+        return response()->json("error");
     }
 
     public function updateDeviceToken(Request $request)

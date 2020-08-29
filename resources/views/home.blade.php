@@ -27,7 +27,7 @@
                 </div>
                 <div class="user-info">
                     <a data-toggle="collapse" href="#collapseExample" class="username">
-              <span>
+              <span id="userCredentials" data-id="{{ Auth::user()->person_id }}">
                 {{ Auth::user()->full_name }}
                 <b class="caret"></b>
               </span>

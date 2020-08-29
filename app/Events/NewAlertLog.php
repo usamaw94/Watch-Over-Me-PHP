@@ -20,6 +20,7 @@ class NewAlertLog implements ShouldBroadcast
     public $wearerId;
     public $wearerName;
     public $watcherId;
+    public $respondingLink;
     public $createdAt;
 
     /**
@@ -27,12 +28,13 @@ class NewAlertLog implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct($serviceId, $wearerId, $wearerName, $watcherId, $createdAt)
+    public function __construct($serviceId, $wearerId, $wearerName, $watcherId, $respondingLink, $createdAt)
     {
         $this->serviceId = $serviceId;
         $this->wearerId = $wearerId;
         $this->wearerName = $wearerName;
         $this->watcherId = $watcherId;
+        $this->respondingLink = $respondingLink;
         $this->createdAt = $createdAt;
     }
 
@@ -52,6 +54,7 @@ class NewAlertLog implements ShouldBroadcast
             'wearerId' => $this->wearerId,
             'wearerName' => $this->wearerName,
             'watcherId' => $this->watcherId,
+            'respondingLink' => $this->respondingLink,
             'created_at' => $this->createdAt
         ];
     }

@@ -17,6 +17,7 @@ use Dotenv\Result\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Throwable;
 
 class ApiController extends Controller
 {
@@ -202,7 +203,7 @@ class ApiController extends Controller
             ->where('watcher_relations.svc_id', '=', $request->serviceId)
             ->where('watcher_relations.watcher_status', '=', 'Responding')
             ->orderBy('watcher_relations.priority_num', 'asc')
-            ->select('users.person_id', 'users.f_name', 'users.l_name', 'users.phone', 'watcher_relations.priority_num')
+            ->select('users.person_id', 'users.f_name', 'users.l_name', 'users.phone', 'users.email', 'watcher_relations.priority_num')
             ->get();
 
         if ($watchers != null) {
@@ -301,7 +302,7 @@ class ApiController extends Controller
             ->where('watcher_relations.svc_id', '=', $request->serviceId)
             ->where('watcher_relations.watcher_status', '=', 'Responding')
             ->orderBy('watcher_relations.priority_num', 'asc')
-            ->select('users.person_id', 'users.f_name', 'users.l_name', 'users.phone', 'watcher_relations.priority_num')
+            ->select('users.person_id', 'users.f_name', 'users.l_name', 'users.phone', 'users.email', 'watcher_relations.priority_num')
             ->get();
 
 
@@ -460,8 +461,6 @@ class ApiController extends Controller
 
             $watcherResponses->save();
 
-            $this->sendNotificationToWearer($request->serviceId, $request->responseTitle, $request->responseText);
-
             $createdAt = $request->sendDate . "-" . $request->sendTime;
             event(new NewAlertLog($request->serviceId, $request->wearerId, $request->wearerFullName, $request->watcherId, $request->responseLink, $createdAt));
 
@@ -477,15 +476,24 @@ class ApiController extends Controller
                 'respondingLink' => $request->responseLink
             );
 
-            Mail::send('emails.contactWatcher', $data, function ($message) use ($data) {
-                $message->from('mailtest2194@gmail.com', 'Watch Over Me');
-                $message->to($data['watcherEmail']);
-                $message->subject('Watch Over Me - Help Me Request');
-            });
+            try{
+                Mail::send('emails.contactWatcher', $data, function ($message) use ($data) {
+                    $message->from('mailtest2194@gmail.com', 'Watch Over Me');
+                    $message->to($data['watcherEmail']);
+                    $message->subject('Watch Over Me - Help Me Request');
+                });
+
+            }
+            catch (Throwable $e){
+
+            }
+
         } else {
             //call function will be called here
 
         }
+
+        $this->sendNotificationToWearer($request->serviceId, $request->responseTitle, $request->responseText);
 
         $res = array(
             'connection' => false,

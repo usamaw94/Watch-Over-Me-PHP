@@ -462,8 +462,8 @@ class ApiController extends Controller
 
             $this->sendNotificationToWearer($request->serviceId, $request->responseTitle, $request->responseText);
 
-        $createdAt = $request->sendDate . "-" . $request->sendTime;
-        event(new NewAlertLog($request->serviceId, $request->wearerId, $request->wearerFullName, $request->watcherId, $request->responseLink, $createdAt));
+            $createdAt = $request->sendDate . "-" . $request->sendTime;
+            event(new NewAlertLog($request->serviceId, $request->wearerId, $request->wearerFullName, $request->watcherId, $request->responseLink, $createdAt));
 
 
             $data = array(

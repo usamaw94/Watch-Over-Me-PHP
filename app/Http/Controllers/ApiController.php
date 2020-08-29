@@ -238,7 +238,7 @@ class ApiController extends Controller
             ->where('service_id', '=', $serviceId)
             ->get()->first();
 
-            
+
 
         $data = [
             "to" => $service->wearer_device_token,
@@ -343,7 +343,7 @@ class ApiController extends Controller
             ->update(['alert_request_status' => "inactive"]);
 
 
-        if($update){
+        if ($update) {
             return response()->json("done");
         }
         return response()->json("error");
@@ -460,26 +460,23 @@ class ApiController extends Controller
 
             $watcherResponses->save();
 
-            $createdAt = $request->sendDate . "-" . $request->sendTime;
-            event(new NewAlertLog($request->serviceId, $request->wearerId, $request->wearerFullName, $request->watcherId, $createdAt));
 
-            //            $data = array(
-            //                'serviceId' => $request->serviceId
-            //                'wearerId' => $request->wearerId,
-            //                'wearerFullNme' => $request->wearerFullName,
-            //                'watcherId' => $request->watcherId,
-            //                'watcherEmail' => $entryTime,
-            //                'watcherFullName' => $exitDate,
-            //                'watcherFName' => $watcherFName,
-            //                'respondingLink' => $exitTime,
-            //            );
+            $data = array(
+                'serviceId' => $request->serviceId,
+                'wearerId' => $request->wearerId,
+                'wearerFullNme' => $request->wearerFullName,
+                'watcherId' => $request->watcherId,
+                'watcherEmail' => $request->watcherEmail,
+                'watcherFullName' => $request->watcherFirstName . " " . $request->watcherLastName,
+                'watcherFName' => $request->watcherFirstName,
+                'respondingLink' => $request->responseLink
+            );
 
-            //            Mail::send('emails.contactWatcher', $data ,function ($message) use ($data){
-            //                $message->from('mailtest2194@gmail.com', 'Watch Over Me');
-            //                $message->to($data['watcherEmail']);
-            //                $message->subject('Watch Over Me - Help Me Request');
-            //            });
-
+            Mail::send('emails.contactWatcher', $data, function ($message) use ($data) {
+                $message->from('mailtest2194@gmail.com', 'Watch Over Me');
+                $message->to($data['watcherEmail']);
+                $message->subject('Watch Over Me - Help Me Request');
+            });
         } else {
             //call function will be called here
 
@@ -488,7 +485,7 @@ class ApiController extends Controller
         $this->sendNotificationToWearer($request->serviceId, $request->responseTitle, $request->responseText);
 
         $createdAt = $request->sendDate . "-" . $request->sendTime;
-        event(new NewAlertLog($request->serviceId, $request->wearerId, $request->wearerFullName, $request->watcherId, $createdAt));
+        event(new NewAlertLog($request->serviceId, $request->wearerId, $request->wearerFullName, $request->watcherId, $request->responseLink, $createdAt));
 
         $res = array(
             'connection' => false,

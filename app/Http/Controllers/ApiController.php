@@ -460,6 +460,11 @@ class ApiController extends Controller
 
             $watcherResponses->save();
 
+            $this->sendNotificationToWearer($request->serviceId, $request->responseTitle, $request->responseText);
+
+        $createdAt = $request->sendDate . "-" . $request->sendTime;
+        event(new NewAlertLog($request->serviceId, $request->wearerId, $request->wearerFullName, $request->watcherId, $request->responseLink, $createdAt));
+
 
             $data = array(
                 'serviceId' => $request->serviceId,
@@ -481,11 +486,6 @@ class ApiController extends Controller
             //call function will be called here
 
         }
-
-        $this->sendNotificationToWearer($request->serviceId, $request->responseTitle, $request->responseText);
-
-        $createdAt = $request->sendDate . "-" . $request->sendTime;
-        event(new NewAlertLog($request->serviceId, $request->wearerId, $request->wearerFullName, $request->watcherId, $request->responseLink, $createdAt));
 
         $res = array(
             'connection' => false,

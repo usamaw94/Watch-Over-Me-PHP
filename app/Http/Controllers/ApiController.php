@@ -464,26 +464,20 @@ class ApiController extends Controller
             event(new NewAlertLog($request->serviceId, $request->wearerId, $request->wearerFullName, $request->watcherId, $createdAt));
 
             //            $data = array(
-            //                'bookingId' => $bookingId,
-            //                'entryDate' => $entryDate,
-            //                'entryTime' => $entryTime,
-            //                'exitDate' => $exitDate,
-            //                'exitTime' => $exitTime,
-            //                'cost' => $cost,
-            //                'days' => $days,
-            //                'email' => $email,
-            //                'customerName' => $customerName,
-            //                'phone' => $phoneNumber,
-            //                'rego' => $rego,
-            //                'color' => $color,
-            //                'make' => $make,
-            //                'model' => $model
+            //                'serviceId' => $request->serviceId
+            //                'wearerId' => $request->wearerId,
+            //                'wearerFullNme' => $request->wearerFullName,
+            //                'watcherId' => $request->watcherId,
+            //                'watcherEmail' => $entryTime,
+            //                'watcherFullName' => $exitDate,
+            //                'watcherFName' => $watcherFName,
+            //                'respondingLink' => $exitTime,
             //            );
 
             //            Mail::send('emails.contactWatcher', $data ,function ($message) use ($data){
             //                $message->from('mailtest2194@gmail.com', 'Watch Over Me');
-            //                $message->to($data['email']);
-            //                $message->subject('Booking Confirmation');
+            //                $message->to($data['watcherEmail']);
+            //                $message->subject('Watch Over Me - Help Me Request');
             //            });
 
         } else {

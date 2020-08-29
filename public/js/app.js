@@ -55703,6 +55703,6 @@ __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/Watch-Over-Me-PHP/
 module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/Watch-Over-Me-PHP/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
-/***/ })
+/***/ }),
 
 /******/ });

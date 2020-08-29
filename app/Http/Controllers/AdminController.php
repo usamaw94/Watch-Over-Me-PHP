@@ -268,6 +268,10 @@ class AdminController extends Controller
             $tableNameService = 'services';
             $tableNameWatcherRelation = 'watcher_relations';
 
+            $newWatcher = true;
+
+            $watcherCode = date("dYmhis");
+
             $infoUser = DB::select('SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = ? AND   TABLE_NAME   = ?',[$dbName,$tableNameUser]);
             $autoIncUser = $infoUser[0]->AUTO_INCREMENT;
             $watcherId = 'WOMUSR00'. $autoIncUser;
@@ -279,8 +283,32 @@ class AdminController extends Controller
             $wT->full_name = $watcherFirstName. " " .$watcherLastName;
             $wT->email = $watcherEmail;
             $wT->phone = $watcherPhone;
+            $wT->verification_code = $watcherCode;
             $wT->password = bcrypt("womperson");
             $wTSaved = $wT->save();
+
+            $watcherVerificationLink = "http://127.0.0.1:8000/userVerification/".$autoIncUser.$watcherCode;
+
+            $userVerificationEmailData = array(
+
+                'serviceId' => $serviceId,
+
+                'userId' => $watcherId,
+                'userFName' => $watcherFirstName,
+                'userLName' => $watcherLastName,
+                'userFullName' => $watcherFirstName. " " .$watcherLastName,
+                'userEmail' => $watcherEmail,
+                'userPhone' => $watcherPhone,
+                'verificationLink' => $watcherVerificationLink
+
+
+            );
+
+            Mail::send('emails.userVerification', $userVerificationEmailData ,function ($message) use ($userVerificationEmailData){
+                $message->from('mailtest2194@gmail.com', 'Watch Over Me');
+                $message->to($userVerificationEmailData['userEmail']);
+                $message->subject('Watcher Over Me - User Verification');
+            });
 
         }
 
@@ -303,7 +331,6 @@ class AdminController extends Controller
         $wR->priority_num = $watcherNum;
         $wR->watcher_status = $watcherType;
         $wRSaved = $wR->save();
-
 
         return response()->json("success");
 
@@ -1004,22 +1031,53 @@ class AdminController extends Controller
         $date = $request->date;
         $type = $request->type;
 
+        if($date == 'all'){
+            $date = "";
+        }
+
+        if ($date != ''){
+            $date = \DateTime::createFromFormat('d-m-Y', $date)->format('d F Y');
+        }
+
+        if ($type == 'all'){
+            $type = "";
+        } elseif ($type == 'alert'){
+            $type = "Alert Log";
+        } elseif ($type == 'hourly'){
+            $type = "Hourly Log";
+        }
+
+        $serviceDetails = DB::table('services')
+            ->where('service_id', '=', $serviceId)
+            ->get()->first();
+
+        $wearerId = $serviceDetails->wearer_id;
+
+        $wearerDetails = DB::table('users')
+            ->where('person_id', '=', $wearerId)
+            ->select('person_id', 'f_name' , 'l_name', 'full_name', 'email', 'phone')
+            ->get()->first();
+
+
+
         $logs = DB::table('logs')
             ->where('service_id', '=', $serviceId)
             ->where('log_date', 'like', '%'.$date.'%' )
             ->where('log_type', 'like', '%'.$type.'%' )
-            ->paginate(2);
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
 
 
         $data = array(
             'serviceId' => $serviceId,
+            'wearerDetails' => $wearerDetails,
+            'serviceDetails' => $serviceDetails,
             'date' => $date,
             'type' => $type,
             'logs' => $logs
         );
 
         return view('adminLogHistory')->with($data);
-
 
     }
 

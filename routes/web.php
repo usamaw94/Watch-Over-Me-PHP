@@ -19,9 +19,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/userLogout', 'Auth\LoginController@userLogout')->name('user.logout');
-
 
 Route::get('/adminLogin', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
 Route::post('/adminLoginSubmit', 'Auth\AdminLoginController@login')->name('admin.login.submit');
@@ -67,6 +64,12 @@ Route::get('/adminTrackWearer', 'AdminController@trackWearer')->name('admin.trac
 Route::get('/adminAlertLogDetails', 'AdminController@alertLogDetails')->name('admin.alert.log.details');
 
 Route::get('/adminLogHistory/{serviceId}/{date}/{type}', 'AdminController@logHistory')->name('admin.log.history');
+
+//---------------------------------------------------//
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/userLogout', 'Auth\LoginController@userLogout')->name('user.logout');
 
 //---------------------------------------------------//
 

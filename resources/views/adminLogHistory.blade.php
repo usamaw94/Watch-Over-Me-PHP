@@ -144,17 +144,50 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header ">
-                            <h4 class="card-title">Service ID: <span id="serviceId">{{ $serviceDetails->service_id }}</span></h4>
-                            <div class="pull-right text-dark">Wearer: &nbsp; <b>{{ $wearerDetails->full_name }}</b></div>
-                            <button data-user-id="{{ Auth::user()->id }}" data-user-name="{{ Auth::user()->name }}" data-service-id="{{ $serviceDetails->service_id }}" id="showWearerLocation" class="btn btn-outline-primary btn-round btn-sm">
-                                Track Wearer &nbsp; <span><i id="trackWearerLoad" class="fa fa-spinner fa-spin sr-only"></i></span>
-                            </button>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h6><span class="font-weight-normal">Service ID:</span> {{ $serviceDetails->service_id }}</h6>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h6  class="text-right text-muted">
+                                        <span class="font-weight-normal">Wearer:</span> {{ $wearerDetails->full_name }}
+                                    </h6>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5 style="font-size: 18px">
+                                        @if($date == '' && $type == '')
+                                            Showing all logs
+                                        @endif
+
+                                        @if($date != '' && $type != '')
+                                                Showing all <b>{{ $type }}s</b> for <b>{{ $date }}</b>
+                                        @endif
+
+                                        @if($date != '' && $type == '')
+                                            Showing all logs for <b>{{ $date }}</b>
+                                        @endif
+
+                                        @if($date == '' && $type != '')
+                                            Showing all <b>{{ $type }}s</b>
+                                        @endif
+                                    </h5>
+                                </div>
+                                <div class="col-md-4">
+                                    <button data-toggle="modal" data-target="#logFilters" class="btn btn-outline-primary btn-block">
+                                        Apply Search Filter
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-8 col-sm-6">
+                <div class="col-md-6 col-sm-6">
                     <div class="card maps-container">
+
                         <div class="card-header ">
                             <div class="row">
                                 <div class="col-md-6">
@@ -174,19 +207,36 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-6 col-sm-6">
                     <div class="card">
-                        <div class="card-header ">
-                            <button class="pull-right btn btn-default btn-sm">Logs History</button>
-                            {{--                            <button data-toggle="modal" data-target="#logFilters" style="float: right" class="btn btn-outline-light btn-icon btn-sm btn-round" title="Apply filters"><i class="fa fa-filter"></i></button>--}}
-                            <h4 class='card-title'>Log list</h4>
+
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Logs</h5>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="pull-right">
+                                        <span class="text-dark">
+                                            Showing {{($logs->currentPage()-1)* $logs->perPage() + 1}} to
+                                            {{ ($logs->currentPage()-1)* $logs->perPage() + $logs->perPage() }} of
+                                            {{ $logs->total() }} logs
+                                        </span><br>
+                                        <a href="{{ $logs->nextPageUrl() }}" class="pull-right btn btn-outline-default btn-sm btn-icon btn-round">
+                                            <i class="fa fa-angle-right" style="font-size: 25px" aria-hidden="true"></i>
+                                        </a>
+                                        <a href="{{ $logs->previousPageUrl() }}" class="pull-right btn btn-outline-default btn-sm btn-icon btn-round">
+                                            <i class="fa fa-angle-left" style="font-size: 25px" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                             <hr class="no-space">
                         </div>
-                        <div id="logsContainer" class="card-body logs-container">
 
-                            <div id="logsContent">
+                        <div class="card-body logs-container">
 
-                                @foreach($logs as $lg)
+                            @foreach($logs as $lg)
 
                                     @if ($lg->log_type == 'Hourly Log')
 
@@ -250,7 +300,6 @@
                                     @endif
                                 @endforeach
 
-                            </div>
 
                         </div>
                     </div>
@@ -294,9 +343,9 @@
                             <label>Logs type</label>
                             <div class="form-group">
                                 <select class="form-control" name="logsType">
-                                    <option>All</option>
-                                    <option>Alert log</option>
-                                    <option>Hourly log</option>
+                                    <option value="all">All</option>
+                                    <option value="alert">Alert log</option>
+                                    <option value="hourly">Hourly log</option>
                                 </select>
                             </div>
                             <label>Date</label>
@@ -494,53 +543,12 @@
         </div>
     </div>
 
-    <div class="modal fade" id="trackWearer" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header justify-content-center">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class="nc-icon nc-simple-remove"></i>
-                    </button>
-                    <h4 class="title title-up">Track Wearer</h4>
-                    <p class="description"><i class="fa fa-map-marker"></i> &nbsp;
-                        <span id="wearerLocality"></span></p>
-                </div>
-                <div class="modal-body">
-                    <div id="wearerLocationMap"></div>
-                </div>
-                <div class="modal-footer">
-                    <div class="left-side">
-                        <a id="wearerGetDirectionLink" target="_blank" class="btn btn-link">
-                            <i class="fa fa-location-arrow"></i> &nbsp;
-                            Get directions
-                        </a>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="right-side">
-                        <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-danger btn-link">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 @endsection
 
 @section('script')
 
-    {{--    <script>--}}
-
-    {{--        var serviceId = $('#serviceId').text();--}}
-
-    {{--        window.Echo.channel('showlogs.'+serviceId)--}}
-    {{--            .listen('HourlyLogCreated', (e) => {--}}
-    {{--                alert("data");--}}
-    {{--            });--}}
-
-    {{--    </script>--}}
-
     <!--  Google Maps Plugin    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsaBSLRpDtQYzD5md-bnOYP61GBRN9oac&libraries=places&callback=initialMap"></script>
 
-    <script src="/assets/js/serviceLogs.js" type="text/javascript"></script>
+    <script src="/assets/js/serviceLogHistory.js" type="text/javascript"></script>
 @endsection

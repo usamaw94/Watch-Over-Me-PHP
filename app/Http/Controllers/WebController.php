@@ -188,22 +188,139 @@ class WebController extends Controller
                 ]);
 
 
-            DB::table('services')
-                ->orWhere('wearer_id', '=', $userId)
-                ->orWhere('customer_id', '=', $userId)
+            $wearerServiceID = DB::table('services')
+                ->where('service_status', '=', 'User Verification Required')
+                ->where('wearer_id', '=', $userId)
+                ->select('services.service_id')
+                ->get()->first();
+
+            $customerServices = DB::table('services')
+                ->where('service_status', '=', 'User Verification Required')
+                ->where('customer_id', '=', $userId)
                 ->select('service_id')
                 ->get();
 
-            DB::table('watcher_relations')
-                ->where('watcher_id', '=', 'svc_id')
-                ->select('svc_id')
+            $watcherServices = DB::table('watcher_relations')
+                ->join('services', 'services.service_id', '=', 'watcher_relations.svc_id')
+                ->where('watcher_relations.watcher_id', '=', $userId)
+                ->where('services.service_status', '=', 'User Verification Required')
+                ->select('watcher_relations.svc_id')
                 ->get();
 
+
+
+//            dd($wearerServiceID);
+
+            if ($wearerServiceID){
+
+            $wRServiceId = $wearerServiceID->service_id;
+
+                if(DB::table('services')
+                    ->join('users as wearer', 'wearer.person_id', '=', 'services.wearer_id')
+                    ->join('users as customer', 'customer.person_id', '=', 'services.customer_id')
+                    ->where('services.service_id', '=', $wRServiceId)
+                    ->where('services.service_status', '=', 'User Verification Required')
+                    ->where('wearer.verification_status', '=', 'true')
+                    ->where('customer.verification_status', '=', 'true')
+                    ->exists()) {
+
+                    if(DB::table('watcher_relations')
+                            ->join('users as watchers', 'watchers.person_id', '=', 'watcher_relations.watcher_id')
+                            ->where('watcher_relations.svc_id', '=', $wRServiceId)
+                            ->where('watchers.verification_status', '=', 'true')
+                            ->count() > 0) {
+
+
+                        $changeServiceStatus = DB::table('services')
+                            ->where('service_id', '=', $wRServiceId)
+                            ->where('service_status', '=', 'User Verification Required')
+                            ->update([
+                                'service_status' => 'Pending'
+                            ]);
+
+                    }
+
+                }
+            }
+
+
+            if ($customerServices){
+
+                foreach ($customerServices as $cS) {
+                    $cServiceId = $cS->service_id;
+
+                    if(DB::table('services')
+                        ->join('users as wearer', 'wearer.person_id', '=', 'services.wearer_id')
+                        ->join('users as customer', 'customer.person_id', '=', 'services.customer_id')
+                        ->where('services.service_id', '=', $cServiceId)
+                        ->where('services.service_status', '=', 'User Verification Required')
+                        ->where('wearer.verification_status', '=', 'true')
+                        ->where('customer.verification_status', '=', 'true')
+                        ->exists()) {
+
+                        if(DB::table('watcher_relations')
+                                ->join('users as watchers', 'watchers.person_id', '=', 'watcher_relations.watcher_id')
+                                ->where('watcher_relations.svc_id', '=', $cServiceId)
+                                ->where('watchers.verification_status', '=', 'true')
+                                ->count() > 0) {
+
+
+                            $changeServiceStatus = DB::table('services')
+                                ->where('service_id', '=', $cServiceId)
+                                ->where('service_status', '=', 'User Verification Required')
+                                ->update([
+                                    'service_status' => 'Pending'
+                                ]);
+
+                        }
+
+                    }
+
+                }
+            }
+
+            if ($watcherServices){
+
+                foreach ($watcherServices as $wTS) {
+                    $wTServiceId = $wTS->svc_id;
+
+                    if(DB::table('services')
+                        ->join('users as wearer', 'wearer.person_id', '=', 'services.wearer_id')
+                        ->join('users as customer', 'customer.person_id', '=', 'services.customer_id')
+                        ->where('services.service_id', '=', $wTServiceId)
+                        ->where('services.service_status', '=', 'User Verification Required')
+                        ->where('wearer.verification_status', '=', 'true')
+                        ->where('customer.verification_status', '=', 'true')
+                        ->exists()) {
+
+                        if(DB::table('watcher_relations')
+                                ->join('users as watchers', 'watchers.person_id', '=', 'watcher_relations.watcher_id')
+                                ->where('watcher_relations.svc_id', '=', $wTServiceId)
+                                ->where('watchers.verification_status', '=', 'true')
+                                ->count() > 0) {
+
+
+                            $changeServiceStatus = DB::table('services')
+                                ->where('service_id', '=', $wTServiceId)
+                                ->where('service_status', '=', 'User Verification Required')
+                                ->update([
+                                    'service_status' => 'Pending'
+                                ]);
+
+                        }
+
+                    }
+
+                }
+
+            }
 
             dd("User Verified");
 
         } else {
+
             dd("Invalid link");
+
         }
 
 

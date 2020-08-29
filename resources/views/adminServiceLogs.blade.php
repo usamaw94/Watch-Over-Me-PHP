@@ -177,7 +177,7 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="card">
                         <div class="card-header ">
-                            <button class="pull-right btn btn-default btn-sm">Logs History</button>
+                            <a href="/adminLogHistory/{{ $serviceDetails->service_id }}/all/all" class="pull-right btn btn-default btn-sm">Logs History</a>
 {{--                            <button data-toggle="modal" data-target="#logFilters" style="float: right" class="btn btn-outline-light btn-icon btn-sm btn-round" title="Apply filters"><i class="fa fa-filter"></i></button>--}}
                             <h4 class='card-title'>Log list</h4>
                             <hr class="no-space">

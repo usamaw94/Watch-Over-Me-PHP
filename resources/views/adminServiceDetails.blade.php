@@ -148,11 +148,14 @@
                         <div class="card">
                             <div class="card-header ">
                                 <div class="float-right">
-                                    <button id="activateService" data-id="{{$serviceDetails->service_id}}" type="button" class="btn btn-outline-success {{ $serviceDetails->service_status != 'Active' ? '' : 'sr-only' }}">Activate</button>
+{{--                                    @if($serviceDetails->service_id != 'User Verification Required')--}}
+                                        <button id="activateService" data-id="{{$serviceDetails->service_id}}" type="button" class="btn btn-outline-success {{ $serviceDetails->service_status != 'Active' ? '' : 'sr-only' }}" {{ $serviceDetails->service_status == 'User Verification Required' ? 'disabled' : '' }}>Activate</button>
+{{--                                    @endif--}}
                                     <button id="deactivateService" data-id="{{$serviceDetails->service_id}}" type="button" class="btn btn-outline-danger {{ $serviceDetails->service_status == 'Active' ? '' : 'sr-only' }}">Deactivate</button>
                                 </div>
                                 <h4 class="card-title">Service ID: {{$serviceDetails->service_id}}
                                     &nbsp;<span class="badge badge-success {{ $serviceDetails->service_status == 'Active' ? '' : 'sr-only' }}">Active</span>
+                                    <span class="badge badge-default {{ $serviceDetails->service_status == 'User Verification Required' ? '' : 'sr-only' }}">User Verification Required</span>
                                     <span class="badge badge-warning {{ $serviceDetails->service_status == 'Pending' ? '' : 'sr-only' }}">Pending</span>
                                     <span class="badge badge-danger {{ $serviceDetails->service_status == 'Inactive' ? '' : 'sr-only' }}">Inactive</span></h4>
                                 <h5 class="card-category">Created On: {{$serviceDetails->created_at}}</h5>

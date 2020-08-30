@@ -51,13 +51,13 @@
 <div class="wrapper wrapper-full-page ">
     <div class="full-page lock-page section-image" filter-color="black">
         <!--   you can change the color of the filter page using: data-color="blue | green | orange | red | purple" -->
-        <div id="reloadPage" class="content" style="padding-top: 1vh">
-            <div id="reloadContent" class="container">
+        <div id="reloadPage" class="content" style="padding-top: 11vh">
+            <div id="reloadContent" class="container-lg">
                 <div class="col-12">
                     <div class="card card-lock text-center">
                         <div class="card-header ">
                         </div>
-                        <span id="helpMeCredentials" data-service-id="{{ $serviceDetails->service_id }}" data-log-id="{{ $logDetails->log_id }}"></span>
+                        <span id="helpMeCredentials" data-user-id="{{ $helpMeResponse->watcherId }}" data-service-id="{{ $serviceDetails->service_id }}" data-log-id="{{ $logDetails->log_id }}"></span>
                         <div class="card-body ">
                             @if($logDetails->response_status == 'false')
                                 <h4 class="card-title" style="margin-top: 0px;margin-bottom: 20px"><b>{{ $serviceDetails->wearerFullName }}</b> needs your help !!</h4>

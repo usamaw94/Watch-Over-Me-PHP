@@ -11,6 +11,87 @@ use Illuminate\Support\Facades\Hash;
 class WebController extends Controller
 {
 
+    protected $firebaseUrl = "https://fcm.googleapis.com/fcm/send";
+    protected $serverApiKey = 'AAAAOag5k6Q:APA91bGWiOFxRiKvtRJXrVUdX0pMKqPygeFQD3uJaQykRq7Si_IFbzksVHTbtJZEBt3ZpozNb6NfA_4TK8TA3p0o3UFg5PVpEKj4G3iMbSw98zFbkralNOXJ4F_W_3OmabB2qWqxmfr3';
+
+
+    public function sendDataNotificationToWearer($serviceId, $title, $message)
+    {
+
+        $service = DB::table('services')
+            ->where('service_id', '=', $serviceId)
+            ->get()->first();
+
+
+
+        $data = [
+            "to" => $service->wearer_device_token,
+            "data" =>
+                [
+                    "title" => $title,
+                    "body" => $message
+                ],
+        ];
+
+        $dataString = json_encode($data);
+
+        $headers = [
+            'Authorization: key=' . $this->serverApiKey,
+            'Content-Type: application/json',
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $this->firebaseUrl);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        curl_exec($ch);
+    }
+
+
+    public function sendNotificationToWearer($serviceId, $title, $message)
+    {
+
+        $service = DB::table('services')
+            ->where('service_id', '=', $serviceId)
+            ->get()->first();
+
+
+
+        $data = [
+            "to" => $service->wearer_device_token,
+            "notification" =>
+                [
+                    "title" => $title,
+                    "body" => $message
+                ],
+        ];
+
+        $dataString = json_encode($data);
+
+        $headers = [
+            'Authorization: key=' . $this->serverApiKey,
+            'Content-Type: application/json',
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $this->firebaseUrl);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        curl_exec($ch);
+    }
+
     public function helpMeRequest(Request $request){
 
 
@@ -136,6 +217,10 @@ class WebController extends Controller
                         'reply_time' => $responseTime,
                     ]);
 
+                $this->sendNotificationToWearer($serviceId,$responderName, $responderName." is coming to help you");
+
+                $this->sendDataNotificationToWearer($serviceId,$responderName, $responderName." is coming to help you");
+
             } else {
 
                 $updateResponse = DB::table('help_me_responses')
@@ -151,11 +236,15 @@ class WebController extends Controller
                         'reply_time' => $responseTime,
                     ]);
 
+                $this->sendNotificationToWearer($serviceId,$responderName, $responderName." cannot come to help you");
+
+                $this->sendDataNotificationToWearer($serviceId,$responderName, $responderName." cannot come to help you");
+
             }
 
         }
 
-        event(new NewHelpMeResponse($serviceId,$logId));
+        event(new NewHelpMeResponse($serviceId,$logId,$userId,$responderName,$response));
 
         return response()->json("done");
 

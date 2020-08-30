@@ -3,8 +3,57 @@ $(document).ready(function () {
     window.Echo.channel('help-me-response.'+$('#helpMeCredentials').attr('data-service-id')+'.'+$('#helpMeCredentials').attr('data-log-id'))
         .listen('NewHelpMeResponse', (e) => {
 
+            $("#helpMeResponseYes").attr("disabled", true);
+            $("#helpMeResponseNo").attr("disabled", true);
+
+            var currentUserId = $('#helpMeCredentials').attr("data-user-id");
+
             var logId = e.logId;
             var serviceId = e.serviceId;
+            var responderId = e.responderId
+            var responderName = e.responderName;
+            var response = e.response;
+
+
+            if (currentUserId != responderId) {
+
+                if (response == 'No') {
+
+                    color = 'danger';
+
+                    $.notify({
+                        icon: "nc-icon nc-bell-55",
+                        message: "<b>"+responderName+"</b> has declined the request</br>",
+
+                    }, {
+                        type: color,
+                        timer: 5000,
+                        placement: {
+                            from: 'top',
+                            align: 'right'
+                        }
+                    });
+
+                } else if (response == 'Yes') {
+
+                    color = 'success';
+
+                    $.notify({
+                        icon: "nc-icon nc-bell-55",
+                        message: "<b>"+responderName+"</b> has accepted the request</br>",
+
+                    }, {
+                        type: color,
+                        timer: 5000,
+                        placement: {
+                            from: 'top',
+                            align: 'right'
+                        }
+                    });
+
+                }
+
+            }
 
             $( "#reloadPage" ).load(window.location.href + " #reloadContent", function () {
                 initialMap();
@@ -51,6 +100,9 @@ $(document).ready(function () {
         var sentTime = $(this).attr("data-sent-time");
         var responderName = $(this).attr("data-responder-name");
 
+        $("#helpMeResponseYes").attr("disabled", true);
+        $("#helpMeResponseNo").attr("disabled", true);
+
         var url="/helpMeRespond/";
 
         $.ajax({
@@ -82,6 +134,9 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "#helpMeResponseNo", function () {
+
+        $("#helpMeResponseYes").attr("disabled", true);
+        $("#helpMeResponseNo").attr("disabled", true);
 
         $("#helpMeResponseNoLoad").fadeIn("slow");
 

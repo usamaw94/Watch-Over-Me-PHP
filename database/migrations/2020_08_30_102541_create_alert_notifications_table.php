@@ -19,6 +19,9 @@ class CreateAlertNotificationsTable extends Migration
             $table->string('service_id');
             $table->string('wearer_id');
             $table->string('wearer_name');
+            $table->string('watcher_id');
+            $table->string('watcher_name');
+            $table->string('responding_link');
             $table->string('alert_log_date');
             $table->string('alert_log_time');
             $table->timestamps();

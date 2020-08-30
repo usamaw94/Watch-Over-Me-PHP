@@ -498,9 +498,12 @@ class ComposerStaticInit7523c45798fbb2aafc442803bdf56fe6
 
     public static $classMap = array (
         'App\\Admin' => __DIR__ . '/../..' . '/app/Admin.php',
+        'App\\AlertNotification' => __DIR__ . '/../..' . '/app/AlertNotification.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Events\\NewAlertLog' => __DIR__ . '/../..' . '/app/Events/NewAlertLog.php',
+        'App\\Events\\NewHelpMeResponse' => __DIR__ . '/../..' . '/app/Events/NewHelpMeResponse.php',
         'App\\Events\\NewLog' => __DIR__ . '/../..' . '/app/Events/NewLog.php',
+        'App\\Events\\WearerLocation' => __DIR__ . '/../..' . '/app/Events/WearerLocation.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\HelpMeResponse' => __DIR__ . '/../..' . '/app/HelpMeResponse.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
@@ -514,6 +517,7 @@ class ComposerStaticInit7523c45798fbb2aafc442803bdf56fe6
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\WebController' => __DIR__ . '/../..' . '/app/Http/Controllers/WebController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',

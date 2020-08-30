@@ -16,16 +16,22 @@ class NewHelpMeResponse implements ShouldBroadcast
 
     public $serviceId;
     public $logId;
+    public $responderName;
+    public $responderId;
+    public $response;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($serviceId, $logId)
+    public function __construct($serviceId, $logId,$responderId,$responderName,$response)
     {
         $this->serviceId = $serviceId;
         $this->logId = $logId;
+        $this->responderId = $responderId;
+        $this->responderName = $responderName;
+        $this->response = $response;
     }
 
     /**
@@ -41,7 +47,10 @@ class NewHelpMeResponse implements ShouldBroadcast
     public function broadcastWith() {
         return [
             'serviceId' => $this->serviceId,
-            'logId' => $this->logId
+            'logId' => $this->logId,
+            'responderId' => $this->responderId,
+            'responderName' => $this->responderName,
+            'response' => $this->response
         ];
     }
 }

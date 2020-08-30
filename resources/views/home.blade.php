@@ -126,18 +126,9 @@
                                 <a class="dropdown-item notification-panel-item" href="#">
                                     <div class="timeline-panel">
                                         <div class="timeline-body">
-                                            <span class="badge badge-pill badge-danger">Help me request</span> &nbsp; <p>14:24:09 - 27/12/2019</p><br>
-                                            <p>Service Id: <b>WOMSVC001</b></p><br>
-                                            <p>Wearer: <b class="font-weight-bold text-uppercase">Usama Waheed</b> - <span>WOMUSR001</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a class="dropdown-item notification-panel-item" href="#">
-                                    <div class="timeline-panel">
-                                        <div class="timeline-body">
-                                            <span class="badge badge-pill badge-danger">Help me request</span> &nbsp; <p>14:24:09 - 27/12/2019</p><br>
-                                            <p>Service Id: <b>WOMSVC001</b></p><br>
+                                            <p><span class="badge badge-pill badge-danger">Help me request</span></p>
+                                            <p>14:24:09 - 27/12/2019</p>
+                                            <p>Service Id: <b>WOMSVC001</b></p>
                                             <p>Wearer: <b class="font-weight-bold text-uppercase">Usama Waheed</b> - <span>WOMUSR001</span></p>
                                         </div>
                                     </div>
@@ -154,11 +145,11 @@
             <div class="content">
                 <div class="container-fluid">
 
-                    <div class="row">
-                        <div class="col-12">
-                            <button id="showNotification" class="btn btn-primary btn-block">Top right</button>
-                        </div>
-                    </div>
+{{--                    <div class="row">--}}
+{{--                        <div class="col-12">--}}
+{{--                            <button id="showNotification" class="btn btn-primary btn-block">Top right</button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
                     <div class="row">
 

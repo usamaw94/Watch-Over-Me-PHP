@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AlertNotification;
 use App\Events\HourlyLogCreated;
 use App\Events\NewAlertLog;
 use App\Events\NewLog;
@@ -461,8 +462,11 @@ class ApiController extends Controller
             $watcherResponses->reply_time = "";
             $watcherResponses->response_link = $request->responseLink;
 
-
             $watcherResponses->save();
+
+            $alertNotification = new AlertNotification();
+
+
 
             $createdAt = $request->sendDate . "-" . $request->sendTime;
             event(new NewAlertLog($request->serviceId, $request->wearerId, $request->wearerFullName, $request->watcherId, $request->responseLink, $createdAt));

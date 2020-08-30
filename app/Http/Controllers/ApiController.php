@@ -234,8 +234,8 @@ class ApiController extends Controller
 
     public function sendNotificationToWearer($serviceId, $title, $message)
     {
-
-        $service = DB::table('services')
+        try {
+            $service = DB::table('services')
             ->where('service_id', '=', $serviceId)
             ->get()->first();
 
@@ -268,6 +268,9 @@ class ApiController extends Controller
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
         curl_exec($ch);
+        }
+        catch (Throwable $e){
+        }
     }
 
     public function helpMeRequestInitiate(Request $request)

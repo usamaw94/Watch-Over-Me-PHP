@@ -67,14 +67,40 @@ Route::get('/adminLogHistory/{serviceId}/{date}/{type}', 'AdminController@logHis
 
 //---------------------------------------------------//
 
+Route::get('/userLogout', 'Auth\LoginController@userLogout')->name('user.logout');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/userLogout', 'Auth\LoginController@userLogout')->name('user.logout');
+Route::get('/getPersonDetails', 'HomeController@personDetails')->name('user.get.person.details');
+
+Route::get('/getWatchersList', 'HomeController@getWatchersList')->name('user.get.watchers.list');
+
+Route::get('/userAsWearer', 'HomeController@userAsWearer')->name('user.as.wearer');
+
+Route::get('/userAsWatcher', 'HomeController@userAsWatcher')->name('user.as.watcher');
+
+Route::get('/userAsCustomer', 'HomeController@userAsCustomer')->name('user.as.customer');
+
+Route::post('/verifyServiceWatcherPhone', 'HomeController@verifyServiceWatcherPhone')->name('user.as.customer');
+
+Route::get('/checkEmail', 'HomeController@checkEmail')->name('user.check.email');
+
+Route::post('/addNewWatcher', 'HomeController@addNewWatcher')->name('user.add.watcher');
+
+Route::post('/updatePriorityOrder', 'HomeController@updatePriorityOrder')->name('user.update.priority.order');
+
+Route::get('/userAsWatcherService', 'HomeController@userAsWatcherService')->name('user.as.watcher.service');
+
+Route::get('/userAsCustomerService', 'HomeController@userAsCustomerService')->name('user.as.customer.service');
+
+Route::get('/wrServiceLogs', 'HomeController@wrServiceLogs')->name('user.wearer.service.logs');
+
+Route::get('/wrServiceLogHistory/{serviceId}/{date}/{type}', 'HomeController@wrServiceLogHistory')->name('user.wearer.service.log.history');
+
 
 //---------------------------------------------------//
 
 Route::get('/hmr/{logId}/{userId}', 'WebController@helpMeRequest')->name('help.me.request');
 Route::get('/helpMeRespond', 'WebController@helpMeRespond')->name('help.me.respond');
 Route::get('/userVerification/{code}', 'WebController@userVerification')->name('user.verification');
-
 

@@ -2,6 +2,35 @@ $(document).ready(function () {
 
     localStorage.clear();
 
+    initialMap();
+
+    window.Echo.channel('notifyAlertLog.'+$('#userCredentials').attr('data-id'))
+        .listen('NewAlertLog', (e) => {
+
+            console.log(e);
+
+            color = 'danger';
+            $.notify({
+                icon:"add_alert",
+                message:"Wearer: <b>"+ e.wearerName +"</b> needs your help.</br>" +
+                    "Service ID: <b>"+ e.serviceId +"<b><br>" +
+                    "Created at: "+ e.created_at +"<br>" +
+                    "<b>Click this dialogue to respond</b>",
+                url: e.respondingLink,
+            }, {
+                type: color,
+                timer:5000,
+                placement: {
+                    from:'top',
+                    align:'right'
+                }
+            });
+
+            $( "#notificationContainer" ).load(window.location.href + " #reloadNotification");
+
+        });
+
+
     window.Echo.channel('showlogs.'+$('#serviceId').text())
         .listen('NewLog', (e) => {
 
@@ -20,28 +49,6 @@ $(document).ready(function () {
 
         });
 
-
-    // alert('location.'+$('#serviceId').text()+'.'+$('#showWearerLocation').attr('data-user-id'));
-
-
-
-    initialMap();
-    // listen();
-
-    $('.logs-date-picker').datetimepicker({
-        format: 'MM/DD/YYYY',
-        icons: {
-            time: "fa fa-clock-o",
-            date: "fa fa-calendar",
-            up: "fa fa-chevron-up",
-            down: "fa fa-chevron-down",
-            previous: 'fa fa-chevron-left',
-            next: 'fa fa-chevron-right',
-            today: 'fa fa-screenshot',
-            clear: 'fa fa-trash',
-            close: 'fa fa-remove'
-        }
-    });
 
     function initialMap() {
         //var lat = document.getElementById("latitude").value;
@@ -70,12 +77,14 @@ $(document).ready(function () {
         marker.setMap(map);
     }
 
+    $(document).on("click",'.td-actions', function(event) {
+        event.stopPropagation();
+    });
 
 
     $(document).on("click", ".logs", function(){
         var lat=$(this).attr('data-lat');
         var long=$(this).attr('data-long');
-        var locality=$(this).attr('data-locality');
 
         $(".logs").removeClass("logs-active");
 
@@ -85,7 +94,7 @@ $(document).ready(function () {
 
         myMap(lat,long);
 
-        $(".map-marker-icon").removeClass('sr-only');
+        // $(".map-marker-icon").removeClass('sr-only');
         $("#wearerLogLocality").text(locality);
     });
 
@@ -93,9 +102,29 @@ $(document).ready(function () {
         event.stopPropagation();
     });
 
+    $(document).on("click",'#showWearerLocation', function(event) {
 
+        var lat = "-38.042411928573614";
+        var long = "145.1096239604738";
+
+
+        var wearerPosition = new google.maps.LatLng(lat,long);
+        var mapOptions = {
+            center: wearerPosition,
+            zoom: 15,
+        };
+        var map = new google.maps.Map(document.getElementById("wearerLocationMap"), mapOptions);
+        var marker = new google.maps.Marker({
+            position: wearerPosition,
+        });
+        marker.setMap(map);
+
+    });
 
     $(document).on("click",'#showWearerLocation', function(event) {
+
+
+        alert("clicked");
 
         var id = $(this).attr('data-service-id');
 
@@ -249,7 +278,7 @@ $(document).ready(function () {
 
                             response = "<li class='timeline-inverted'>" +
                                 "<div class='timeline-badge success'>" +
-                                "<i class='nc-icon nc-single-02'></i>" +
+                                "<i class='fa fa-user'></i>" +
                                 "</div>" +
                                 "<div class='timeline-panel'>" +
                                 "<div class='timeline-heading'>" +
@@ -272,7 +301,7 @@ $(document).ready(function () {
 
                             response = "<li class='timeline-inverted'>" +
                                 "<div class='timeline-badge danger'>" +
-                                "<i class='nc-icon nc-single-02'></i>" +
+                                "<i class='fa fa-user'></i>" +
                                 "</div>" +
                                 "<div class='timeline-panel'>" +
                                 "<div class='timeline-heading'>" +
@@ -296,7 +325,7 @@ $(document).ready(function () {
 
                         response = "<li class='timeline-inverted'>" +
                             "<div class='timeline-badge warning'>" +
-                            "<i class='nc-icon nc-single-02'></i>" +
+                            "<i class='fa fa-user'></i>" +
                             "</div>" +
                             "<div class='timeline-panel'>" +
                             "<div class='timeline-heading'>" +
@@ -312,7 +341,7 @@ $(document).ready(function () {
 
                     var row = "<li class='timeline'>" +
                         "<div class='timeline-badge info'>" +
-                        "<i class='nc-icon nc-circle-10'></i>" +
+                        "<i class='material-icons'>account_circle</i>" +
                         "</div>" +
                         "<div class='timeline-panel'>" +
                         "<div class='timeline-heading'>" +
@@ -342,64 +371,6 @@ $(document).ready(function () {
         });
 
     });
-
-    // $(document).on("submit", "#logFiltersForm", function (e) {
-    //     e.preventDefault();
-    //
-    //
-    //     $("#apllyLogFilterLoad").removeClass("sr-only");
-    //
-    //     var data = $(this).serialize();
-    //
-    //     var url="/adminApplyLogFilters/";
-    //
-    //     $.ajax({
-    //         url: url,
-    //         data: data,
-    //         datatype: "json",
-    //         method: "GET",
-    //         success: function (data) {
-    //
-    //             $("#logsContent").empty();
-    //
-    //             var length = data.length;
-    //
-    //
-    //             for(i=0; i<data.length; i++){
-    //                 var personId = data[i].person_id;
-    //                 var personName = data[i].f_name + " "
-    //                     + data[i].l_name;
-    //                 var personPhone = data[i].phone;
-    //                 var personEmail = data[i].email;
-    //                 var priorityNum = data[i].priority_num;
-    //
-    //                 var listItem =
-    //                     "<a data-id='" + personId + "' data-priority-num='"+priorityNum+"' class='list-group-item list-group-item-action'>" +
-    //                     "<div class='row'>" +
-    //                     "<div class='col-12'>" +
-    //                     "<div class='float-right'>" +
-    //                     "<span class='badge badge-default priority-num'>" + priorityNum + "</span>" +
-    //                     "</div>" +
-    //                     "<h6 class='card-title'>" + personName + " &nbsp;" +
-    //                     "<span class='card-category'>" + personPhone + "</span>" +
-    //                     "</h6>" +
-    //                     "<h6 class='text-muted text-lowercase'>" + personEmail + "</h6>" +
-    //                     "</div>" +
-    //                     "</div>" +
-    //                     "</a>";
-    //
-    //                 $("#logsContent").append(listItem);
-    //             }
-    //
-    //         },
-    //         complete: function () {
-    //             $("#apllyLogFilterLoad").addClass("sr-only");
-    //
-    //             $('#logFilters').modal('hide');
-    //         }
-    //     });
-    //
-    // });
 
 
 });

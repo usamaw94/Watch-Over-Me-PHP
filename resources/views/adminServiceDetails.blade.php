@@ -490,7 +490,7 @@
                         <i class="nc-icon nc-simple-remove"></i>
                     </button>
                     <h4 class="title title-up">Watchers Priority Order</h4>
-                    <h4 class="card-category">Drag and drop the list item up or down to change the priority order of watchers</h4>
+                    <h4 class="card-category">Drag and drop the list items up or down to change the priority order of watchers</h4>
                 </div>
 
                 <div class="modal-body">

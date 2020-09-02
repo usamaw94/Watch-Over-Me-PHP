@@ -42,6 +42,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="/userAssets/js/core/bootstrap-material-design.min.js"></script>
 
+    <script src="/userAssets/js/core/jquery-ui.js"></script>
 <script src="/userAssets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <!-- Plugin for the momentJs  -->
 <script src="/userAssets/js/plugins/moment.min.js"></script>

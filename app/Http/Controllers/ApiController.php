@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Log;
 use Dotenv\Result\Result;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -237,40 +238,40 @@ class ApiController extends Controller
     {
         try {
             $service = DB::table('services')
-            ->where('service_id', '=', $serviceId)
-            ->get()->first();
+                ->where('service_id', '=', $serviceId)
+                ->get()->first();
 
 
 
-        $data = [
-            "to" => $service->wearer_device_token,
-            "data" =>
-            [
-                "title" => $title,
-                "body" => $message
-            ],
-        ];
+            $data = [
+                "to" => $service->wearer_device_token,
+                "data" =>
+                [
+                    "title" => $title,
+                    "body" => $message
+                ],
+            ];
 
-        $dataString = json_encode($data);
+            $dataString = json_encode($data);
 
-        $headers = [
-            'Authorization: key=' . $this->serverApiKey,
-            'Content-Type: application/json',
-        ];
+            $headers = [
+                'Authorization: key=' . $this->serverApiKey,
+                'Content-Type: application/json',
+            ];
 
-        $ch = curl_init();
+            $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, $this->firebaseUrl);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_URL, $this->firebaseUrl);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-        curl_exec($ch);
-        }
-        catch (Throwable $e){
+            curl_exec($ch);
+        } catch (Exception $e) {
+            
         }
     }
 
@@ -341,14 +342,18 @@ class ApiController extends Controller
 
     public function deactivateHelpMeRequest(Request $request)
     {
-        $this->sendNotificationToWearer($request->serviceId, "HelpMeResponse", "Help Me service is now available");
 
         $update = DB::table('services')
             ->where('service_id', '=', $request->serviceId)
             ->update(['alert_request_status' => "inactive"]);
 
 
-        if ($update) {
+        $delete = DB::table('alert_notifications')
+            ->where('alert_log_id', '=', $request->alertLogId)
+            ->delete();
+
+
+        if ($update && $delete) {
             return response()->json("done");
         }
         return response()->json("error");
@@ -466,6 +471,18 @@ class ApiController extends Controller
 
             $alertNotification = new AlertNotification();
 
+            $alertNotification->alert_log_id = $request->alertLogId;
+            $alertNotification->service_id = $request->serviceId;
+            $alertNotification->wearer_id = $request->wearerId;
+            $alertNotification->wearer_name = $request->wearerFullName;
+            $alertNotification->watcher_id = $request->watcherId;
+            $alertNotification->watcher_name = $request->watcherFirstName . " " . $request->watcherLastName;
+            $alertNotification->responding_link = $request->responseLink;
+            $alertNotification->alert_log_date = $request->sendDate;
+            $alertNotification->alert_log_time = $request->sendTime;
+
+            $alertNotification->save();
+
 
 
             $createdAt = $request->sendDate . "-" . $request->sendTime;
@@ -483,20 +500,15 @@ class ApiController extends Controller
                 'respondingLink' => $request->responseLink
             );
 
-            try{
+            try {
                 Mail::send('emails.contactWatcher', $data, function ($message) use ($data) {
                     $message->from('watchoverme@uawdevstudios.com', 'Watch Over Me');
                     $message->to($data['watcherEmail']);
                     $message->subject('Watch Over Me - Help Me Request');
                 });
+            } catch (Exception $e) {
 
             }
-            catch (Throwable $e){
-
-            }
-
-
-
         } else {
             //call function will be called here
 

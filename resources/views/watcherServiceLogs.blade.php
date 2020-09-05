@@ -63,13 +63,13 @@
                         <p> Dashboard </p>
                     </a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="/userAsWearer">
                         <i class="material-icons">settings</i>
                         <p> As wearer </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="/userAsWatcher">
                         <i class="material-icons">settings</i>
                         <p> As watcher </p>
@@ -199,7 +199,7 @@
                     <div class="col-md-4 col-sm-6">
                         <div class="card">
                             <div class="card-header card-header-primary">
-                                <a href="/wrServiceLogHistory/{{ $serviceDetails->service_id }}/all/all" style="float: right" class="btn btn-sm btn-secondary" title="Show logs history">Show history</a>
+                                <a href="/wtServiceLogHistory/{{ $serviceDetails->service_id }}/all/all" style="float: right" class="btn btn-sm btn-secondary" title="Show logs history">Show history</a>
                                 <h4 class='card-title'>Log list</h4>
                             </div>
                             <div id="logsContainer" class="card-body logs-container">
@@ -495,7 +495,7 @@
 
 @section('script')
 
-    <script src="/userAssets/js/wearerServiceLogs.js"></script>
+    <script src="/userAssets/js/watcherServiceLogs.js"></script>
 
     <!--  Google Maps Plugin    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsaBSLRpDtQYzD5md-bnOYP61GBRN9oac&libraries=places&callback=initialMap"></script>

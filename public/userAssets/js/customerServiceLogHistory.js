@@ -1,10 +1,6 @@
 $(document).ready(function () {
 
-    var locationCheck = false;
-
     localStorage.clear();
-
-    initialMap();
 
     window.Echo.channel('notifyAlertLog.'+$('#userCredentials').attr('data-id'))
         .listen('NewAlertLog', (e) => {
@@ -33,22 +29,23 @@ $(document).ready(function () {
         });
 
 
-    window.Echo.channel('showlogs.'+$('#serviceId').text())
-        .listen('NewLog', (e) => {
 
-            $( "#logsContainer" ).load(window.location.href + " #logsContent", function () {
+    $('.datepicker').datetimepicker({
+        format:"DD-MM-YYYY",
+        icons:{
+            time:"fa fa-clock-o",
+            date:"fa fa-calendar",
+            up:"fa fa-chevron-up",
+            down:"fa fa-chevron-down",
+            previous:"fa fa-chevron-left",
+            next:"fa fa-chevron-right",
+            today:"fa fa-screenshot",
+            clear:"fa fa-trash",
+            close:"fa fa-remove"
+        }
+    });
 
-                var index = localStorage.getItem("activeLogId");
-
-                var id  = "#"+index;
-
-                $(id).addClass("logs-active");
-
-            });
-
-
-        });
-
+    initialMap();
 
     function initialMap() {
         //var lat = document.getElementById("latitude").value;
@@ -88,26 +85,12 @@ $(document).ready(function () {
 
         $(".logs").removeClass("logs-active");
 
-        localStorage.setItem("activeLogId", $(this).attr('id'));
-
         $(this).addClass("logs-active");
 
         myMap(lat,long);
-
-        // $(".map-marker-icon").removeClass('sr-only');
-        $("#wearerLogLocality").text(locality);
     });
-
-    $(document).on("click",'.logs-action', function(event) {
-        event.stopPropagation();
-    });
-
 
     $(document).on("click",'#showWearerLocation', function(event) {
-
-        locationCheck = false;
-
-        $("#wearerLocationMessage").text("");
 
         var id = $(this).attr('data-service-id');
 
@@ -135,105 +118,38 @@ $(document).ready(function () {
             }
         });
 
-        setTimeout(function () {
-
-            if (locationCheck == false) {
-
-                locationCheck = true;
-
-
-
-                var url = "/getLastLocation/";
-
-
-                $.ajax({
-                    url: url,
-                    data: {
-                        serviceId: id,
-                        userName: userName,
-                        userId: userId
-                    },
-                    datatype: "json",
-                    method: "GET",
-                    success: function (data) {
-
-                        var lat = data.location_latitude;
-                        var long = data.location_longitude;
-                        var locality = data.locality;
-                        var lastDate = data.log_date;
-                        var lastTime = data.log_time;
-
-                        $("#wearerLocality").text(locality);
-
-                        var getDirectionLink = "https://www.google.com/maps/dir//" + lat + "," + long;
-
-
-                        $("#wearerGetDirectionLink").attr("href", getDirectionLink);
-
-                        var wearerPosition = new google.maps.LatLng(lat, long);
-                        var mapOptions = {
-                            center: wearerPosition,
-                            zoom: 15,
-                        };
-                        var map = new google.maps.Map(document.getElementById("wearerLocationMap"), mapOptions);
-                        var marker = new google.maps.Marker({
-                            position: wearerPosition,
-                        });
-                        marker.setMap(map);
-
-                        $("#wearerLocationMessage").text("*Last location recorded at "+lastTime +" on "+lastDate);
-
-                        $('#trackWearer').modal('show');
-
-
-                    },
-                    complete: function () {
-                        $("#trackWearerLoad").addClass("sr-only");
-                    }
-                });
-            }
-
-        }, 10000);
-
     });
 
     window.Echo.channel('location.'+$('#serviceId').text()+'.'+$('#showWearerLocation').attr('data-user-id'))
         .listen('WearerLocation', (e) => {
 
-            if(locationCheck == false){
+            var userId = e.userId;
+            var serviceId = e.serviceId;
+            var lat = e.locationLatitude;
+            var long = e.locationLongitude;
+            var locality = e.locality;
 
-                locationCheck = true;
+            $("#wearerLocality").text(locality);
 
-                var userId = e.userId;
-                var serviceId = e.serviceId;
-                var lat = e.locationLatitude;
-                var long = e.locationLongitude;
-                var locality = e.locality;
-
-                $("#wearerLocality").text(locality);
-
-                var getDirectionLink = "https://www.google.com/maps/dir//"+lat+","+long;
+            var getDirectionLink = "https://www.google.com/maps/dir//"+lat+","+long;
 
 
-                $("#wearerGetDirectionLink").attr("href", getDirectionLink);
+            $("#wearerGetDirectionLink").attr("href", getDirectionLink);
 
-                var wearerPosition = new google.maps.LatLng(lat,long);
-                var mapOptions = {
-                    center: wearerPosition,
-                    zoom: 15,
-                };
-                var map = new google.maps.Map(document.getElementById("wearerLocationMap"), mapOptions);
-                var marker = new google.maps.Marker({
-                    position: wearerPosition,
-                });
-                marker.setMap(map);
+            var wearerPosition = new google.maps.LatLng(lat,long);
+            var mapOptions = {
+                center: wearerPosition,
+                zoom: 15,
+            };
+            var map = new google.maps.Map(document.getElementById("wearerLocationMap"), mapOptions);
+            var marker = new google.maps.Marker({
+                position: wearerPosition,
+            });
+            marker.setMap(map);
 
-                $("#wearerLocationMessage").text("*Current location");
+            $('#trackWearer').modal('show');
 
-                $('#trackWearer').modal('show');
-
-                $("#trackWearerLoad").addClass("sr-only");
-            }
+            $("#trackWearerLoad").addClass("sr-only");
 
         });
 
@@ -256,7 +172,6 @@ $(document).ready(function () {
 
         $('#hourlyLogDetails').modal('show');
     });
-
 
     $(document).on("click",'.show-alert-log-details', function(event) {
 
@@ -425,5 +340,38 @@ $(document).ready(function () {
 
     });
 
+
+    $(document).on("submit", "#logFiltersForm", function (e) {
+        e.preventDefault();
+
+
+        $("#apllyLogFilterLoad").removeClass("sr-only");
+
+        // var data = JSON.stringify( $(this).serializeArray() );
+
+        var data = $(this).serializeArray();
+
+
+        var serviceId = data[0]['value'];
+
+        var logType = data[1]['value'];
+
+        var date = data[2]['value'];
+
+        if (date == ''){
+            date = 'all';
+        }
+
+        var url="/crServiceLogHistory/"+serviceId+"/"+date+"/"+logType;
+
+        // window.location.href = url;
+
+        $( "#reloadPage" ).load(url + " #pageContent", function () {
+            $("#apllyLogFilterLoad").addClass("sr-only");
+            initialMap();
+            $('#logFilters').modal('hide');
+        });
+
+    });
 
 });

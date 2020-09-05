@@ -38,7 +38,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/home" class="nav-link">
                         <i class="nc-icon nc-layout-11"></i>
                         Login to User Panel
                     </a>

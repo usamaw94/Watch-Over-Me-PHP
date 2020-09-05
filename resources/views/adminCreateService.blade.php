@@ -37,12 +37,12 @@
                     <div class="clearfix"></div>
                     <div class="collapse" id="collapseExample">
                         <ul class="nav">
-                            <li>
-                                <a href="#">
-                                    <span class="sidebar-mini-icon">EP</span>
-                                    <span class="sidebar-normal">Edit Profile</span>
-                                </a>
-                            </li>
+{{--                            <li>--}}
+{{--                                <a href="#">--}}
+{{--                                    <span class="sidebar-mini-icon">EP</span>--}}
+{{--                                    <span class="sidebar-normal">Edit Profile</span>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
                             <li>
                                 <a href="/adminLogout">
                                     <i class="nc-icon nc-button-power"></i>
@@ -96,44 +96,6 @@
                         </button>
                     </div>
                     <a class="navbar-brand" href="javascript:;">Create Service</a>
-                </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-bar navbar-kebab"></span>
-                    <span class="navbar-toggler-bar navbar-kebab"></span>
-                    <span class="navbar-toggler-bar navbar-kebab"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                    <ul class="navbar-nav">
-                        <li class="nav-item btn-rotate dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="nc-icon nc-bell-55"></i>
-                                <p>
-                                    <span class="d-lg-none d-md-block">Show notification</span>
-                                </p>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right notification-panel" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item notification-panel-item" href="#">
-                                    <div class="timeline-panel">
-                                        <div class="timeline-body">
-                                            <span class="badge badge-pill badge-danger">Help me request</span> &nbsp; <p>14:24:09 - 27/12/2019</p><br>
-                                            <p>Service Id: <b>WOMSVC001</b></p><br>
-                                            <p>Wearer: <b class="font-weight-bold text-uppercase">Usama Waheed</b> - <span>WOMUSR001</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a class="dropdown-item notification-panel-item" href="#">
-                                    <div class="timeline-panel">
-                                        <div class="timeline-body">
-                                            <span class="badge badge-pill badge-danger">Help me request</span> &nbsp; <p>14:24:09 - 27/12/2019</p><br>
-                                            <p>Service Id: <b>WOMSVC001</b></p><br>
-                                            <p>Wearer: <b class="font-weight-bold text-uppercase">Usama Waheed</b> - <span>WOMUSR001</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </nav>

@@ -12,8 +12,15 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
+
+                background: #367fa9;
+                background-repeat:no-repeat;
+                background: -webkit-linear-gradient( to left top, #595386, #4975aa, #4e9fd1);
+                background: -moz-linear-gradient( to left top, #595386, #4975aa, #4e9fd1);
+                background: -ms-linear-gradient( to left top, #595386, #4975aa, #4e9fd1);
+                background: -o-linear-gradient( to left top, #595386, #4975aa, #4e9fd1);
+                background: linear-gradient( to left top, #595386, #4975aa, #4e9fd1);
+                color: #fff;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
@@ -49,7 +56,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #fff;
                 padding: 0 25px;
                 font-size: 13px;
                 font-weight: 600;
@@ -72,9 +79,9 @@
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
+{{--                        @if (Route::has('register'))--}}
+{{--                            <a href="{{ route('register') }}">Register</a>--}}
+{{--                        @endif--}}
                     @endauth
                 </div>
             @endif

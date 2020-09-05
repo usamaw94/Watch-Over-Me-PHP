@@ -672,11 +672,6 @@ class AdminController extends Controller
 
             error_log('New service created');
 
-            $msg = array(
-                'message' => "New service created successfully",
-            );
-
-
             ////////////////////////////////////
 
             $newServiceEmailData = array(
@@ -812,7 +807,12 @@ class AdminController extends Controller
 
             }
 
-            return redirect('/adminServices')->with($msg);
+//            $msg = array(
+//                'newService' => "New service created successfully",
+//            );
+
+
+            return redirect('/adminServices')->with('message', 'service created');
 
         } else {
 
@@ -948,7 +948,7 @@ class AdminController extends Controller
         }
     }
 
-    public function sendNotificationToWearer($serviceId, $title, $message)
+    public function sendDataNotificationToWearer($serviceId, $title, $message)
     {
 
         $service = DB::table('services')
@@ -985,12 +985,55 @@ class AdminController extends Controller
 
     }
 
+    public function sendNotificationToWearer($serviceId, $title, $message)
+    {
+
+        $service = DB::table('services')
+            ->where('service_id', '=', $serviceId)
+            ->get()->first();
+
+        $data = [
+            "to" => $service->wearer_device_token,
+            "notification" =>
+                [
+                    "title" => $title,
+                    "body" => $message
+                ],
+            "android" =>
+                [
+                "priority"=>"high"
+                ]
+        ];
+
+        $dataString = json_encode($data);
+
+        $headers = [
+            'Authorization: key=' . $this->serverApiKey,
+            'Content-Type: application/json',
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $this->firebaseUrl);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        return curl_exec($ch);
+
+    }
+
     public function trackWearer(Request $request){
         $serviceId = $request->serviceId;
         $userName = $request->userName;
         $userId = $request->userId;
 
-        $result = $this->sendNotificationToWearer($serviceId, "Location".$userId, $userName." requested your location");
+        $result1 = $this->sendNotificationToWearer($serviceId, "Location".$userId, $userName." requested your location");
+
+        $result = $this->sendDataNotificationToWearer($serviceId, "Location".$userId, $userName." requested your location");
 
         if ($result){
             return response()->json("success");
@@ -1078,6 +1121,23 @@ class AdminController extends Controller
         );
 
         return view('adminLogHistory')->with($data);
+
+    }
+
+    public function getLastLocation(Request $request){
+
+        $serviceId = $request->serviceId;
+        $userName = $request->userName;
+        $userId = $request->userId;
+
+        $lastlog = DB::table('logs')
+            ->where('service_id', '=', $serviceId)
+            ->select('log_id','location_latitude','location_longitude','locality', 'log_date', 'log_time')
+            ->orderBy('created_at', 'desc')
+            ->get()->first();
+
+        return response()->json($lastlog);
+
 
     }
 

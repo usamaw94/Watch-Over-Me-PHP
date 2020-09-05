@@ -187,7 +187,7 @@
                                         </p>
                                     </div>
                                     <p>Created On: {{$serviceDetails->created_at}}</p>
-                                    <a href="/adminServiceLogs/?id={{$serviceDetails->service_id}}" class="btn btn-outline-info">
+                                    <a href="/crServiceLogs/?id={{$serviceDetails->service_id}}" class="btn btn-outline-info">
                                         <i class="material-icons">remove_red_eye</i>
                                         &nbsp; View service logs
                                     </a>

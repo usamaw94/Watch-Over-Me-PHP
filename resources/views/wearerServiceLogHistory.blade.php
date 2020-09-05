@@ -63,8 +63,8 @@
                         <p> Dashboard </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/userAsWearer">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/userAsWearer">
                         <i class="material-icons">settings</i>
                         <p> As wearer </p>
                     </a>
@@ -154,8 +154,8 @@
         </nav>
         <!-- End Navbar -->
 
-        <div class="content">
-            <div class="container-fluid">
+        <div id="reloadPage" class="content">
+            <div id="pageContent" class="container-fluid">
 
                 <div class="row">
 
@@ -234,12 +234,12 @@
                                                 {{ ($logs->currentPage()-1)* $logs->perPage() + $logs->perPage() }}
                                                 of {{ $logs->total() }} logs</span><br>
                                             <div class="text-right">
-                                                <button type="button" rel="tooltip" title="Previous" class="btn btn-white btn-link btn-sm">
+                                                <a href="{{ $logs->previousPageUrl() }}" rel="tooltip" title="Previous" class="btn btn-white btn-link btn-sm">
                                                     <i class="fa fa-angle-left"></i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Next" class="btn btn-white btn-link btn-sm">
+                                                </a>
+                                                <a href="{{ $logs->nextPageUrl() }}" type="button" rel="tooltip" title="Next" class="btn btn-white btn-link btn-sm">
                                                     <i class="fa fa-angle-right"></i>
-                                                </button>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -249,39 +249,65 @@
                                 <table class="table table-hover">
                                     <tbody>
 
-                                    <tr class="logs" data-lat="-37.882833920280056" data-long="145.1416632143803">
-                                        <td>
-                                            <span class="badge badge-pill badge-danger">Alert log</span><br>
-                                            <b>14:24:09 - 27/12/2019</b><br>
-                                            Watch battery: 27%
-                                        </td>
-                                        <td class="td-actions text-right">
-                                            <a target="_blank" href="https://www.google.com/maps/dir//-37.882833920280056,145.1416632143803"
-                                               title="Get direction" class="btn btn-default btn-link btn-lg">
-                                                <i class="material-icons">directions</i>
-                                            </a>
-                                            <button type="button" data-toggle="modal" data-target="#alertLogDetails" title="View details" class="btn btn-default btn-link btn-lg">
-                                                <i class="material-icons">info</i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    @foreach($logs as $lg)
 
+                                        @if ($lg->log_type == 'Hourly Log')
 
-                                    <tr class="logs" data-lat="-38.042411928573614" data-long="145.1096239604738">
-                                        <td>
-                                            <span class="badge badge-pill badge-info">Hourly log</span><br>
-                                            <b>14:24:09 - 27/12/2019</b><br>
-                                            Watch battery: 27%
-                                        </td>
-                                        <td class="td-actions text-right">
-                                            <a target="_blank" href="https://www.google.com/maps/dir//-38.042411928573614,145.1096239604738" title="Get direction" class="btn btn-default btn-link btn-sm">
-                                                <i class="material-icons">directions</i>
-                                            </a>
-                                            <button type="button" title="View details" data-toggle="modal" data-target="#hourlyLogDetails" class="btn btn-default btn-link btn-sm">
-                                                <i class="material-icons">info</i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                            <tr id="{{ $lg->log_id }}"
+                                                data-lat="{{ $lg->location_latitude }}"
+                                                data-long="{{ $lg->location_longitude }}"
+                                                data-locality="{{ $lg->locality }}"
+                                                class="logs">
+                                                <td>
+                                                    <span class="badge badge-pill badge-info">{{ $lg->log_type }}</span><br>
+                                                    <b>{{ $lg->log_time }} - {{ $lg->log_date }}</b><br>
+                                                    Watch battery: {{ $lg->battery_percentage }}%
+                                                </td>
+                                                <td class="td-actions text-right">
+                                                    <a target="_blank" href="https://www.google.com/maps/dir//{{ $lg->location_latitude }},{{ $lg->location_longitude }}" title="Get direction" class="btn btn-default btn-link btn-sm">
+                                                        <i class="material-icons">directions</i>
+                                                    </a>
+                                                    <button type="button" title="View details" class="btn btn-default btn-link btn-sm show-hourly-log-details"
+                                                            data-id="{{ $lg->id }}"
+                                                            data-date="{{ $lg->log_date }}"
+                                                            data-time="{{ $lg->log_time }}"
+                                                            data-description="{{ $lg->log_text }}"
+                                                            data-type="{{ $lg->log_type }}"
+                                                            data-battery="{{ $lg->battery_percentage }}">
+                                                        <i class="material-icons">info</i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                        @elseif($lg->log_type == 'Alert Log')
+
+                                            <tr id="{{ $lg->log_id }}"
+                                                data-lat="{{ $lg->location_latitude }}"
+                                                data-long="{{ $lg->location_longitude }}"
+                                                data-locality="{{ $lg->locality }}"
+                                                class="logs">
+                                                <td>
+                                                    <span class="badge badge-pill badge-danger">{{ $lg->log_type }}</span><br>
+                                                    <b>{{ $lg->log_time }} - {{ $lg->log_date }}</b><br>
+                                                    Watch battery: {{ $lg->battery_percentage }}%
+                                                </td>
+                                                <td class="td-actions text-right">
+                                                    <a target="_blank" href="https://www.google.com/maps/dir//{{ $lg->location_latitude }},{{ $lg->location_longitude }}"
+                                                       title="Get direction" class="btn btn-default btn-link btn-sm">
+                                                        <i class="material-icons">directions</i>
+                                                    </a>
+                                                    <button type="button" title="View details" class="btn btn-default btn-link btn-sm show-alert-log-details"
+                                                            data-id="{{ $lg->log_id }}"
+                                                            data-wearer-name="{{ $wearerDetails->full_name }}">
+                                                        <i class="fa fa-spinner fa-spin alert-log-spinner sr-only"></i>
+                                                        <i class="alert-log-Info-Icon material-icons">info</i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                        @endif
+
+                                    @endforeach
 
                                     </tbody>
                                 </table>
@@ -318,43 +344,50 @@
                         </button>
                     </div>
 
-                    <div class="modal-body">
-                        <div class="form-horizontal">
+                    <form id="logFiltersForm">
 
-                            <div class="row">
-                                <label style="margin-top: 10px" class="col-md-3 col-form-label">
-                                    Logs type:
-                                </label>
-                                <div class="col-md-9">
-                                    <div class="form-group has-default">
-                                        <select class="form-control" name="logsType">
-                                            <option>All</option>
-                                            <option>Alert logs</option>
-                                            <option>Hourly logs</option>
-                                        </select>
+                        <div class="modal-body">
+                            <div class="form-horizontal">
+
+                                <input type="hidden" value="{{ $serviceDetails->service_id }}" name="serviceId" readonly>
+
+                                <div class="row">
+                                    <label style="margin-top: 10px" class="col-md-3 col-form-label">
+                                        Logs type:
+                                    </label>
+                                    <div class="col-md-9">
+                                        <div class="form-group has-default">
+                                            <select class="form-control" name="logsType">
+                                                <option value="all">All</option>
+                                                <option value="alert">Alert logs</option>
+                                                <option value="hourly">Hourly logs</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <label class="col-md-3 col-form-label">Date:</label>
-                                <div class="col-md-9">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control datepicker">
+                                <div class="row">
+                                    <label style="margin-top: 10px" class="col-md-3 col-form-label">Date:</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <input type="text" name="logsDate" class="form-control datepicker">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-dark btn-link">
-                            <i class="fa fa-search"></i> &nbsp;
-                            Search
-                        </button>
-                        <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-dark btn-link">
+                                <i class="fa fa-search"></i> &nbsp;
+                                Search &nbsp;
+                                <span><i id="apllyLogFilterLoad" class="fa fa-spinner fa-spin sr-only"></i></span>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </form>
 
                 </div>
             </div>
@@ -376,33 +409,35 @@
                                 <tbody>
                                 <tr>
                                     <th>
-                                        Log ID:
-                                    </th>
-                                    <td>WOMP00000875</td>
-                                </tr>
-                                <tr>
-                                    <th>
                                         Date/Time:
                                     </th>
-                                    <td>21/05/2020 - 20:30</td>
+                                    <td id="hModalDateTime">
+                                        21/05/2020 - 20:30
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>
                                         Description:
                                     </th>
-                                    <td>Log on hourly basis</td>
+                                    <td id="hModalDescription">
+                                        Log on hourly basis
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>
                                         Type:
                                     </th>
-                                    <td>Hourly log</td>
+                                    <td id="hModalType">
+                                        Hourly log
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>
                                         Device Battery level:
                                     </th>
-                                    <td>35%</td>
+                                    <td id="hModalBattery">
+                                        35%
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -430,67 +465,80 @@
 
                     <div class="modal-body">
 
-                        <p><b id="aModalWearerName">Waqas Waheed</b> initiated help me request at <b id="aModalTime">14:24:09</b> on <b id="aModalDate">27/12/2019</b>.
-                            <br>Device battery was <b id="aModalBattery">35%</b> at the time of request initiation</p>
+                        <p><b id="aModalWearerName"></b> initiated help me request at <b id="aModalTime"></b> on <b id="aModalDate"></b>.
+                            <br>Device battery was <b id="aModalBattery"></b> at the time of request initiation</p>
 
+                        <span id="helpMeResponse"></span>
                         <div style="background: #eeeeee" class="card card-timeline card-plain">
                             <div class="card-body">
-                                <ul class="timeline timeline-inverted">
+                                <h5 class="text-center text-muted">Help Me Request Flow</h5>
+                                <ul id="alertLogTimeline" class="timeline timeline-inverted">
                                     <li class="timeline">
-                                        <div class="timeline-badge danger">
-                                            <i class="material-icons">card_travel</i>
+                                        <div class="timeline-badge info">
+                                            <i class="material-icons">account_circle</i>
                                         </div>
                                         <div class="timeline-panel">
                                             <div class="timeline-heading">
-                                                <span class="badge badge-pill badge-danger">Some Title</span>
+                                                <span class="badge badge-pill badge-info">Help Me Request</span>
                                             </div>
                                             <div class="timeline-body">
-                                                <p>Wifey made the best Father's Day meal ever. So thankful so happy so blessed. Thank you for making my family We just had fun with the “future” theme !!! It was a fun night all together ... The always rude Kanye Show at 2am Sold Out Famous viewing @ Figueroa and 12th in downtown.</p>
+                                                <p>Request was sent to <b>Usama Waheed</b></p>
                                             </div>
                                             <h6>
                                                 <i class="ti-time"></i>
-                                                11 hours ago via Twitter
+                                                02:18:43 pm - 25 August 2020
                                             </h6>
                                         </div>
                                     </li>
                                     <li class="timeline-inverted">
                                         <div class="timeline-badge success">
-                                            <i class="material-icons">card_travel</i>
+                                            <i class="fa fa-user"></i>
                                         </div>
                                         <div class="timeline-panel">
                                             <div class="timeline-heading">
-                                                <span class="badge badge-pill badge-success">Another One</span>
+                                                <span class="badge badge-pill badge-success">Response</span>
                                             </div>
                                             <div class="timeline-body">
-                                                <p>Thank God for the support of my wife and real friends. I also wanted to point out that it’s the first album to go number 1 off of streaming!!! I love you Ellen and also my number one design rule of anything I do from shoes to music to homes is that Kim has to like it....</p>
+                                                <p><b>Usama Waheed</b> accepted the help request</p>
                                             </div>
+                                            <h6>
+                                                <i class="ti-time"></i>
+                                                02:18:43 pm - 25 August 2020
+                                            </h6>
                                         </div>
                                     </li>
                                     <li class="timeline-inverted">
-                                        <div class="timeline-badge info">
-                                            <i class="material-icons">card_travel</i>
+                                        <div class="timeline-badge danger">
+                                            <i class="fa fa-user"></i>
                                         </div>
                                         <div class="timeline-panel">
                                             <div class="timeline-heading">
-                                                <span class="badge badge-pill badge-info">Another Title</span>
+                                                <span class="badge badge-pill badge-danger">Response</span>
                                             </div>
                                             <div class="timeline-body">
-                                                <p>Called I Miss the Old Kanye That’s all it was Kanye And I love you like Kanye loves Kanye Famous viewing @ Figueroa and 12th in downtown LA 11:10PM</p>
-                                                <p>What if Kanye made a song about Kanye Royère doesn't make a Polar bear bed but the Polar bear couch is my favorite piece of furniture we own It wasn’t any Kanyes Set on his goals Kanye</p>
-                                                <hr>
+                                                <p><b>Usama Waheed</b> declined the help request</p>
                                             </div>
-                                            <div class="timeline-footer">
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn btn-round btn-info dropdown-toggle" data-toggle="dropdown">
-                                                        <i class="nc-icon nc-settings-gear-65"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="#">Action</a>
-                                                        <a class="dropdown-item" href="#">Another action</a>
-                                                        <a class="dropdown-item" href="#">Something else here</a>
-                                                    </div>
-                                                </div>
+                                            <h6>
+                                                <i class="ti-time"></i>
+                                                02:18:43 pm - 25 August 2020
+                                            </h6>
+                                        </div>
+                                    </li>
+                                    <li class="timeline-inverted">
+                                        <div class="timeline-badge warning">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <span class="badge badge-pill badge-warning">Response</span>
                                             </div>
+                                            <div class="timeline-body">
+                                                <p><b>Usama Waheed</b> didn't respond</p>
+                                            </div>
+                                            <h6>
+                                                <i class="ti-time"></i>
+                                                02:18:43 pm - 25 August 2020
+                                            </h6>
                                         </div>
                                     </li>
                                 </ul>

@@ -1,4 +1,4 @@
-.notification-panel {
+#notificationDropdown {
     max-height: 500px;
     overflow-y: auto;
 }
@@ -110,3 +110,6 @@
     background: rgba(128, 128, 128, 0.23);
 }
 
+.timeline {
+    margin-top: 0px;
+}

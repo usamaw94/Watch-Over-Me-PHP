@@ -65,6 +65,9 @@ Route::get('/adminAlertLogDetails', 'AdminController@alertLogDetails')->name('ad
 
 Route::get('/adminLogHistory/{serviceId}/{date}/{type}', 'AdminController@logHistory')->name('admin.log.history');
 
+Route::get('/adminGetLastLocation/', 'AdminController@getLastLocation')->name('admin.get.last.location');
+
+
 //---------------------------------------------------//
 
 Route::get('/userLogout', 'Auth\LoginController@userLogout')->name('user.logout');
@@ -93,9 +96,23 @@ Route::get('/userAsWatcherService', 'HomeController@userAsWatcherService')->name
 
 Route::get('/userAsCustomerService', 'HomeController@userAsCustomerService')->name('user.as.customer.service');
 
-Route::get('/wrServiceLogs', 'HomeController@wrServiceLogs')->name('user.wearer.service.logs');
+Route::get('/wrServiceLogs', 'HomeController@wearerServiceLogs')->name('user.wearer.service.logs');
 
-Route::get('/wrServiceLogHistory/{serviceId}/{date}/{type}', 'HomeController@wrServiceLogHistory')->name('user.wearer.service.log.history');
+Route::get('/wrServiceLogHistory/{serviceId}/{date}/{type}', 'HomeController@wearerServiceLogHistory')->name('user.wearer.service.log.history');
+
+Route::get('/wtServiceLogHistory/{serviceId}/{date}/{type}', 'HomeController@watcherServiceLogHistory')->name('user.watcher.service.log.history');
+
+Route::get('/crServiceLogHistory/{serviceId}/{date}/{type}', 'HomeController@customerServiceLogHistory')->name('user.customer.service.log.history');
+
+Route::get('/alertLogDetails', 'HomeController@alertLogDetails')->name('user.alert.log.details');
+
+Route::get('/trackWearer', 'HomeController@trackWearer')->name('user.track.wearer');
+
+Route::get('/wtServiceLogs', 'HomeController@watcherServiceLogs')->name('user.watcher.service.logs');
+
+Route::get('/crServiceLogs', 'HomeController@customerServiceLogs')->name('user.customer.service.logs');
+
+Route::get('/getLastLocation', 'HomeController@getLastLocation')->name('user.get.last.location');
 
 
 //---------------------------------------------------//
@@ -104,3 +121,4 @@ Route::get('/hmr/{logId}/{userId}', 'WebController@helpMeRequest')->name('help.m
 Route::get('/helpMeRespond', 'WebController@helpMeRespond')->name('help.me.respond');
 Route::get('/userVerification/{code}', 'WebController@userVerification')->name('user.verification');
 
+Route::get('/resendEmailVerification/', 'WebController@resendEmailVerification')->name('resend.email.verification');

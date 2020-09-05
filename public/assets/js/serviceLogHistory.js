@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+
+    var num = 0;
+
     localStorage.clear();
 
     // window.Echo.channel('showlogs.'+$('#serviceId').text())
@@ -84,6 +87,7 @@ $(document).ready(function () {
         $(this).addClass("logs-active");
 
         myMap(lat,long);
+
 
         $(".map-marker-icon").removeClass('sr-only');
         $("#wearerLogLocality").text(locality);
@@ -367,7 +371,13 @@ $(document).ready(function () {
 
         var url="/adminLogHistory/"+serviceId+"/"+date+"/"+logType;
 
-        window.location.href = url;
+        // window.location.href = url;
+
+        $( "#reloadPage" ).load(url + " #pageContent", function () {
+            $("#apllyLogFilterLoad").addClass("sr-only");
+            initialMap();
+            $('#logFilters').modal('hide');
+        });
 
     });
 

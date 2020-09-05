@@ -102,6 +102,24 @@ $(document).ready(function () {
         event.stopPropagation();
     });
 
+    $(document).on("click",'#showWearerLocation', function(event) {
+
+        var lat = "-38.042411928573614";
+        var long = "145.1096239604738";
+
+
+        var wearerPosition = new google.maps.LatLng(lat,long);
+        var mapOptions = {
+            center: wearerPosition,
+            zoom: 15,
+        };
+        var map = new google.maps.Map(document.getElementById("wearerLocationMap"), mapOptions);
+        var marker = new google.maps.Marker({
+            position: wearerPosition,
+        });
+        marker.setMap(map);
+
+    });
 
     $(document).on("click",'#showWearerLocation', function(event) {
 

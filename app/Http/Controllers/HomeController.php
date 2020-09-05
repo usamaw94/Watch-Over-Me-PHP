@@ -21,6 +21,9 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    protected $firebaseUrl = "https://fcm.googleapis.com/fcm/send";
+    protected $serverApiKey = 'AAAAOag5k6Q:APA91bGWiOFxRiKvtRJXrVUdX0pMKqPygeFQD3uJaQykRq7Si_IFbzksVHTbtJZEBt3ZpozNb6NfA_4TK8TA3p0o3UFg5PVpEKj4G3iMbSw98zFbkralNOXJ4F_W_3OmabB2qWqxmfr3';
+
     /**
      * Show the application dashboard.
      *
@@ -584,7 +587,8 @@ class HomeController extends Controller
 
     }
 
-    public function wrServiceLogs(Request $request){
+
+    public function wearerServiceLogs(Request $request){
 
         $userId = Auth::user()->person_id;
 
@@ -632,7 +636,104 @@ class HomeController extends Controller
 
     }
 
-    public function wrServiceLogHistory(Request $request){
+
+    public function watcherServiceLogs(Request $request){
+
+        $userId = Auth::user()->person_id;
+
+        $alertNotifications= DB::table('alert_notifications')
+            ->where('watcher_id', '=', $userId)
+            ->get();
+
+        if($alertNotifications == null){
+            $aNCount = 0;
+        } else {
+            $aNCount = $alertNotifications->count();
+        }
+
+        $serviceId = $request->id;
+
+//        dd($serviceId);
+
+        $serviceDetails = DB::table('services')
+            ->where('service_id', '=', $serviceId)
+            ->get()->first();
+
+        $wearerId = $serviceDetails->wearer_id;
+
+        $wearerDetails = DB::table('users')
+            ->where('person_id', '=', $wearerId)
+            ->select('person_id', 'f_name' , 'l_name', 'full_name', 'email', 'phone')
+            ->get()->first();
+
+        $logs = DB::table('logs')
+            ->where('service_id', '=', $serviceId)
+            ->orderBy('created_at', 'desc')
+//            ->orderBy('log_time', 'desc')
+            ->take(50)->get();
+
+        $data = array(
+            'alertNotifications' => $alertNotifications,
+            'aNCount' => $aNCount,
+            'wearerDetails' => $wearerDetails,
+            'serviceDetails' => $serviceDetails,
+            'logs' => $logs
+        );
+
+
+        return view('watcherServiceLogs')->with($data);
+
+    }
+
+    public function customerServiceLogs(Request $request){
+
+        $userId = Auth::user()->person_id;
+
+        $alertNotifications= DB::table('alert_notifications')
+            ->where('watcher_id', '=', $userId)
+            ->get();
+
+        if($alertNotifications == null){
+            $aNCount = 0;
+        } else {
+            $aNCount = $alertNotifications->count();
+        }
+
+        $serviceId = $request->id;
+
+//        dd($serviceId);
+
+        $serviceDetails = DB::table('services')
+            ->where('service_id', '=', $serviceId)
+            ->get()->first();
+
+        $wearerId = $serviceDetails->wearer_id;
+
+        $wearerDetails = DB::table('users')
+            ->where('person_id', '=', $wearerId)
+            ->select('person_id', 'f_name' , 'l_name', 'full_name', 'email', 'phone')
+            ->get()->first();
+
+        $logs = DB::table('logs')
+            ->where('service_id', '=', $serviceId)
+            ->orderBy('created_at', 'desc')
+//            ->orderBy('log_time', 'desc')
+            ->take(50)->get();
+
+        $data = array(
+            'alertNotifications' => $alertNotifications,
+            'aNCount' => $aNCount,
+            'wearerDetails' => $wearerDetails,
+            'serviceDetails' => $serviceDetails,
+            'logs' => $logs
+        );
+
+
+        return view('customerServiceLogs')->with($data);
+
+    }
+
+    public function wearerServiceLogHistory(Request $request){
 
         $serviceId = $request->serviceId;
         $date = $request->date;
@@ -704,4 +805,290 @@ class HomeController extends Controller
 
 
     }
+
+    public function watcherServiceLogHistory(Request $request){
+
+        $serviceId = $request->serviceId;
+        $date = $request->date;
+        $type = $request->type;
+
+        $userId = Auth::user()->person_id;
+
+        $alertNotifications= DB::table('alert_notifications')
+            ->where('watcher_id', '=', $userId)
+            ->get();
+
+        if($alertNotifications == null){
+            $aNCount = 0;
+        } else {
+            $aNCount = $alertNotifications->count();
+        }
+
+
+
+        if($date == 'all'){
+            $date = "";
+        }
+
+        if ($date != ''){
+            $date = \DateTime::createFromFormat('d-m-Y', $date)->format('d F Y');
+        }
+
+        if ($type == 'all'){
+            $type = "";
+        } elseif ($type == 'alert'){
+            $type = "Alert Log";
+        } elseif ($type == 'hourly'){
+            $type = "Hourly Log";
+        }
+
+        $serviceDetails = DB::table('services')
+            ->where('service_id', '=', $serviceId)
+            ->get()->first();
+
+        $wearerId = $serviceDetails->wearer_id;
+
+        $wearerDetails = DB::table('users')
+            ->where('person_id', '=', $wearerId)
+            ->select('person_id', 'f_name' , 'l_name', 'full_name', 'email', 'phone')
+            ->get()->first();
+
+
+
+        $logs = DB::table('logs')
+            ->where('service_id', '=', $serviceId)
+            ->where('log_date', 'like', '%'.$date.'%' )
+            ->where('log_type', 'like', '%'.$type.'%' )
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+
+        $data = array(
+            'alertNotifications' => $alertNotifications,
+            'aNCount' => $aNCount,
+            'serviceId' => $serviceId,
+            'wearerDetails' => $wearerDetails,
+            'serviceDetails' => $serviceDetails,
+            'date' => $date,
+            'type' => $type,
+            'logs' => $logs
+        );
+
+        return view('watcherServiceLogHistory')->with($data);
+
+
+    }
+
+    public function customerServiceLogHistory(Request $request){
+
+        $serviceId = $request->serviceId;
+        $date = $request->date;
+        $type = $request->type;
+
+        $userId = Auth::user()->person_id;
+
+        $alertNotifications= DB::table('alert_notifications')
+            ->where('watcher_id', '=', $userId)
+            ->get();
+
+        if($alertNotifications == null){
+            $aNCount = 0;
+        } else {
+            $aNCount = $alertNotifications->count();
+        }
+
+
+
+        if($date == 'all'){
+            $date = "";
+        }
+
+        if ($date != ''){
+            $date = \DateTime::createFromFormat('d-m-Y', $date)->format('d F Y');
+        }
+
+        if ($type == 'all'){
+            $type = "";
+        } elseif ($type == 'alert'){
+            $type = "Alert Log";
+        } elseif ($type == 'hourly'){
+            $type = "Hourly Log";
+        }
+
+        $serviceDetails = DB::table('services')
+            ->where('service_id', '=', $serviceId)
+            ->get()->first();
+
+        $wearerId = $serviceDetails->wearer_id;
+
+        $wearerDetails = DB::table('users')
+            ->where('person_id', '=', $wearerId)
+            ->select('person_id', 'f_name' , 'l_name', 'full_name', 'email', 'phone')
+            ->get()->first();
+
+
+
+        $logs = DB::table('logs')
+            ->where('service_id', '=', $serviceId)
+            ->where('log_date', 'like', '%'.$date.'%' )
+            ->where('log_type', 'like', '%'.$type.'%' )
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+
+        $data = array(
+            'alertNotifications' => $alertNotifications,
+            'aNCount' => $aNCount,
+            'serviceId' => $serviceId,
+            'wearerDetails' => $wearerDetails,
+            'serviceDetails' => $serviceDetails,
+            'date' => $date,
+            'type' => $type,
+            'logs' => $logs
+        );
+
+        return view('customerServiceLogHistory')->with($data);
+
+
+    }
+
+
+    public function alertLogDetails(Request $request){
+
+        $logId = $request->logId;
+
+        $logDetails = DB::table('logs')
+            ->where('log_id', '=', $logId)
+            ->get()->first();
+
+        $logResponses = DB::table('help_me_responses')
+            ->join('users as watcher', 'watcher.person_id', '=', 'help_me_responses.response_to')
+            ->where('alert_log_id', '=', $logId)
+            ->select('help_me_responses.alert_log_id', 'help_me_responses.response_from', 'help_me_responses.response_to', 'help_me_responses.send_text', 'help_me_responses.send_date', 'help_me_responses.send_time', 'help_me_responses.response_type',
+                'help_me_responses.response_status', 'help_me_responses.reply_text', 'help_me_responses.reply_date', 'help_me_responses.reply_time', 'help_me_responses.response_link',
+                'watcher.person_id', 'watcher.f_name', 'watcher.l_name', 'watcher.full_name',  'watcher.email', 'watcher.phone')
+            ->orderBy('help_me_responses.created_at', 'asc')
+            ->get();
+
+        $data = array(
+            'logDetails' => $logDetails,
+            'logResponses' => $logResponses
+        );
+
+        return response()->json($data);
+
+    }
+
+    public function sendDataNotificationToWearer($serviceId, $title, $message)
+    {
+
+        $service = DB::table('services')
+            ->where('service_id', '=', $serviceId)
+            ->get()->first();
+
+        $data = [
+            "to" => $service->wearer_device_token,
+            "data" =>
+                [
+                    "title" => $title,
+                    "body" => $message
+                ],
+        ];
+
+        $dataString = json_encode($data);
+
+        $headers = [
+            'Authorization: key=' . $this->serverApiKey,
+            'Content-Type: application/json',
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $this->firebaseUrl);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        return curl_exec($ch);
+
+    }
+
+    public function sendNotificationToWearer($serviceId, $title, $message)
+    {
+
+        $service = DB::table('services')
+            ->where('service_id', '=', $serviceId)
+            ->get()->first();
+
+        $data = [
+            "to" => $service->wearer_device_token,
+            "notification" =>
+                [
+                    "title" => $title,
+                    "body" => $message
+                ],
+        ];
+
+        $dataString = json_encode($data);
+
+        $headers = [
+            'Authorization: key=' . $this->serverApiKey,
+            'Content-Type: application/json',
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $this->firebaseUrl);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        return curl_exec($ch);
+
+    }
+
+    public function trackWearer(Request $request){
+
+        $serviceId = $request->serviceId;
+        $userName = $request->userName;
+        $userId = $request->userId;
+
+        $result1 = $this->sendNotificationToWearer($serviceId, "Location".$userId, $userName." requested your location");
+
+        $result = $this->sendDataNotificationToWearer($serviceId, "Location".$userId, $userName." requested your location");
+
+        if ($result){
+            return response()->json("success");
+
+        } else {
+            return response()->json("fail");
+
+        }
+
+
+    }
+
+    public function getLastLocation(Request $request){
+
+        $serviceId = $request->serviceId;
+        $userName = $request->userName;
+        $userId = $request->userId;
+
+        $lastlog = DB::table('logs')
+            ->where('service_id', '=', $serviceId)
+            ->select('log_id','location_latitude','location_longitude','locality', 'log_date', 'log_time')
+            ->orderBy('created_at', 'desc')
+            ->get()->first();
+
+        return response()->json($lastlog);
+
+
+    }
+
 }

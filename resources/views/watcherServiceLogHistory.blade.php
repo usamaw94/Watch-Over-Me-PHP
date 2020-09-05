@@ -63,13 +63,13 @@
                         <p> Dashboard </p>
                     </a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="/userAsWearer">
                         <i class="material-icons">settings</i>
                         <p> As wearer </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="/userAsWatcher">
                         <i class="material-icons">settings</i>
                         <p> As watcher </p>
@@ -154,31 +154,56 @@
         </nav>
         <!-- End Navbar -->
 
-        <div class="content">
-            <div class="container-fluid">
+        <div id="reloadPage" class="content">
+            <div id="pageContent" class="container-fluid">
 
                 <div class="row">
 
                     <div class="col-12">
-                        <div class="card ">
+                        <div class="card">
                             <div class="card-header ">
-                                <div class="pull-right">
-                                    <h5><span class="font-weight-normal">Wearer: </span>{{ $wearerDetails->full_name }}</h5>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h5>Service ID: {{ $serviceDetails->service_id }}</h5>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="pull-right">
+                                            <h5><span class="font-weight-normal">Wearer: </span>{{ $wearerDetails->full_name }}</h5>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h4 class="card-title">Service ID: <span id="serviceId">{{ $serviceDetails->service_id }}</span>
-                                    <!--                      <small class="description">Horizontal Tabs</small>-->
-                                </h4>
-                            </div>
-                            <div class="card-body ">
-                                <button data-user-id="{{ Auth::user()->id }}" data-user-name="{{ Auth::user()->full_name }}" data-service-id="{{ $serviceDetails->service_id }}"
-                                        id="showWearerLocation" class="btn btn-primary">
-                                    Get Wearer Location &nbsp; <span><i id="trackWearerLoad" class="fa fa-spinner fa-spin sr-only"></i></span>
-                                </button>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h5 style="font-size: 18px">
+                                            @if($date == '' && $type == '')
+                                                Showing all logs
+                                            @endif
+
+                                            @if($date != '' && $type != '')
+                                                Showing all <b>{{ $type }}s</b> for <b>{{ $date }}</b>
+                                            @endif
+
+                                            @if($date != '' && $type == '')
+                                                Showing all logs for <b>{{ $date }}</b>
+                                            @endif
+
+                                            @if($date == '' && $type != '')
+                                                Showing all <b>{{ $type }}s</b>
+                                            @endif
+                                        </h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button data-toggle="modal" data-target="#logFilters" class="btn btn-outline-primary btn-block">
+                                            Apply Search Filter
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-8 col-sm-6">
+                    <div class="col-md-6 col-sm-6">
                         <div class="card ">
                             <div class="card-header card-header-text card-header-info">
                                 <div class="card-text">
@@ -196,82 +221,96 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-sm-6">
+                    <div class="col-md-6 col-sm-6">
                         <div class="card">
                             <div class="card-header card-header-primary">
-                                <a href="/wrServiceLogHistory/{{ $serviceDetails->service_id }}/all/all" style="float: right" class="btn btn-sm btn-secondary" title="Show logs history">Show history</a>
-                                <h4 class='card-title'>Log list</h4>
-                            </div>
-                            <div id="logsContainer" class="card-body logs-container">
-                                <div id="logsContent">
-                                    <table class="table table-hover">
-                                        <tbody>
-
-
-                                        @foreach($logs as $lg)
-
-                                            @if ($lg->log_type == 'Hourly Log')
-
-                                                <tr id="{{ $lg->log_id }}"
-                                                    data-lat="{{ $lg->location_latitude }}"
-                                                    data-long="{{ $lg->location_longitude }}"
-                                                    data-locality="{{ $lg->locality }}"
-                                                    class="logs">
-                                                    <td>
-                                                        <span class="badge badge-pill badge-info">{{ $lg->log_type }}</span><br>
-                                                        <b>{{ $lg->log_time }} - {{ $lg->log_date }}</b><br>
-                                                        Watch battery: {{ $lg->battery_percentage }}%
-                                                    </td>
-                                                    <td class="td-actions text-right">
-                                                        <a target="_blank" href="https://www.google.com/maps/dir//{{ $lg->location_latitude }},{{ $lg->location_longitude }}"
-                                                           title="Get direction" class="btn btn-default btn-link btn-lg">
-                                                            <i class="material-icons">directions</i>
-                                                        </a>
-                                                        <button type="button" title="View details" class="btn btn-default btn-link btn-lg show-hourly-log-details"
-                                                                data-id="{{ $lg->id }}"
-                                                                data-date="{{ $lg->log_date }}"
-                                                                data-time="{{ $lg->log_time }}"
-                                                                data-description="{{ $lg->log_text }}"
-                                                                data-type="{{ $lg->log_type }}"
-                                                                data-battery="{{ $lg->battery_percentage }}">
-                                                            <i class="material-icons">info</i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-
-                                            @elseif($lg->log_type == 'Alert Log')
-
-                                                <tr id="{{ $lg->log_id }}"
-                                                    data-lat="{{ $lg->location_latitude }}"
-                                                    data-long="{{ $lg->location_longitude }}"
-                                                    data-locality="{{ $lg->locality }}"
-                                                    class="logs">
-                                                    <td>
-                                                        <span class="badge badge-pill badge-danger">{{ $lg->log_type }}</span><br>
-                                                        <b>{{ $lg->log_time }} - {{ $lg->log_date }}</b><br>
-                                                        Watch battery: {{ $lg->battery_percentage }}%
-                                                    </td>
-                                                    <td class="td-actions text-right">
-                                                        <a target="_blank" href="https://www.google.com/maps/dir//{{ $lg->location_latitude }},{{ $lg->location_longitude }}" title="Get direction" class="btn btn-default btn-link btn-sm">
-                                                            <i class="material-icons">directions</i>
-                                                        </a>
-                                                        <button type="button" title="View details" class="btn btn-default btn-link btn-sm show-alert-log-details"
-                                                                data-id="{{ $lg->log_id }}"
-                                                                data-wearer-name="{{ $wearerDetails->full_name }}">
-                                                            <i class="fa fa-spinner fa-spin alert-log-spinner sr-only"></i>
-                                                            <i class="alert-log-Info-Icon material-icons">info</i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-
-                                            @endif
-
-                                        @endforeach
-
-
-                                        </tbody>
-                                    </table>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>Logs</h5>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="pull-right">
+                                            <span>Showing {{($logs->currentPage()-1)* $logs->perPage() + 1}} to
+                                                {{ ($logs->currentPage()-1)* $logs->perPage() + $logs->perPage() }}
+                                                of {{ $logs->total() }} logs</span><br>
+                                            <div class="text-right">
+                                                <a href="{{ $logs->previousPageUrl() }}" rel="tooltip" title="Previous" class="btn btn-white btn-link btn-sm">
+                                                    <i class="fa fa-angle-left"></i>
+                                                </a>
+                                                <a href="{{ $logs->nextPageUrl() }}" type="button" rel="tooltip" title="Next" class="btn btn-white btn-link btn-sm">
+                                                    <i class="fa fa-angle-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="card-body logs-container">
+                                <table class="table table-hover">
+                                    <tbody>
+
+                                    @foreach($logs as $lg)
+
+                                        @if ($lg->log_type == 'Hourly Log')
+
+                                            <tr id="{{ $lg->log_id }}"
+                                                data-lat="{{ $lg->location_latitude }}"
+                                                data-long="{{ $lg->location_longitude }}"
+                                                data-locality="{{ $lg->locality }}"
+                                                class="logs">
+                                                <td>
+                                                    <span class="badge badge-pill badge-info">{{ $lg->log_type }}</span><br>
+                                                    <b>{{ $lg->log_time }} - {{ $lg->log_date }}</b><br>
+                                                    Watch battery: {{ $lg->battery_percentage }}%
+                                                </td>
+                                                <td class="td-actions text-right">
+                                                    <a target="_blank" href="https://www.google.com/maps/dir//{{ $lg->location_latitude }},{{ $lg->location_longitude }}" title="Get direction" class="btn btn-default btn-link btn-sm">
+                                                        <i class="material-icons">directions</i>
+                                                    </a>
+                                                    <button type="button" title="View details" class="btn btn-default btn-link btn-sm show-hourly-log-details"
+                                                            data-id="{{ $lg->id }}"
+                                                            data-date="{{ $lg->log_date }}"
+                                                            data-time="{{ $lg->log_time }}"
+                                                            data-description="{{ $lg->log_text }}"
+                                                            data-type="{{ $lg->log_type }}"
+                                                            data-battery="{{ $lg->battery_percentage }}">
+                                                        <i class="material-icons">info</i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                        @elseif($lg->log_type == 'Alert Log')
+
+                                            <tr id="{{ $lg->log_id }}"
+                                                data-lat="{{ $lg->location_latitude }}"
+                                                data-long="{{ $lg->location_longitude }}"
+                                                data-locality="{{ $lg->locality }}"
+                                                class="logs">
+                                                <td>
+                                                    <span class="badge badge-pill badge-danger">{{ $lg->log_type }}</span><br>
+                                                    <b>{{ $lg->log_time }} - {{ $lg->log_date }}</b><br>
+                                                    Watch battery: {{ $lg->battery_percentage }}%
+                                                </td>
+                                                <td class="td-actions text-right">
+                                                    <a target="_blank" href="https://www.google.com/maps/dir//{{ $lg->location_latitude }},{{ $lg->location_longitude }}"
+                                                       title="Get direction" class="btn btn-default btn-link btn-sm">
+                                                        <i class="material-icons">directions</i>
+                                                    </a>
+                                                    <button type="button" title="View details" class="btn btn-default btn-link btn-sm show-alert-log-details"
+                                                            data-id="{{ $lg->log_id }}"
+                                                            data-wearer-name="{{ $wearerDetails->full_name }}">
+                                                        <i class="fa fa-spinner fa-spin alert-log-spinner sr-only"></i>
+                                                        <i class="alert-log-Info-Icon material-icons">info</i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                        @endif
+
+                                    @endforeach
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -295,39 +334,66 @@
         </footer>
 
 
-        <div class="modal fade" id="trackWearer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-lg">
+        <div class="modal fade" id="logFilters" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Wearer Location</h4>
+                        <h4 class="modal-title">Search Filters</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             <i class="material-icons">clear</i>
                         </button>
                     </div>
 
-                    <div class="modal-body">
-                        <p class="card-description">
-                            <i class="fa fa-map-marker"></i> &nbsp;
-                            <span id="wearerLocality"></span>
-                        </p>
-                        <div id="wearerLocationMap"></div>
-                        <p id="wearerLocationMessage" class="text-danger font-weight-bold"></p>
+                    <form id="logFiltersForm">
 
-                    </div>
+                        <div class="modal-body">
+                            <div class="form-horizontal">
 
-                    <div class="modal-footer">
-                        <a id="wearerGetDirectionLink" target="_blank" class="btn btn-dark btn-link">
-                            <i class="material-icons">directions</i>
-                            &nbsp; Get Directions
-                        </a>
-                        <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
-                    </div>
+                                <input type="hidden" value="{{ $serviceDetails->service_id }}" name="serviceId" readonly>
+
+                                <div class="row">
+                                    <label style="margin-top: 10px" class="col-md-3 col-form-label">
+                                        Logs type:
+                                    </label>
+                                    <div class="col-md-9">
+                                        <div class="form-group has-default">
+                                            <select class="form-control" name="logsType">
+                                                <option value="all">All</option>
+                                                <option value="alert">Alert logs</option>
+                                                <option value="hourly">Hourly logs</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label style="margin-top: 10px" class="col-md-3 col-form-label">Date:</label>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <input type="text" name="logsDate" class="form-control datepicker">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-dark btn-link">
+                                <i class="fa fa-search"></i> &nbsp;
+                                Search &nbsp;
+                                <span><i id="apllyLogFilterLoad" class="fa fa-spinner fa-spin sr-only"></i></span>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </form>
 
                 </div>
             </div>
         </div>
 
-        <div class="modal fade" id="hourlyLogDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal fade" id="hourlyLogDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -387,7 +453,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="alertLogDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal fade" id="alertLogDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -400,7 +466,7 @@
                     <div class="modal-body">
 
                         <p><b id="aModalWearerName"></b> initiated help me request at <b id="aModalTime"></b> on <b id="aModalDate"></b>.
-                            <br>Device battery was <b id="aModalBattery">35%</b> at the time of request initiation</p>
+                            <br>Device battery was <b id="aModalBattery"></b> at the time of request initiation</p>
 
                         <span id="helpMeResponse"></span>
                         <div style="background: #eeeeee" class="card card-timeline card-plain">
@@ -495,7 +561,10 @@
 
 @section('script')
 
-    <script src="/userAssets/js/wearerServiceLogs.js"></script>
+    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+    <script src="/userAssets/js/plugins/bootstrap-datetimepicker.min.js"></script>
+
+    <script src="/userAssets/js/watcherServiceLogHistory.js"></script>
 
     <!--  Google Maps Plugin    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsaBSLRpDtQYzD5md-bnOYP61GBRN9oac&libraries=places&callback=initialMap"></script>

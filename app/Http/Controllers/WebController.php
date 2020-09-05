@@ -7,6 +7,7 @@ use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class WebController extends Controller
 {
@@ -165,7 +166,7 @@ class WebController extends Controller
 
         } else {
 
-            dd("Page not found");
+            return view("notFound");
 
         }
 
@@ -404,17 +405,81 @@ class WebController extends Controller
 
             }
 
-            dd("User Verified");
+            return view("emailVerified");
 
         } else {
 
-            dd("Invalid link");
+            return view("notFound");
 
         }
 
-
-
-
     }
+
+
+    public function resendEmailVerification(Request $request){
+
+        $email = $request->verifyEmail;
+
+        if(DB::table('users')
+            ->where('email', '=', $email)
+            ->exists()) {
+
+            $userDetails = DB::table('users')
+                ->where('email', '=', $email)
+                ->get()->first();
+
+            $prevStatus = $userDetails->verification_status;
+
+            if($prevStatus == "false") {
+
+                $userId = $userDetails->person_id;
+
+                $idCode = ltrim($userId, 'WOMUSR00');
+
+                $userCode = date("dYmhis");
+
+                $updateVerificationCode = DB::table('users')
+                    ->where('email', '=', $email)
+                    ->update([
+                        'verification_code' => $userCode
+                    ]);
+
+
+                $newVerificationLink = "http://127.0.0.1:8000/userVerification/".$idCode.$userCode;
+
+                $userVerificationEmailData = array(
+
+                    'userId' => $userDetails->person_id,
+                    'userFName' => $userDetails->f_name,
+                    'userLName' => $userDetails->l_name,
+                    'userFullName' => $userDetails->full_name,
+                    'userEmail' => $userDetails->email,
+                    'userPhone' => $userDetails->phone,
+                    'verificationLink' => $newVerificationLink
+
+
+                );
+
+                Mail::send('emails.userVerification', $userVerificationEmailData ,function ($message) use ($userVerificationEmailData){
+                    $message->from('watchoverme@uawdevstudios.com', 'Watch Over Me');
+                    $message->to($userVerificationEmailData['userEmail']);
+                    $message->subject('Watcher Over Me - User Verification');
+                });
+
+                return response()->json("success");
+
+            } elseif ($prevStatus == "true") {
+
+                return response()->json("verified");
+
+            }
+
+        } else {
+
+            return response()->json("not exist");
+        }
+    }
+
+
 
 }

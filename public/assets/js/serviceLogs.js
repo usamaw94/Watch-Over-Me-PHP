@@ -1,17 +1,19 @@
 $(document).ready(function () {
 
+    var locationCheck = false;
+
     localStorage.clear();
 
-    window.Echo.channel('showlogs.'+$('#serviceId').text())
+    window.Echo.channel('showlogs.' + $('#serviceId').text())
         .listen('NewLog', (e) => {
 
             // alert(e.serviceId);
 
-            $( "#logsContainer" ).load(window.location.href + " #logsContent", function () {
+            $("#logsContainer").load(window.location.href + " #logsContent", function () {
 
                 var index = localStorage.getItem("activeLogId");
 
-                var id  = "#"+index;
+                var id = "#" + index;
 
                 $(id).addClass("logs-active");
 
@@ -22,7 +24,6 @@ $(document).ready(function () {
 
 
     // alert('location.'+$('#serviceId').text()+'.'+$('#showWearerLocation').attr('data-user-id'));
-
 
 
     initialMap();
@@ -54,11 +55,11 @@ $(document).ready(function () {
         var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
     }
 
-    function myMap(lat,long) {
+    function myMap(lat, long) {
         //var lat = document.getElementById("latitude").value;
         //var long = document.getElementById("longitude").value;
 
-        var wearerPosition = new google.maps.LatLng(lat,long);
+        var wearerPosition = new google.maps.LatLng(lat, long);
         var mapOptions = {
             center: wearerPosition,
             zoom: 15,
@@ -71,11 +72,10 @@ $(document).ready(function () {
     }
 
 
-
-    $(document).on("click", ".logs", function(){
-        var lat=$(this).attr('data-lat');
-        var long=$(this).attr('data-long');
-        var locality=$(this).attr('data-locality');
+    $(document).on("click", ".logs", function () {
+        var lat = $(this).attr('data-lat');
+        var long = $(this).attr('data-long');
+        var locality = $(this).attr('data-locality');
 
         $(".logs").removeClass("logs-active");
 
@@ -83,19 +83,22 @@ $(document).ready(function () {
 
         $(this).addClass("logs-active");
 
-        myMap(lat,long);
+        myMap(lat, long);
 
         $(".map-marker-icon").removeClass('sr-only');
         $("#wearerLogLocality").text(locality);
     });
 
-    $(document).on("click",'.logs-action', function(event) {
+    $(document).on("click", '.logs-action', function (event) {
         event.stopPropagation();
     });
 
 
+    $(document).on("click", '#showWearerLocation', function (event) {
 
-    $(document).on("click",'#showWearerLocation', function(event) {
+        locationCheck = false;
+
+        $("#wearerLocationMessage").text("");
 
         var id = $(this).attr('data-service-id');
 
@@ -105,7 +108,7 @@ $(document).ready(function () {
 
         $("#trackWearerLoad").removeClass("sr-only");
 
-        var url="/adminTrackWearer/";
+        var url = "/adminTrackWearer/";
 
 
         $.ajax({
@@ -113,7 +116,7 @@ $(document).ready(function () {
             data: {
                 serviceId: id,
                 userName: userName,
-                userId:userId
+                userId: userId
             },
             datatype: "json",
             method: "GET",
@@ -123,43 +126,110 @@ $(document).ready(function () {
             }
         });
 
+        setTimeout(function () {
+
+            if (locationCheck == false) {
+
+                locationCheck = true;
+
+
+
+                var url = "/adminGetLastLocation/";
+
+
+                $.ajax({
+                    url: url,
+                    data: {
+                        serviceId: id,
+                        userName: userName,
+                        userId: userId
+                    },
+                    datatype: "json",
+                    method: "GET",
+                    success: function (data) {
+
+                        var lat = data.location_latitude;
+                        var long = data.location_longitude;
+                        var locality = data.locality;
+                        var lastDate = data.log_date;
+                        var lastTime = data.log_time;
+
+                        $("#wearerLocality").text(locality);
+
+                        var getDirectionLink = "https://www.google.com/maps/dir//" + lat + "," + long;
+
+
+                        $("#wearerGetDirectionLink").attr("href", getDirectionLink);
+
+                        var wearerPosition = new google.maps.LatLng(lat, long);
+                        var mapOptions = {
+                            center: wearerPosition,
+                            zoom: 15,
+                        };
+                        var map = new google.maps.Map(document.getElementById("wearerLocationMap"), mapOptions);
+                        var marker = new google.maps.Marker({
+                            position: wearerPosition,
+                        });
+                        marker.setMap(map);
+
+                        $("#wearerLocationMessage").text("*Last location recorded at "+lastTime +" on "+lastDate);
+
+                        $('#trackWearer').modal('show');
+
+
+                    },
+                    complete: function () {
+                        $("#trackWearerLoad").addClass("sr-only");
+                    }
+                });
+            }
+
+        }, 10000);
     });
 
-    window.Echo.channel('location.'+$('#serviceId').text()+'.'+$('#showWearerLocation').attr('data-user-id'))
+    window.Echo.channel('location.' + $('#serviceId').text() + '.' + $('#showWearerLocation').attr('data-user-id'))
         .listen('WearerLocation', (e) => {
 
-            var userId = e.userId;
-            var serviceId = e.serviceId;
-            var lat = e.locationLatitude;
-            var long = e.locationLongitude;
-            var locality = e.locality;
+            if(locationCheck == false){
 
-            $("#wearerLocality").text(locality);
+                locationCheck = true;
 
-            var getDirectionLink = "https://www.google.com/maps/dir//"+lat+","+long;
+                var userId = e.userId;
+                var serviceId = e.serviceId;
+                var lat = e.locationLatitude;
+                var long = e.locationLongitude;
+                var locality = e.locality;
+
+                $("#wearerLocality").text(locality);
+
+                var getDirectionLink = "https://www.google.com/maps/dir//" + lat + "," + long;
 
 
-            $("#wearerGetDirectionLink").attr("href", getDirectionLink);
+                $("#wearerGetDirectionLink").attr("href", getDirectionLink);
 
-            var wearerPosition = new google.maps.LatLng(lat,long);
-            var mapOptions = {
-                center: wearerPosition,
-                zoom: 15,
-            };
-            var map = new google.maps.Map(document.getElementById("wearerLocationMap"), mapOptions);
-            var marker = new google.maps.Marker({
-                position: wearerPosition,
-            });
-            marker.setMap(map);
+                var wearerPosition = new google.maps.LatLng(lat, long);
+                var mapOptions = {
+                    center: wearerPosition,
+                    zoom: 15,
+                };
+                var map = new google.maps.Map(document.getElementById("wearerLocationMap"), mapOptions);
+                var marker = new google.maps.Marker({
+                    position: wearerPosition,
+                });
+                marker.setMap(map);
 
-            $('#trackWearer').modal('show');
+                $("#wearerLocationMessage").text("*Current location");
 
-            $("#trackWearerLoad").addClass("sr-only");
+                $('#trackWearer').modal('show');
+
+                $("#trackWearerLoad").addClass("sr-only");
+
+            }
 
         });
 
 
-    $(document).on("click",'.show-hourly-log-details', function(event) {
+    $(document).on("click", '.show-hourly-log-details', function (event) {
 
         var id = $(this).attr('data-id');
         var date = $(this).attr('data-date');
@@ -169,17 +239,17 @@ $(document).ready(function () {
         var deviceBattery = $(this).attr('data-battery');
 
         $("#hModalId").text(id);
-        $("#hModalDateTime").text(date +" - "+time);
+        $("#hModalDateTime").text(date + " - " + time);
         $("#hModalDescription").text(description);
         $("#hModalType").text(type);
-        $("#hModalBattery").text(deviceBattery+"%");
+        $("#hModalBattery").text(deviceBattery + "%");
 
 
         $('#hourlyLogDetails').modal('show');
     });
 
 
-    $(document).on("click",'.show-alert-log-details', function(event) {
+    $(document).on("click", '.show-alert-log-details', function (event) {
 
         $("#alertLogInfoIcon").addClass("sr-only");
         $("#alertLogLoad").removeClass("sr-only");
@@ -188,7 +258,7 @@ $(document).ready(function () {
         var wearerName = $(this).attr('data-wearer-name');
 
 
-        var url="/adminAlertLogDetails/";
+        var url = "/adminAlertLogDetails/";
 
 
         $.ajax({
@@ -203,13 +273,13 @@ $(document).ready(function () {
                 $("#aModalWearerName").text(wearerName);
                 $("#aModalTime").text(data.logDetails.log_time);
                 $("#aModalDate").text(data.logDetails.log_date);
-                $("#aModalBattery").text(data.logDetails.battery_percentage+"%");
+                $("#aModalBattery").text(data.logDetails.battery_percentage + "%");
 
                 $("#helpMeResponse").text("");
 
-                if(data.logDetails.response_status == "true"){
+                if (data.logDetails.response_status == "true") {
                     $("#helpMeResponse").html(
-                        "<p class='text-success'><b>"+data.logDetails.responded_by_name+"</b> accepted the help request</p>");
+                        "<p class='text-success'><b>" + data.logDetails.responded_by_name + "</b> accepted the help request</p>");
                 } else {
                     $("#helpMeResponse").html("<p class='text-danger'>No one accepted the help request</p>");
                 }
@@ -219,7 +289,7 @@ $(document).ready(function () {
                 var length = data.logResponses.length;
 
 
-                for(i=0; i<data.logResponses.length; i++){
+                for (i = 0; i < data.logResponses.length; i++) {
                     var alertLogId = data.logResponses[i].alert_log_id;
                     var responseFrom = data.logResponses[i].response_from;
                     var responseTo = data.logResponses[i].response_to;
@@ -243,7 +313,7 @@ $(document).ready(function () {
 
                     if (responseStatus == "true") {
 
-                        if(responseType == "Yes") {
+                        if (responseType == "Yes") {
 
                             //Yes
 
@@ -256,11 +326,11 @@ $(document).ready(function () {
                                 "<span class='badge badge-pill badge-success'>Response</span>" +
                                 "</div>" +
                                 "<div class='timeline-body'>" +
-                                "<p><b>"+fName+"</b> accepted the help request</p>\n" +
+                                "<p><b>" + fName + "</b> accepted the help request</p>\n" +
                                 "</div>" +
                                 "<h6>" +
                                 "<i class='ti-time'></i>" +
-                                replyTime+" - "+ replyDate +
+                                replyTime + " - " + replyDate +
                                 "</h6>" +
                                 "</div>" +
                                 "</li>";
@@ -279,11 +349,11 @@ $(document).ready(function () {
                                 "<span class='badge badge-pill badge-danger'>Response</span>" +
                                 "</div>" +
                                 "<div class='timeline-body'>" +
-                                "<p><b>"+fName+"</b> declined the help request</p>\n" +
+                                "<p><b>" + fName + "</b> declined the help request</p>\n" +
                                 "</div>" +
                                 "<h6>" +
                                 "<i class='ti-time'></i>" +
-                                replyTime+" - "+ replyDate +
+                                replyTime + " - " + replyDate +
                                 "</h6>" +
                                 "</div>" +
                                 "</li>";
@@ -303,7 +373,7 @@ $(document).ready(function () {
                             "<span class='badge badge-pill badge-warning'>Response</span>" +
                             "</div>" +
                             "<div class='timeline-body'>" +
-                            "<p><b>"+fName+"</b> didn't respond</p>" +
+                            "<p><b>" + fName + "</b> didn't respond</p>" +
                             "</div>" +
                             "</div>" +
                             "</li>";
@@ -319,11 +389,11 @@ $(document).ready(function () {
                         "<span class='badge badge-pill badge-info'>Help Me Request</span>" +
                         "</div>" +
                         "<div class='timeline-body'>" +
-                        "<p>Request was sent to <b>"+fullName+"</b></p>" +
+                        "<p>Request was sent to <b>" + fullName + "</b></p>" +
                         "</div>" +
                         "<h6>" +
                         "<i class='ti-time'></i>" +
-                        sendTime+" - "+sendDate+
+                        sendTime + " - " + sendDate +
                         "</h6>" +
                         "</div>" +
                         "</li>" + response;

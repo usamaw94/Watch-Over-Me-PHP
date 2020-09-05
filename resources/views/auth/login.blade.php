@@ -81,12 +81,62 @@
                                 </span>
                             </div>
                             <div class="card-footer justify-content-center">
-                                <button type="submit" class="btn btn-primary btn-link btn-lg">Sign In</button>
+                                <button type="submit" class="btn btn-outline-primary btn-link btn-lg">Sign In</button>
+                            </div>
+                            <div class="card-footer justify-content-center">
+                                <div data-toggle="modal" data-target="#verifyEmailModal" class="btn btn-info btn-link btn-lg">Resend Verification Link</div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="verifyEmailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Account Verification</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="material-icons">clear</i>
+                </button>
+            </div>
+
+            <form id="verificationForm">
+
+                <div class="modal-body">
+                    <div class="form-horizontal">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input id="verifyEmail" type="email" name="verifyEmail" class="form-control" placeholder="Email address to receive verification link" required>
+                                    <span class="bmd-help">Email address to receive account verification link.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display: none" id="errorMsg">
+                            <h5 class="messaage-text text-danger">
+                            </h5>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="sendLink" type="submit" class="btn btn-dark btn-link">
+                        <i class="fa fa-send"></i> &nbsp;
+                        Send link &nbsp;
+                        <span><i class="fa fa-spinner fa-spin sr-only"></i></span>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                </div>
+
+            </form>
+
         </div>
     </div>
 </div>
@@ -101,6 +151,8 @@
 <script src="/userAssets/js/plugins/jquery.validate.min.js"></script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script src="/userAssets/js/buttons.js"></script>
+<!--  Plugin for Sweet Alert -->
+<script src="/assets/js/plugins/sweetalert2.min.js"></script>
 <!--  Notifications Plugin    -->
 <script src="/userAssets/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
@@ -123,7 +175,8 @@
                 },
                 password: {
                     required: true,
-                }
+                },
+
             },
 
             highlight: function(element) {
@@ -135,6 +188,76 @@
             errorPlacement : function(error, element) {
                 $(element).append(error);
             }
+        });
+
+        $(document).on("keyup", "#verifyEmail", function () {
+
+            $("#errorMsg").slideUp("slow");
+
+        });
+
+        $(document).on("submit", "#verificationForm", function (e) {
+            e.preventDefault();
+
+            var element = $(this);
+
+            var data = $(this).serialize();
+
+            $(this).find(".fa-spinner").removeClass('sr-only');
+
+            $("#sendLink").attr("disabled", true);
+
+            var url="/resendEmailVerification/";
+
+            $.ajax({
+                url: url,
+                data: data,
+                datatype: "json",
+                method: "GET",
+                success: function (data) {
+
+
+                    if (data == 'success'){
+
+
+                        $('#verifyEmailModal').modal('hide');
+
+                        Swal.fire(
+                            'Sent!',
+                            'Verification link has been sent to your email',
+                            'success'
+                        )
+
+                    } else if(data == "verified") {
+
+                        $("#errorMsg").slideDown("slow");
+
+                        $(".messaage-text").text("Email is already verified");
+
+                    } else if(data == "not exist") {
+
+                        $(".messaage-text").text("User does not exist");
+
+                        $("#errorMsg").slideDown("slow");
+
+                    }
+
+
+                },
+                complete: function () {
+                    element.find(".fa-spinner").addClass('sr-only');
+                }
+            });
+
+        });
+
+        $("#verifyEmailModal").on('hide.bs.modal', function(){
+
+            $("#errorMsg").slideUp("slow");
+            $(".messaage-text").text("");
+            $("#verifyEmail").val("");
+            $("#sendLink").attr("disabled", false);
+
         });
 
     });

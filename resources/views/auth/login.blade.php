@@ -43,7 +43,7 @@
                     <form id="loginForm" class="form" method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <div class="card card-login card-hidden">
+                        <div class="card card-login">
                             <div class="card-header card-header-primary text-center">
                                 <h4 class="card-title">User Log In</h4>
                             </div>
@@ -162,10 +162,6 @@
 <script>
     $(document).ready(function() {
         md.checkFullPageBackgroundImage();
-        setTimeout(function() {
-            // after 1000 ms we add the class animated to the login/register card
-            $('.card').removeClass('card-hidden');
-        }, 700);
 
         var $validator = $('#loginForm').validate({
             rules: {

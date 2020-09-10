@@ -534,7 +534,7 @@ class HomeController extends Controller
             );
 
             Mail::send('emails.userVerification', $userVerificationEmailData ,function ($message) use ($userVerificationEmailData){
-                $message->from('watchoverme@uawdevstudios.com', 'Watch Over Me');
+                $message->from('mailtest2194@gmail.com', 'Watch Over Me');
                 $message->to($userVerificationEmailData['userEmail']);
                 $message->subject('Watcher Over Me - User Verification');
             });

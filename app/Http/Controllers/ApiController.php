@@ -271,7 +271,7 @@ class ApiController extends Controller
 
             curl_exec($ch);
         } catch (Exception $e) {
-            
+
         }
     }
 
@@ -502,7 +502,7 @@ class ApiController extends Controller
 
             try {
                 Mail::send('emails.contactWatcher', $data, function ($message) use ($data) {
-                    $message->from('watchoverme@uawdevstudios.com', 'Watch Over Me');
+                    $message->from('mailtest2194@gmail.com', 'Watch Over Me');
                     $message->to($data['watcherEmail']);
                     $message->subject('Watch Over Me - Help Me Request');
                 });

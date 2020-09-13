@@ -493,7 +493,7 @@ class HomeController extends Controller
 
         if($watcherId == null){
 
-            $dbName = 'watchoverme';
+            $dbName = 'uawdevst_watchoverme';
             $tableNameUser = 'users';
 
             $newWatcher = true;

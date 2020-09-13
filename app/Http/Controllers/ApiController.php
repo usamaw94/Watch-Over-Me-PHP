@@ -277,7 +277,7 @@ class ApiController extends Controller
 
     public function helpMeRequestInitiate(Request $request)
     {
-        $dbName = 'watchoverme';
+        $dbName = 'uawdevst_watchoverme';
         $tableNameLogs = 'logs';
 
         $infoLog = DB::select('SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = ? AND   TABLE_NAME   = ?', [$dbName, $tableNameLogs]);
@@ -376,7 +376,7 @@ class ApiController extends Controller
     public function regularLog(Request $request)
     {
 
-        $dbName = 'watchoverme';
+        $dbName = 'uawdevst_watchoverme';
         $tableNameLogs = 'logs';
 
         $infoLog = DB::select('SELECT `AUTO_INCREMENT`FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = ? AND   TABLE_NAME   = ?', [$dbName, $tableNameLogs]);

@@ -263,7 +263,7 @@ class AdminController extends Controller
 
         if($watcherId == null){
 
-            $dbName = 'watchoverme';
+            $dbName = 'uawdevst_watchoverme';
             $tableNameUser = 'users';
             $tableNameService = 'services';
             $tableNameWatcherRelation = 'watcher_relations';
@@ -505,7 +505,7 @@ class AdminController extends Controller
         $newCustomer = false;
 
 
-        $dbName = 'watchoverme';
+        $dbName = 'uawdevst_watchoverme';
         $tableNameUser = 'users';
         $tableNameService = 'services';
         $tableNameWatcherRelation = 'watcher_relations';

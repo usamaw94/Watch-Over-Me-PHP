@@ -188,6 +188,7 @@
 
         $(document).on("keyup", "#verifyEmail", function () {
 
+            $("#sendLink").attr("disabled", false);
             $("#errorMsg").slideUp("slow");
 
         });
